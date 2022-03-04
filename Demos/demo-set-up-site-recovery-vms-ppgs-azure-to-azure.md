@@ -1,35 +1,43 @@
-﻿# デモ: 近接通信配置グループの仮想マシンの Site Recovery を設定する - Azure から Azure へ
+---
+ms.openlocfilehash: 3c8f55e525f1ec25f6cd9518c4dd3d99734e34c9
+ms.sourcegitcommit: 0113753baec606c586c0bdf4c9452052a096c084
+ms.translationtype: HT
+ms.contentlocale: ja-JP
+ms.lasthandoff: 01/13/2022
+ms.locfileid: "137857615"
+---
+# <a name="demonstration-set-up-site-recovery-for-virtual-machines-in-proximity-placement-groups---azure-to-azure"></a>デモ:近接通信配置グループの仮想マシンの Site Recovery を設定する - Azure から Azure へ
 
-> **注:** この機能は現在 PowerShell を介して使用でき、Managed Disks を使用するすべての Azure VM をサポートします。
+> **注:**  この機能は現在 PowerShell を介して使用でき、Managed Disks を使用するすべての Azure VM をサポートします。
 
-## 前提条件
+## <a name="prerequisites"></a>前提条件
 
-1. Azure PowerShell Az モジュールがあることを確認します。Azure PowerShell をインストールまたはアップグレードする必要がある場合は、この[ガイドに従って Azure PowerShell をインストールして構成します](https://docs.microsoft.com/powershell/azure/install-az-ps?view=azps-5.0.0)。
-2. 最小バージョンの Azure PowerShell Az は 4.1.0 である必要があります。現在のバージョンを確認するには、次のコマンドを使用します。
+1. Azure PowerShell Az モジュールがあることを確認します。 Azure PowerShell をインストールまたはアップグレードする必要がある場合は、[Azure PowerShell モジュールのインストールと構成のガイド](https://docs.microsoft.com/powershell/azure/install-az-ps?view=azps-5.0.0)に関するページをご覧ください。
+2. Azure PowerShell Az のバージョンは 4.1.0 以上である必要があります。 現在のバージョンを確認するには、次のコマンドを使用します。
 
     ```azurepowershell
-	Get-InstalledModule -Name Az
+    Get-InstalledModule -Name Az
     ```
 
->**注:** ターゲットの近接通信配置グループの一意の ID が手元に用意されていることを確認します。新しい近接通信配置グループを作成する場合は、[ここ](https://docs.microsoft.com/azure/virtual-machines/windows/proximity-placement-groups#create-a-proximity-placement-group)でコマンドを確認し、既存の近接通信配置グループを使用している場合は、[ここ](https://docs.microsoft.com/azure/virtual-machines/windows/proximity-placement-groups#list-proximity-placement-groups)でコマンドを使用します。
+>**注:**  ターゲットの近接通信配置グループの一意の ID が手元に用意されていることを確認します。 新しい近接配置グループを作成している場合は、[こちら](https://docs.microsoft.com/azure/virtual-machines/windows/proximity-placement-groups#create-a-proximity-placement-group)のコマンドを確認し、既存の近接配置グループを使用している場合は、[こちら](https://docs.microsoft.com/azure/virtual-machines/windows/proximity-placement-groups#list-proximity-placement-groups)のコマンドを使用します。
 
-## Microsoft Azure サブスクリプションにサインインします。
+## <a name="sign-in-to-your-microsoft-azure-subscription"></a>Microsoft Azure サブスクリプションにサインインする
 
-1. `Connect-AzAccount`コマンドレットを使用して Azure サブスクリプションにログインします。
+1. `Connect-AzAccount` コマンドレットを使用してお使いの Azure サブスクリプションにサインインします。
 
     ```azurepowershell
     Connect-AzAccount
     ```
 
-1. Azure サブスクリプションを選択します。`Get-AzSubscription`コマンドレットを使用して、アクセスできる Azure サブスクリプションの一覧を取得します。`Set-AzContext`コマンドレットを使用して、操作する Azure サブスクリプションを選択します。
+1. Azure サブスクリプションを選択します。 `Get-AzSubscription` コマンドレットを使って、アクセスできる Azure サブスクリプションの一覧を取得します。 `Set-AzContext` コマンドレットを使って、利用する Azure サブスクリプションを選びます。
 
     ```azurepowershell
     Set-AzContext -SubscriptionId "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
     ```
 
-## レプリケートする仮想マシンの詳細を取得する
+## <a name="get-details-of-the-virtual-machine-to-be-replicated"></a>レプリケートする仮想マシンの詳細を取得する
 
-1. このデモでは、米国東部リージョンの仮想マシンが米国西部 2 リージョンにレプリケートされ、復旧されます。レプリケートされる仮想マシンには、OS ディスクと 1 つのデータ ディスクがあります。この例で使用されている仮想マシンの名前は `AzureDemoVM`です。
+1. このデモでは、米国東部リージョンの仮想マシンが米国西部 2 リージョンにレプリケートされ、復旧されます。 レプリケートされる仮想マシンには、OS ディスクと 1 つのデータ ディスクが与えられます。 この例で使用されている仮想マシンの名前は `AzureDemoVM` です。
 
     ```azurepowershell
     # Get details of the virtual machine
@@ -54,23 +62,23 @@
     StorageProfile     : {ImageReference, OsDisk, DataDisks}
     ```
 
-1. 仮想マシンのディスクの詳細を取得します。ディスクの詳細は、後で仮想マシンのレプリケーションを開始するときに使用されます。
+1. 仮想マシンのディスクについて、ディスク詳細を取得します。 ディスクの詳細は、後ほど、仮想マシンのレプリケーションを開始するときに使用されます。
 
     ```azurepowershell
     $OSDiskVhdURI = $VM.StorageProfile.OsDisk.Vhd
     $DataDisk1VhdURI = $VM.StorageProfile.DataDisks[0].Vhd
     ```
 
-## Recovery Services コンテナーを作成する
+## <a name="create-a-recovery-services-vault"></a>Recovery Services コンテナーを作成する
 
 1. Recovery Services コンテナーを作成するリソース グループを作成します。
 
     > **重要:**
     > * Recovery Services コンテナーと保護される仮想マシンは、Azure の別の場所に存在する必要があります。
     > * Recovery Services コンテナーのリソース グループと保護される仮想マシンは、Azure の別の場所に存在する必要があります。
-    > * Recovery Services コンテナーと、それが属するリソース グループは、同じ Azure の場所に配置できます。
+    > * Recovery Services コンテナーと、それが属するリソース グループは、同じ Azure の場所にあってもかまいません。
 
-1. このデモでは、保護される仮想マシンは米国東部リージョンにあります。ディザスター リカバリーのために選択された復旧リージョンは、米国西部 2 リージョンです。Recovery Services コンテナー、およびコンテナーのリソース グループは、両方とも復旧リージョン (米国西部 2) にあります。
+1. このデモでは、保護される仮想マシンは米国東部リージョンにあります。 ディザスター リカバリー用に選択された復旧リージョンは、米国西部 2 リージョンです。 Recovery Services コンテナーと、コンテナーのリソース グループは、いずれも復旧リージョン (米国西部 2) 内にあります。
 
     ```azurepowershell
     #Create a resource group for the recovery services vault in the recovery Azure region
@@ -85,7 +93,7 @@
     ResourceId        : /subscriptions/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/resourceGroups/a2ademorecoveryrg
     ```
 
-1. Recovery Services コンテナーを作成します。この例では、`a2aDemoRecoveryVault`という名前のRecovery Services コンテナーが米国西部 2 リージョンに作成されます。
+1. Recovery Services コンテナーを作成します。 この例では、`a2aDemoRecoveryVault` という名前の Recovery Services コンテナーが米国西部 2 リージョン内に作成されます。
 
     ```azurepowershell
     #Create a new Recovery services vault in the recovery region
@@ -104,9 +112,9 @@
     Properties        : Microsoft.Azure.Commands.RecoveryServices.ARSVaultProperties
     ```
 
-## コンテナー コンテキストの設定
+## <a name="set-the-vault-context"></a>コンテナーのコンテキストを設定する
 
-1. PowerShell セッションで使用するコンテナー コンテキストを設定します。コンテナー コンテキストを設定すると、PowerShell セッションでの Azure Site Recovery 操作は、選択したコンテナーのコンテキストで実行されます。
+1. PowerShell セッションで使用するための、コンテナーのコンテキストを設定します。 コンテナーのコンテキストが設定されると、PowerShell セッションでの Azure Site Recovery 操作は、選択されているコンテナーのコンテキストで実行されます。
 
     ```azurepowershell
     #Setting the vault context.
@@ -124,25 +132,25 @@
     Remove-Item -Path $Vaultsettingsfile.FilePath
     ```
 
-1. Azure から Azure への移行の場合、新しく作成されたコンテナーにコンテナー コンテキストを設定できます。
+1. Azure から Azure への移行では、コンテナーのコンテキストを新しく作成されたコンテナーに設定できます。
 
     ```azurepowershell
     #Set the vault context for the PowerShell session.
     Set-AzRecoveryServicesAsrVaultContext -Vault $vault
     ```
 
-## Azure Virtual Machines のレプリケートを開始するためのコンテナーの準備
+## <a name="prepare-the-vault-to-start-replicating-azure-virtual-machines"></a>Azure 仮想マシンのレプリケートを開始するようにコンテナーを準備する
 
-### プライマリ (ソース) リージョンを表す Site Recovery ファブリック オブジェクトを作成する
+### <a name="create-a-site-recovery-fabric-object-to-represent-the-primary-source-region"></a>プライマリ (ソース) リージョンを表す Site Recovery ファブリック オブジェクトを作成する
 
-コンテナー内のファブリック オブジェクトは、Azure リージョンを表します。プライマリ ファブリック オブジェクトは、コンテナーに対して保護されている仮想マシンが属する Azure リージョンを表すために作成されます。このデモでは、保護される仮想マシンは米国東部リージョンにあります。
+コンテナー内のファブリック オブジェクトは、Azure リージョンを表します。 プライマリ ファブリック オブジェクトは、コンテナーの保護対象となっている仮想マシンが属する Azure リージョンを表すために作成します。 このデモでは、保護される仮想マシンは米国東部リージョンにあります。
 
 - リージョンごとに作成できるファブリック オブジェクトは 1 つだけです。
-- Azure portal で VM の Site Recovery レプリケーションを以前に有効にしている場合、Site Recovery によってファブリック オブジェクトが自動的に作成されます。あるリージョンにファブリック オブジェクトが存在する場合、新しいオブジェクトを作成することはできません。
+- Azure portal で VM の Site Recovery レプリケーションを以前に有効にしている場合、Site Recovery によってファブリック オブジェクトが自動的に作成されます。 リージョンにファブリック オブジェクトが存在する場合は、新しいファブリック オブジェクトを作成することはできません。
 
-開始する前に、Site Recovery 操作が非同期的に実行されることを理解してください。操作を開始すると、Azure Site Recovery ジョブが送信され、ジョブ追跡オブジェクトが返されます。
+開始する前に、Site Recovery 操作が非同期的に実行されることを理解してください。 操作を開始すると、Azure Site Recovery ジョブが送信されて、ジョブ追跡オブジェクトが返されます。
 
-1. ジョブ追跡オブジェクトを使用して、ジョブの最新の状態 (`Get-AzRecoveryServicesAsrJob`)を取得し、操作の状態を監視します。
+1. このジョブ追跡オブジェクトを使用して、ジョブ (`Get-AzRecoveryServicesAsrJob`) の最新の状態を取得し、操作の状態を監視します。
 
     ```azurepowershell
     #Create Primary ASR fabric
@@ -161,11 +169,11 @@
     $PrimaryFabric = Get-AzRecoveryServicesAsrFabric -Name "A2Ademo-EastUS"
     ```
 
-1. 複数の Azure リージョンの仮想マシンが同じコンテナーに保護されている場合は、ソース Azure リージョンごとに 1 つのファブリック オブジェクトを作成します。
+1. 同じコンテナーに対して、複数の Azure リージョンの仮想マシンが保護されている場合は、ソースの Azure リージョンごとにファブリック オブジェクトを 1 つ作成します。
 
-### 復旧リージョンを表す Site Recovery ファブリック オブジェクトを作成する
+### <a name="create-a-site-recovery-fabric-object-to-represent-the-recovery-region"></a>復旧リージョンを表す Site Recovery ファブリック オブジェクトを作成する
 
-復旧ファブリック オブジェクトは、復旧 Azure の場所を表します。フェールオーバーが発生した場合、仮想マシンは復旧ファブリックで表される復旧リージョンにレプリケートされ、復旧されます。この例で使用されている復旧 Azure リージョンは、米国西部 2 です。
+復旧ファブリック オブジェクトは、復旧用の Azure の場所を表します。 フェールオーバーが行われると、仮想マシンがレプリケートされ、復旧ファブリックで表わされる復旧リージョンで復旧されます。 この例で使用される復旧用 Azure リージョンは、米国西部 2 です。
 
 ```azurepowershell
 #Create Recovery ASR fabric
@@ -183,11 +191,11 @@ Write-Output $TempASRJob.State
 $RecoveryFabric = Get-AzRecoveryServicesAsrFabric -Name "A2Ademo-WestUS"
 ```
 
-## Site Recovery 保護コンテナーを作成する
+## <a name="create-site-recovery-protection-containers"></a>Site Recovery 保護コンテナーを作成する
 
-### プライマリ ファブリックに Site Recovery 保護コンテナーを作成する
+### <a name="create-a-site-recovery-protection-container-in-the-primary-fabric"></a>プライマリ ファブリックに Site Recovery 保護コンテナーを作成する
 
-保護コンテナーは、ファブリック内のレプリケートされたアイテムをグループ化するために使用されるコンテナーです。
+保護コンテナーは、ファブリック内でレプリケートされる項目をグループ化するのに使用されるコンテナーです。
 
 ```azurepowershell
 #Create a Protection container in the primary Azure region (within the Primary fabric)
@@ -204,7 +212,7 @@ Write-Output $TempASRJob.State
 $PrimaryProtContainer = Get-AzRecoveryServicesAsrProtectionContainer -Fabric $PrimaryFabric -Name "A2AEastUSProtectionContainer"
 ```
 
-### 復旧ファブリック内に Site Recovery 保護コンテナーを作成する
+### <a name="create-a-site-recovery-protection-container-in-the-recovery-fabric"></a>復旧ファブリック内に Site Recovery 保護コンテナーを作成する
 
 ```azurepowershell
 #Create a Protection container in the recovery Azure region (within the Recovery fabric)
@@ -223,7 +231,7 @@ Write-Output $TempASRJob.State
 $RecoveryProtContainer = Get-AzRecoveryServicesAsrProtectionContainer -Fabric $RecoveryFabric -Name "A2AWestUSProtectionContainer"
 ```
 
-## レプリケーション ポリシーを作成する
+## <a name="create-a-replication-policy"></a>レプリケーション ポリシーを作成する
 
 ```azurepowershell
 #Create replication policy
@@ -241,11 +249,11 @@ Write-Output $TempASRJob.State
 $ReplicationPolicy = Get-AzRecoveryServicesAsrPolicy -Name "A2APolicy"
 ```
 
-## 保護コンテナー マッピングを作成する
+## <a name="create-protection-container-mappings"></a>保護コンテナー マッピングを作成する
 
-### プライマリと復旧の保護コンテナー間の保護コンテナー マッピングを作成する
+### <a name="create-a-protection-container-mapping-between-the-primary-and-recovery-protection-container"></a>プライマリ コンテナーと復旧保護コンテナー間に保護コンテナー マッピングを作成する
 
-保護コンテナー マッピングは、プライマリ保護コンテナーを復旧保護コンテナーおよびレプリケーション ポリシーにマッピングします。保護コンテナー ペア間で仮想マシンをレプリケートするために使用するレプリケーション ポリシーごとに 1 つのマッピングを作成します。
+保護コンテナー マッピングでは、プライマリ保護コンテナーを、回復保護コンテナーおよびレプリケーション ポリシーとマップします。 保護コンテナー ペア間で仮想マシンをレプリケートするのに使用するレプリケーション ポリシーごとに、1 つのマッピングを作成します。
 
 ```azurepowershell
 #Create Protection container mapping between the Primary and Recovery Protection Containers with the Replication policy
@@ -263,9 +271,9 @@ Write-Output $TempASRJob.State
 $EusToWusPCMapping = Get-AzRecoveryServicesAsrProtectionContainerMapping -ProtectionContainer $PrimaryProtContainer -Name "A2APrimaryToRecovery"
 ```
 
-### フェールバック用の保護コンテナー マッピングを作成する (フェールオーバー後のリバース レプリケーション)
+### <a name="create-a-protection-container-mapping-for-failback-reverse-replication-after-a-failover"></a>フェールバック (フェールオーバー後のレプリケーションの反転) のための保護コンテナー マッピングを作成する
 
-フェールオーバー後、フェールオーバーした仮想マシンを元の Azure リージョンに戻す準備ができたら、フェールバックを実行します。フェール バックするには、フェールオーバーした仮想マシンが、フェールオーバーしたリージョンから元のリージョンに逆レプリケートされます。リバース レプリケーションの場合、元のリージョンと復旧リージョンの役割が切り替わります。元のリージョンが新しい復旧リージョンになり、元の復旧リージョンがプライマリ リージョンになります。リバース レプリケーションの保護コンテナー マッピングは、元のリージョンと復旧リージョンの切り替えロールを表します。
+フェールオーバー後、フェールオーバーした仮想マシンを元の Azure リージョンに戻す準備ができたら、フェールバックを行います。 フェールバックするために、フェールオーバーした仮想マシンは、フェールオーバーしたリージョンから元のリージョンへと逆方向にレプリケートされます。 レプリケーションの反転の際には、元のリージョンと復旧リージョンの役割が入れ替わります。 元のリージョンはこれで新しい復旧リージョンになり、元は復旧リージョンであったものは今後プライマリ リージョンになります。 レプリケーションの反転のための保護コンテナー マッピングは、元のリージョンと復旧リージョンで入れ替えた役割を表します。
 
 ```azurepowershell
 #Create Protection container mapping (for fail back) between the Recovery and Primary Protection Containers with the Replication policy
@@ -283,27 +291,27 @@ Write-Output $TempASRJob.State
 $WusToEusPCMapping = Get-AzRecoveryServicesAsrProtectionContainerMapping -ProtectionContainer $RecoveryProtContainer -Name "A2ARecoveryToPrimary"
 ```
 
-## キャッシュ ストレージ アカウントとターゲット ストレージ アカウントを作成する
+## <a name="create-cache-storage-account-and-target-storage-account"></a>キャッシュ ストレージ アカウントとターゲット ストレージ アカウントを作成する
 
-キャッシュ ストレージ アカウントは、レプリケートされる仮想マシンと同じ Azure リージョン内の標準ストレージ アカウントです。キャッシュ ストレージ アカウントは、変更が復旧 Azure リージョンに移動される前に、レプリケーションの変更を一時的に保持するために使用されます。仮想マシンのディスクごとに異なるキャッシュ ストレージ アカウントを指定する必要はありませんが、選択できます。
+キャッシュ ストレージ アカウントは、レプリケートされる仮想マシンと同じ Azure リージョン内の標準的ストレージ アカウントです。 キャッシュ ストレージ アカウントは、変更が復旧 Azure リージョンに移動される前に、レプリケーションの変更を一時的に保持するために使用されます。 必須ではありませんが、仮想マシンのディスクごとに異なるキャッシュ ストレージ アカウントを指定できます。
 
 ```azurepowershell
 #Create Cache storage account for replication logs in the primary region
 $EastUSCacheStorageAccount = New-AzStorageAccount -Name "a2acachestorage" -ResourceGroupName "A2AdemoRG" -Location 'East US' -SkuName Standard_LRS -Kind Storage
 ```
 
-**Managed Disks を使用しない**仮想マシンの場合、ターゲット ストレージ アカウントは、仮想マシンのディスクがレプリケートされる復旧リージョンのストレージ アカウントです。ターゲット ストレージ アカウントは、標準ストレージ アカウントまたはプレミアム ストレージ アカウントのいずれかです。ディスクのデータ変更率 (IO 書き込み速度) と、ストレージの種類に対する Azure Site Recovery でサポートされるチャーン制限に基づいて、必要なストレージ アカウントの種類を選択します。
+**マネージド ディスクを使用していない** 仮想マシンの場合、ターゲット ストレージ アカウントは、仮想マシンのディスクのレプリケート先となる復旧リージョン内のストレージ アカウントです。 ターゲット ストレージ アカウントは、Standard Storage アカウントと Premium Storage アカウントのどちらでもかまいません。 ディスクのデータ変化率 (IO の書き込み率) と、Azure Site Recovery が各ストレージの種類でサポートしているデータ変更頻度の上限に基づいて、必要なストレージ アカウントの種類を選択します。
 
 ```azurepowershell
 #Create Target storage account in the recovery region. In this case a Standard Storage account
 $WestUSTargetStorageAccount = New-AzStorageAccount -Name "a2atargetstorage" -ResourceGroupName "a2ademorecoveryrg" -Location 'West US 2' -SkuName Standard_LRS -Kind Storage
 ```
 
-## ネットワーク マッピングを作成する
+## <a name="create-network-mappings"></a>ネットワーク マッピングを作成する
 
-ネットワーク マッピングは、プライマリ リージョンの仮想ネットワークを復旧リージョンの仮想ネットワークにマッピングします。ネットワーク マッピングでは、プライマリ仮想ネットワーク内の仮想マシンがフェールオーバーする復旧リージョンの Azure 仮想ネットワークを指定します。1 つの Azure 仮想ネットワークは、復旧リージョン内の 1 つの Azure 仮想ネットワークにのみマップできます。
+ネットワーク マッピングは、プライマリ リージョン内の仮想ネットワークを、復旧リージョン内の仮想ネットワークにマップします。 ネットワーク マッピングでは、復旧リージョン内の Azure 仮想ネットワークを指定します。これが、プライマリ仮想ネットワーク内の仮想マシンのフェールオーバー先になる必要があります。 1 つの Azure 仮想ネットワークをマップできるのは、復旧リージョン内の 1 つの Azure 仮想ネットワークのみです。
 
-1. フェールオーバー先の復旧リージョンに Azure 仮想ネットワークを作成する。
+1. フェールオーバー先の復旧リージョン内に Azure 仮想ネットワークを作成します。
 
    ```azurepowershell
     #Create a Recovery Network in the recovery region
@@ -314,7 +322,7 @@ $WestUSTargetStorageAccount = New-AzStorageAccount -Name "a2atargetstorage" -Res
     $WestUSRecoveryNetwork = $WestUSRecoveryVnet.Id
    ```
 
-1. プライマリ仮想ネットワークを取得します。仮想マシンが接続されている VNet:
+1. プライマリ仮想ネットワークを取得します。 仮想マシンの接続先である VNet:
 
    ```azurepowershell
     #Retrieve the virtual network that the virtual machine is connected to
@@ -338,7 +346,7 @@ $WestUSTargetStorageAccount = New-AzStorageAccount -Name "a2atargetstorage" -Res
     $EastUSPrimaryNetwork = (Split-Path(Split-Path($PrimarySubnet.Id))).Replace("\","/")
    ```
 
-1. プライマリ仮想ネットワークと復旧仮想ネットワークの間にネットワーク マッピングを作成する。
+1. プライマリ仮想ネットワークと、復旧用の仮想ネットワーク間のネットワーク マッピングを作成します。
 
    ```azurepowershell
     #Create an ASR network mapping between the primary Azure virtual network and the recovery Azure virtual network
@@ -354,7 +362,7 @@ $WestUSTargetStorageAccount = New-AzStorageAccount -Name "a2atargetstorage" -Res
     Write-Output $TempASRJob.State
    ```
 
-1. 逆方向 (フェールバック) のネットワーク マッピングを作成する。
+1. 逆方向 (フェールバック) のネットワーク マッピングを作成します。
 
     ```azurepowershell
     #Create an ASR network mapping for fail back between the recovery Azure virtual network and the primary Azure virtual network
@@ -370,9 +378,9 @@ $WestUSTargetStorageAccount = New-AzStorageAccount -Name "a2atargetstorage" -Res
     Write-Output $TempASRJob.State
     ```
 
-## マネージド ディスクを使用している Azure 仮想マシンをレプリケートします。
+## <a name="replicate-an-azure-virtual-machine-with-managed-disks"></a>マネージド ディスクを使用している Azure 仮想マシンをレプリケートします。
 
-次の Power Shell コマンドレットを使用して、マネージド ディスクを使用して Azure 仮想マシンをレプリケートします。
+次の PowerShell コマンドレットを使用して、マネージド ディスクと Azure 仮想マシンをレプリケートします。
 
     ```azurepowershell
     #Get the resource group that the virtual machine must be created in when it's failed over.
@@ -409,7 +417,7 @@ $WestUSTargetStorageAccount = New-AzStorageAccount -Name "a2atargetstorage" -Res
     $TempASRJob = New-AzRecoveryServicesAsrReplicationProtectedItem -AzureToAzure -AzureVmId $VM.Id -Name (New-Guid).Guid -ProtectionContainerMapping $EusToWusPCMapping -AzureToAzureDiskReplicationConfiguration $diskconfigs -RecoveryResourceGroupId $RecoveryRG.ResourceId -RecoveryProximityPlacementGroupId $targetPpg.Id
     ```
 
-複数のデータ ディスクのレプリケーションを有効にする場合は、次の Power Shell コマンドレットを使用する。
+    When you're enabling replication for multiple data disks, use the following PowerShell cmdlet:
 
     ```azurepowershell
     #Get the resource group that the virtual machine must be created in when it's failed over.
@@ -434,7 +442,7 @@ $WestUSTargetStorageAccount = New-AzStorageAccount -Name "a2atargetstorage" -Res
     # Add data disks
     Foreach( $disk in $VM.StorageProfile.DataDisks)
     {
- 	    $datadisk = Get-AzDisk -DiskName $datadiskName -ResourceGroupName "A2AdemoRG"
+        $datadisk = Get-AzDisk -DiskName $datadiskName -ResourceGroupName "A2AdemoRG"
         $dataDiskId1 = $datadisk[0].Id
         $RecoveryReplicaDiskAccountType = $datadisk[0].Sku.Name
         $RecoveryTargetDiskAccountType = $datadisk[0].Sku.Name
@@ -449,25 +457,25 @@ $WestUSTargetStorageAccount = New-AzStorageAccount -Name "a2atargetstorage" -Res
     $TempASRJob = New-AzRecoveryServicesAsrReplicationProtectedItem -AzureToAzure -AzureVmId $VM.Id -Name (New-Guid).Guid -ProtectionContainerMapping $EusToWusPCMapping -AzureToAzureDiskReplicationConfiguration $diskconfigs -RecoveryResourceGroupId $RecoveryRG.ResourceId -RecoveryProximityPlacementGroupId $targetPpg.Id
     ```
 
-近接配置グループを使用してゾーン間レプリケーションを有効にすると、レプリケーションを開始するコマンドが Power Shell コマンドレットと交換されます。
+    When you're enabling zone-to-zone replication with a proximity placement group, the command to start replication will be exchanged with the PowerShell cmdlet:
 
     ```azurepowershell
     $TempASRJob = New-AzRecoveryServicesAsrReplicationProtectedItem -AzureToAzure -AzureVmId $VM.Id -Name (New-Guid).Guid -ProtectionContainerMapping $EusToWusPCMapping -AzureToAzureDiskReplicationConfiguration $diskconfigs -RecoveryResourceGroupId $RecoveryRG.ResourceId -RecoveryProximityPlacementGroupId $targetPpg.Id -RecoveryAvailabilityZone "2"
     ```
 
-レプリケーションを開始する操作が成功すると、仮想マシンのデータがリカバリ領域にレプリケートされます。
+    After the operation to start replication succeeds, virtual machine data is replicated to the recovery region.
 
-レプリケーション プロセスは、最初に、復旧リージョン内で仮想マシンのレプリケートする側のディスクのコピーをシード処理することによって始まります。このフェーズは、*初期レプリケーション* フェーズと呼ばれます。
+    The replication process starts by initially seeding a copy of the replicating disks of the virtual machine in the recovery region. This phase is called the *initial replication* phase.
 
-初期レプリケーションが完了すると、レプリケーションは*差分同期*フェーズに移行します。この時点で、仮想マシンは保護されており、仮想マシンでテスト フェールオーバー操作を実行できます。初期レプリケーションの完了後、仮想マシンを表すレプリケートされた項目のレプリケーション状態は、保護された状態に移行します。
+    After initial replication finishes, replication moves to the *differential synchronization* phase. At this point, the virtual machine is protected, and you can perform a test failover operation on it. The replication state of the replicated item that represents the virtual machine goes to the protected state after initial replication finishes.
 
-それに対応するレプリケーションの保護された項目の詳細を取得することによって、仮想マシンのレプリケーション状態とレプリケーション正常性を監視します。
+    Monitor the replication state and replication health for the virtual machine by getting details of the replication protected item that corresponds to it:
 
     ```azurepowershell
     Get-AzRecoveryServicesAsrReplicationProtectedItem -ProtectionContainer $PrimaryProtContainer | Select FriendlyName, ProtectionState, ReplicationHealth
     ```
 
-## テスト フェール オーバーの実行、検証、クリーンアップ
+## <a name="perform-validate-and-clean-up-a-test-failover"></a>テスト フェール オーバーの実行、検証、クリーンアップ
 
 仮想マシンのレプリケーションが保護された状態になったら、仮想マシンに (仮想マシンのレプリケーション保護項目に) テスト フェールオーバー操作を実行できます。
 
@@ -516,7 +524,7 @@ Errors           : {}
 
 テスト フェールオーバーのジョブが正常に完了したら、テスト フェールオーバーが行われた仮想マシンに接続し、テスト フェールオーバーを検証できます。
 
-テスト フェールオーバーを行った仮想マシンでテストが完了したら、テスト フェールオーバー操作のクリーンアップを開始して、テスト コピーをクリーンアップします。この操作により、テスト フェールオーバーによって作成された仮想マシンのテスト コピーが削除されます。
+テスト フェールオーバーを行った仮想マシンでテストが完了したら、テスト フェールオーバー操作のクリーンアップを開始して、テスト コピーをクリーンアップします。 この操作により、テスト フェールオーバーによって作成された仮想マシンのテスト コピーが削除されます。
 
 ```azurepowershell
 $Job_TFOCleanup = Start-AzRecoveryServicesAsrTestFailoverCleanupJob -ReplicationProtectedItem $ReplicationProtectedItem
@@ -530,7 +538,7 @@ State
 Succeeded
 ```
 
-## 仮想枚ｓンをフェール オーバーする
+## <a name="fail-over-the-virtual-machine"></a>仮想枚ｓンをフェール オーバーする
 
 仮想マシンを特定の復旧ポイントにフェールオーバーします。
 
@@ -589,7 +597,7 @@ Tasks            : {Prerequisite check, Commit}
 Errors           : {}
 ```
 
-## 再保護とソース リージョンへのフェールバック
+## <a name="reprotect-and-fail-back-to-the-source-region"></a>再保護とソース リージョンへのフェールバック
 
 次の Power Shell コマンドレットを使用して、再保護し、ソース領域にフェール バックします。
 
@@ -601,9 +609,9 @@ $WestUSCacheStorageAccount = New-AzStorageAccount -Name "a2acachestoragewestus" 
 Update-AzRecoveryServicesAsrProtectionDirection -ReplicationProtectedItem $ReplicationProtectedItem -AzureToAzure -ProtectionContainerMapping $WusToEusPCMapping -LogStorageAccountId $WestUSCacheStorageAccount.Id -RecoveryResourceGroupID $sourceVMResourcegroup.ResourceId -RecoveryProximityPlacementGroupId $vm.ProximityPlacementGroup.Id
 ```
 
-## レプリケーションを無効にする
+## <a name="disable-replication"></a>レプリケーションを無効にする
 
-`Remove-AzRecoveryServicesAsrReplicationProtectedItem` コマンドレットを使用してレプリケーションを無効にできます。
+`Remove-AzRecoveryServicesAsrReplicationProtectedItem` コマンドレットでレプリケーションを無効にできます。
 
 ```azurepowershell
 Remove-AzRecoveryServicesAsrReplicationProtectedItem -ReplicationProtectedItem $ReplicationProtectedItem
