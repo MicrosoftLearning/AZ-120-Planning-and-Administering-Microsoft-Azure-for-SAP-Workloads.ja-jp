@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: 464e607c662cfac9f65e17eefb7f53e9ebc61eb3
-ms.sourcegitcommit: 0113753baec606c586c0bdf4c9452052a096c084
+ms.openlocfilehash: 95cd67cfd85258abff0e906b20673ecf09d071a0
+ms.sourcegitcommit: 30dae3c49fe96a790479d08844a71fcb7851aa46
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/13/2022
-ms.locfileid: "137857623"
+ms.lasthandoff: 03/15/2022
+ms.locfileid: "139867886"
 ---
 # <a name="az-120-module-2-explore-the-foundations-of-iaas-for-sap-on-azure"></a>AZ 120 モジュール 2:IaaS for SAP on Azure の基盤を探る
 # <a name="lab-1b-implement-windows-clustering-on-azure-vms"></a>ラボ 1b:Azure VM 上に Windows クラスタリングを実装する
@@ -43,7 +43,7 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
 期間:50 分
 
-この演習では、Windows Server 2019 を実行している Azure VM 上フェールオーバー クラスタリングを構成するために必要な Azure インフラストラクチャのコンピューティング コンポーネントをデプロイします。 これには、Active Directory ドメイン コントローラーのペアをデプロイした後、同じ仮想ネットワーク内の同じ可用性セットで Windows Server 2019 を実行する Azure VM のペアをデプロイすることが含まれます。 ドメイン コントローラーのデプロイを自動化するには、<https://github.com/polichtm/azure-quickstart-templates/tree/master/active-directory-new-domain-ha-2-dc> から利用可能な Azure Resource Manager クイック スタート テンプレートを使用します
+この演習では、Windows Server 2019 を実行している Azure VM 上フェールオーバー クラスタリングを構成するために必要な Azure インフラストラクチャのコンピューティング コンポーネントをデプロイします。 これには、Active Directory ドメイン コントローラーのペアをデプロイした後、同じ仮想ネットワーク内の同じ可用性セットで Windows Server 2019 を実行する Azure VM のペアをデプロイすることが含まれます。 ドメイン コントローラーのデプロイを自動化するには、<https://aka.ms/az120-1bdeploy> から利用可能な Azure Resource Manager クイック スタート テンプレートを使用します
 
 ### <a name="task-1-deploy-a-pair-of-azure-vms-running-highly-available-active-directory-domain-controllers-by-using-an-azure-resource-manager-template"></a>タスク 1:Azure Resource Manager テンプレートを使用して、高可用性な Active Directory ドメイン コントローラを実行する 2 組の Azure VM をデプロイする
 
@@ -51,7 +51,7 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
 1.  プロンプトが表示された場合は、このラボで使用する Azure サブスクリプションの所有者または共同作成者のロールを使用して、職場、学校または個人の Microsoft アカウントを使用してログインします。
 
-1.  新しい Web ブラウザー タブを開き、<https://github.com/polichtm/azure-quickstart-templates> にある Azure クイック スタート テンプレート ページに移動し、**2 つの新しい Windows VM、新しい AD フォレスト、ドメイン、2 つの DC を1 つの可用性セットに作成する** という名前のテンプレートを検索し、 **[Azure にデプロイ]** ボタンをクリックしてデプロイを開始します。
+1.  新しい Web ブラウザー タブを開き、<https://aka.ms/az120-1bdeploy> にある Azure クイック スタート テンプレート ページに移動し、**2 つの新しい Windows VM、新しい AD フォレスト、ドメイン、2 つの DC を1 つの可用性セットに作成する** という名前のテンプレートを検索し、 **[Azure にデプロイ]** ボタンをクリックしてデプロイを開始します。
 
 1.  **カスタム デプロイ** ブレードで、次の設定を指定し、 **「Review + create」** 、次に **「作成」** をクリックしてデプロイを開始します。
 
@@ -87,7 +87,7 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
        - Azure portal で、前の手順で特定した VM のブレードに移動し、「**拡張機能**」を選択し、「**拡張機能**」ブレードから CustomScript 拡張機能を削除します
 
-       - Azure portal で、 **[az12001b-ad-RG]** リソース グループ ブレードに移動し、 **[デプロイ]** を選択して、失敗したデプロイへのリンクを選択します。 **[再デプロイ]** を選択し、ターゲット リソース グループ (**az12001b-ad-RG**) を選択して、ルート アカウントのパスワードを指定します (**Pa55w.rd1234**)。
+       - GitHub クイックスタート テンプレート (<https://aka.ms/az120-1bdeploy>) に移動し、 **[Azure にデプロイ]** を選択し、ターゲット リソース グループ (**az12001b-ad-RG**) を選択して、ルート アカウントのパスワード (**Pa55w.rd1234**) を入力します。
 
 
 ### <a name="task-2-deploy-a-pair-of-azure-vms-running-windows-server-2019-in-a-new-availability-set"></a>タスク 2:新しい可用性セットで Windows Server 2019 を実行する Azure VM のペアをデプロイします。
@@ -106,9 +106,9 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
     -   可用性オプション:**可用性セット**
 
-    -   可用性セット: "2 つの障害ドメインと 5 つの更新ドメインを持つ" **az12001b-cl-avset** "という名前の新規可用性セット" 
+    -   可用性セット: *2 つの障害ドメインと 5 つの更新ドメインを持つ* **az12001b-cl-avset** *という名前の新規可用性セット*
 
-    -   イメージ:**Windows Server 2019 Datacenter - Gen1**
+    -   イメージ:**Windows Server 2019 Datacenter - Gen2**
 
     -   サイズ:**Standard D4s v3**
 
@@ -126,7 +126,7 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
     -   仮想ネットワーク: **adVNET**
 
-    -   サブネット名: **clSubnet** "という名前の新規サブネット"
+    -   サブネット名: **clSubnet** *という名前の新規サブネット*
 
     -   サブネット アドレス範囲:**10.0.1.0/24**
 
@@ -352,7 +352,7 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
     -   名前: **Data Storage Pool**
 
-    -   物理ディスク: "最初の 3 つの LUN 番号 (0 から 2) に対応するディスク番号を持つ 3 つのディスクを選択し、それらの割り当てを" **[自動]** "に設定します"
+    -   物理ディスク: *"最初の 3 つの LUN 番号 (0 から 2) に対応するディスク番号を持つ 3 つのディスクを選択し、それらの割り当てを"* **[自動]** "に設定します"
 
     > **注**:**Chassis** 列のエントリを使用して、**LUN** 番号を識別します。
 
@@ -384,7 +384,7 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
     -   名前: **ログ記憶域プール**
 
-    -   物理ディスク: "4 つのディスクのうち最後の 1 つを選び、そのディスクの割り当てを" **[自動]** "に設定します"
+    -   物理ディスク: *"4 つのディスクのうち最後の 1 つを選び、そのディスクの割り当てを"* **[自動]** "に設定します"
 
 1.  **「新規仮想ディスク ウィザード」** を使用して、次の設定で新しい仮想ディスクを作成します。
 
@@ -440,17 +440,15 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
     -   パフォーマンス: **Standard**
 
-    -   アカウント種類:**ストレージ (汎用 v1)**
-
     -   レプリケーション：**ローカル冗長ストレージ (LRS)**
 
     -   接続方法:**パブリック エンドポイント (すべてのネットワーク)**
 
-    -   セキュリティ保護された転送が必要:**有効**
+    -   REST API 操作の安全な転送を必須にする:**有効**
 
     -   大きなファイル共有:**Disabled**
 
-    -   BLOB ソフト削除:**Disabled**
+    -   BLOB、コンテナー、ファイルの論理的な削除:**Disabled**
 
     -   階層型名前空間:**Disabled**
 
@@ -593,6 +591,8 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
     -   SKU:**Standard**
 
+    -   フロントエンド IP 名: **frontend-ip1**
+    
     -   仮想ネットワーク: **adVNET**
 
     -   サブネット: **clSubnet**
@@ -623,9 +623,9 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
     -   ポート:**59999**
 
-    -   間隔:**5** "秒"
+    -   間隔:**5** *"秒"*
 
-    -   異常しきい値:**2** "個の連続エラー"
+    -   異常しきい値:**2** *"個の連続エラー"*
 
 1.  **az12001b-cl-lb0** ブレードから、次の設定でネットワーク負荷分散ルールを追加します。
 
@@ -647,7 +647,7 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
     -   正常性プローブ:**az12001b-cl-lb0-hprobe (TCP:59999)**
 
-    -   セッション永続化:**なし**
+    -   セッション永続化: **なし**
 
     -   アイドル タイムアウト (分):**4**
 
@@ -717,9 +717,9 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
     -   ポート:**80**
 
-    -   間隔:**5** "秒"
+    -   間隔:**5** *秒*
 
-    -   異常しきい値:**2** "個の連続エラー"
+    -   異常しきい値:**2** *"個の連続エラー"*
 
 1.  **az12001b-cl-lb1** ブレードで、 **「負荷分散ルール」** をクリックします。
 
@@ -741,7 +741,7 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
     -   正常性プローブ: **az12001b-cl-lb1-hprobe (TCP:80)**
 
-    -   セッション永続化:**なし**
+    -   セッション永続化: **なし**
 
     -   アイドル タイムアウト (分):**4**
 
@@ -767,7 +767,7 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
     -   可用性オプション:**インフラストラクチャ冗長は必要ありません**
 
-    -   画像: **Windows Server 2019 Datacenter**
+    -   イメージ:**Windows Server 2019 Datacenter - Gen2**
 
     -   サイズ:**Standard DS1 v2** _ または同様のもの_
 
@@ -785,7 +785,7 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
     -   仮想ネットワーク: **adVNET**
 
-    -   サブネット: **bastionSubnet** "という名前の新しいサブネット"
+    -   サブネット: **bastionSubnet** *"という名前の新しいサブネット"*
 
     -   アドレス範囲:**10.0.255.0/24**
 
@@ -849,7 +849,7 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
 1. このラボで作成したリソース グループのみが出力に含まれていることを確認します。 これらのグループは、次のタスクで削除されます。
 
-#### <a name="task-2-delete-resource-groups"></a>タスク 2:リソース グループの削除
+#### <a name="task-2-delete-resource-groups"></a>タスク 2: リソース グループを削除する
 
 1. Cloud Shell ペインで次のコマンドを実行して、新しく作成したサブネットのリソース ID を特定します。
 
