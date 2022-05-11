@@ -1,10 +1,10 @@
 ---
-ms.openlocfilehash: a3328b8fa21b3365dabdf9680c43fd5ee96cde3f
-ms.sourcegitcommit: 0113753baec606c586c0bdf4c9452052a096c084
+ms.openlocfilehash: c24d0da0cd66795235076080e14c561c7399a16f
+ms.sourcegitcommit: 30dae3c49fe96a790479d08844a71fcb7851aa46
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/13/2022
-ms.locfileid: "137857617"
+ms.lasthandoff: 03/15/2022
+ms.locfileid: "139867895"
 ---
 # <a name="az-120-module-4-deploy-sap-on-azure"></a>AZ 120 モジュール 4:SAP on Azure のデプロイ
 # <a name="lab-3b-implement-sap-architecture-on-azure-vms-running-windows"></a>ラボ 3b:課題: Windows を実行する Azure VM に SAP アーキテクチャを実装する
@@ -13,7 +13,7 @@ ms.locfileid: "137857617"
 
 このラボのタスクすべては、Azure portal (PowerShell Cloud Shell セッションを含む) から実行されます  
 
-   > **注**:Cloud Shell を使用しない場合は、ラボ仮想マシンに Az PowerShell モジュールがインストールされている必要があります [ **https://docs.microsoft.com/en-us/powershell/azure/install-az-ps-msi** ](https://docs.microsoft.com/en-us/powershell/azure/install-az-ps-msi)
+   > **注**:Cloud Shell を使用しない場合は、ラボ仮想マシンに Az PowerShell モジュールがインストールされている必要があります ([ **https://docs.microsoft.com/en-us/powershell/azure/install-az-ps-msi** ](https://docs.microsoft.com/en-us/powershell/azure/install-az-ps-msi))。
 
 ラボ ファイル: なし
 
@@ -76,7 +76,7 @@ Azure に SAP NetWeaver をデプロイする準備として、Adatum Corporatio
 
     -   ドメイン名: **adatum.com**
 
-    -   DnsPrefix:"一意の有効な DNS プレフィックスを使用します"
+    -   DnsPrefix:*一意の有効な DNS プレフィックスを使用します*
 
     -   VM サイズ:**Standard D2s\_v3**
 
@@ -85,7 +85,7 @@ Azure に SAP NetWeaver をデプロイする準備として、Adatum Corporatio
     -   _アーティファクト ロケーション SAS トークン: *空白のままにする*
 
 
-    > **注**:デプロイメント過程は約 35 分間かかる場合があります。 次のタスクを進める前に、展開が完了するのを待ちます。
+    > **注**:デプロイには約 35 分かかります。 次のタスクを進める前に、展開が完了するのを待ちます。
 
     > **注**:CustomScriptExtension コンポーネントのデプロイ中に **競合** エラー メッセージが表示され、デプロイが失敗した場合は、次の手順を使用してこの問題を修復します。
 
@@ -141,7 +141,7 @@ Azure に SAP NetWeaver をデプロイする準備として、Adatum Corporatio
     (Get-AzVirtualNetworkSubnetConfig -Name $subnetName -VirtualNetwork $vNet).Id
     ```
 
-1.  結果の値をクリップボードにコピーします。 この名前は、次のタスクで必要になります。
+1.  結果の値をクリップボードにコピーします。 これは、次のタスクで必要になります。
 
 ### <a name="task-3-deploy-azure-resource-manager-template-provisioning-azure-vms-running-windows-server-2016-that-will-host-a-highly-available-sap-netweaver-deployment"></a>タスク 3:可用性の高い SAP NetWeaver のデプロイをホストする Windows Server 2016 を実行する Azure VM をプロビジョニングする Azure Resource Manager テンプレートをデプロイする
 
@@ -280,7 +280,7 @@ Azure に SAP NetWeaver をデプロイする準備として、Adatum Corporatio
 
     -   可用性オプション:**インフラストラクチャ冗長は必要ありません**
 
-    -   画像: **Windows Server 2019 Datacenter**
+    -   イメージ:**Windows Server 2019 Datacenter Gen2**
 
     -   サイズ:**Standard_D2s_v3**
 
@@ -420,17 +420,15 @@ Azure に SAP NetWeaver をデプロイする準備として、Adatum Corporatio
 
     -   パフォーマンス: **Standard**
 
-    -   アカウント種類:**ストレージ (汎用 v1)**
-
     -   レプリケーション：**ローカル冗長ストレージ (LRS)**
 
     -   接続方法:**パブリック エンドポイント (すべてのネットワーク)**
 
-    -   セキュリティ保護された転送が必要:**有効**
+    -   REST API 操作の安全な転送を必須にする:**有効**
 
     -   大きなファイル共有:**Disabled**
 
-    -   BLOB ソフト削除:**Disabled**
+    -   BLOB、コンテナー、ファイル共有のソフト削除:**Disabled**
 
     -   階層型名前空間:**Disabled**
 
@@ -670,7 +668,7 @@ Azure に SAP NetWeaver をデプロイする準備として、Adatum Corporatio
 
 1. このラボで作成したリソース グループのみが出力に含まれていることを確認します。 これらのグループは、次のタスクで削除されます。
 
-#### <a name="task-2-delete-resource-groups"></a>タスク 2:リソース グループの削除
+#### <a name="task-2-delete-resource-groups"></a>タスク 2: リソース グループを削除する
 
 1. Cloud Shell ペインで次のコマンドを実行して、新しく作成したサブネットのリソース ID を特定します。
 
