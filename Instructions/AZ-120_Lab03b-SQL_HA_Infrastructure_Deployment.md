@@ -1,19 +1,22 @@
 ---
-ms.openlocfilehash: c24d0da0cd66795235076080e14c561c7399a16f
-ms.sourcegitcommit: 30dae3c49fe96a790479d08844a71fcb7851aa46
+lab:
+  title: 04b - Windows を実行する Azure VM に SAP アーキテクチャを実装する
+  module: Module 04 - Deploy SAP on Azure
+ms.openlocfilehash: ac76cdb886422455b7ebb8ad110498249d8de148
+ms.sourcegitcommit: 2d98b3c8cdd6f7b2b1a9a43868559bef227a5266
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/15/2022
-ms.locfileid: "139867895"
+ms.lasthandoff: 05/19/2022
+ms.locfileid: "145179691"
 ---
 # <a name="az-120-module-4-deploy-sap-on-azure"></a>AZ 120 モジュール 4:SAP on Azure のデプロイ
-# <a name="lab-3b-implement-sap-architecture-on-azure-vms-running-windows"></a>ラボ 3b:課題: Windows を実行する Azure VM に SAP アーキテクチャを実装する
+# <a name="lab-4b-implement-sap-architecture-on-azure-vms-running-windows"></a>ラボ 4b:課題: Windows を実行する Azure VM に SAP アーキテクチャを実装する
 
 予測される所要時間:150 分
 
 このラボのタスクすべては、Azure portal (PowerShell Cloud Shell セッションを含む) から実行されます  
 
-   > **注**:Cloud Shell を使用しない場合は、ラボ仮想マシンに Az PowerShell モジュールがインストールされている必要があります ([ **https://docs.microsoft.com/en-us/powershell/azure/install-az-ps-msi** ](https://docs.microsoft.com/en-us/powershell/azure/install-az-ps-msi))。
+   > **注**:Cloud Shell を使用しない場合は、ラボ仮想マシンに Az PowerShell モジュールがインストールされている必要があります ([ **https://docs.microsoft.com/en-us/powershell/azure/install-az-ps-msi**](https://docs.microsoft.com/en-us/powershell/azure/install-az-ps-msi))。
 
 ラボ ファイル: なし
 
@@ -198,9 +201,9 @@ Azure に SAP NetWeaver をデプロイする準備として、Adatum Corporatio
 
 ### <a name="task-4-deploy-the-scale-out-file-server-sofs-cluster"></a>タスク 4:スケールアウト ファイル サーバー (SOFS) クラスターをデプロイする
 
-このタスクでは、[ **https://github.com/robotechredmond/301-storage-spaces-direct-md** ](https://github.com/robotechredmond/301-storage-spaces-direct-md) で利用可能な GitHub の Azure Resource Manager クイックスタート テンプレートを使用して、SAP ASCS サーバーのファイル共有をホストするスケールアウト ファイル サーバー (SOFS) クラスターをデプロイします。 
+このタスクでは、[ **https://github.com/robotechredmond/301-storage-spaces-direct-md**](https://github.com/robotechredmond/301-storage-spaces-direct-md) で利用可能な GitHub の Azure Resource Manager クイックスタート テンプレートを使用して、SAP ASCS サーバーのファイル共有をホストするスケールアウト ファイル サーバー (SOFS) クラスターをデプロイします。 
 
-1.  ラボ コンピューターでブラウザーを起動し、[ **https://github.com/robotechredmond/301-storage-spaces-direct-md** ](https://github.com/robotechredmond/301-storage-spaces-direct-md) を参照します。 
+1.  ラボ コンピューターでブラウザーを起動し、[ **https://github.com/robotechredmond/301-storage-spaces-direct-md**](https://github.com/robotechredmond/301-storage-spaces-direct-md) を参照します。 
 
     > **注**:Microsoft Edge またはサード パーティのブラウザーを使用してください。 Internet Explorer は使用しないでください。
 

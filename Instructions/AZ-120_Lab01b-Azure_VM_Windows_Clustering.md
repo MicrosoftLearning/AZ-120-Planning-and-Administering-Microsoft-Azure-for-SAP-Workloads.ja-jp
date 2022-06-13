@@ -1,19 +1,22 @@
 ---
-ms.openlocfilehash: 95cd67cfd85258abff0e906b20673ecf09d071a0
-ms.sourcegitcommit: 30dae3c49fe96a790479d08844a71fcb7851aa46
+lab:
+  title: 02b - Azure VM 上に Windows クラスタリングを実装する
+  module: Module 02 - Explore the foundations of IaaS for SAP on Azure
+ms.openlocfilehash: e3158d4c4dcfeda55b2ecd9caf1761e014c21b3d
+ms.sourcegitcommit: 2d98b3c8cdd6f7b2b1a9a43868559bef227a5266
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/15/2022
-ms.locfileid: "139867886"
+ms.lasthandoff: 05/19/2022
+ms.locfileid: "145179684"
 ---
 # <a name="az-120-module-2-explore-the-foundations-of-iaas-for-sap-on-azure"></a>AZ 120 モジュール 2:IaaS for SAP on Azure の基盤を探る
-# <a name="lab-1b-implement-windows-clustering-on-azure-vms"></a>ラボ 1b:Azure VM 上に Windows クラスタリングを実装する
+# <a name="lab-2b-implement-windows-clustering-on-azure-vms"></a>ラボ 2b:Azure VM 上に Windows クラスタリングを実装する
 
 予想所要時間: 120 分
 
 このラボのタスクすべては、Azure portal (PowerShell Cloud Shell セッションを含む) から実行されます  
 
-   > **注**:Cloud Shell を使用しない場合は、ラボ仮想マシンに Az PowerShell モジュールがインストールされている必要があります ([ **https://docs.microsoft.com/en-us/powershell/azure/install-az-ps-msi** ](https://docs.microsoft.com/en-us/powershell/azure/install-az-ps-msi))。
+   > **注**:Cloud Shell を使用しない場合は、ラボ仮想マシンに Az PowerShell モジュールがインストールされている必要があります ([ **https://docs.microsoft.com/en-us/powershell/azure/install-az-ps-msi**](https://docs.microsoft.com/en-us/powershell/azure/install-az-ps-msi))。
 
 ラボ ファイル: なし
 

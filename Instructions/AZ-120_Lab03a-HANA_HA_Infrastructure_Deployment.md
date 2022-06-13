@@ -1,19 +1,22 @@
 ---
-ms.openlocfilehash: c27125346fb9a112a60110a1f23bc3357eea1d3f
-ms.sourcegitcommit: 0113753baec606c586c0bdf4c9452052a096c084
+lab:
+  title: 04a - Linux を実行する Azure VM に SAP アーキテクチャを実装する
+  module: Module 04 - Deploy SAP on Azure
+ms.openlocfilehash: 477438705acbd5fc3c0ac796353e77ef8a352dc5
+ms.sourcegitcommit: 2d98b3c8cdd6f7b2b1a9a43868559bef227a5266
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 01/13/2022
-ms.locfileid: "137857583"
+ms.lasthandoff: 05/19/2022
+ms.locfileid: "145179694"
 ---
 # <a name="az-120-module-4-deploy-sap-on-azure"></a>AZ 120 モジュール 4:SAP on Azure のデプロイ
-# <a name="lab-3a-implement-sap-architecture-on-azure-vms-running-linux"></a>ラボ 3a:Linux を実行する Azure VM に SAP アーキテクチャを実装する
+# <a name="lab-4a-implement-sap-architecture-on-azure-vms-running-linux"></a>ラボ 4a:Linux を実行する Azure VM に SAP アーキテクチャを実装する
 
 予測される所要時間:100 分
 
 このラボのタスクすべては、Azure portal (Bash Cloud Shell セッションを含む) から実行されます  
 
-   > **注**:Cloud Shell を使用しない場合は、ラボ仮想マシンに Azure CLI がインストールされている必要があります ([ **https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows** ](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows))。
+   > **注**:Cloud Shell を使用しない場合は、ラボ仮想マシンに Azure CLI がインストールされている必要があります ([ **https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows**](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows))。
 
 ラボ ファイル: なし
 
@@ -98,11 +101,11 @@ Azure に SAP NetWeaver をデプロイする準備として、Adatum Corporatio
     az network vnet subnet list --resource-group $RESOURCE_GROUP_NAME --vnet-name $VNET_NAME --query "[?name == '$SUBNET_NAME'].id" --output tsv
     ```
 
-1.  結果の値をクリップボードにコピーします。 この名前は、次のタスクで必要になります。
+1.  結果の値をクリップボードにコピーします。 これは、次のタスクで必要になります。
 
 ### <a name="task-2-deploy-azure-resource-manager-template-provisioning-azure-vms-running-linux-suse-that-will-host-a-highly-available-sap-netweaver-deployment"></a>タスク 2:可用性の高い SAP NetWeaver のデプロイをホストする Linux SUSE が稼働する Azure VM をプロビジョニングするために Azure Resource Manager テンプレートをデプロイする
 
-1.  ラボ コンピューターでブラウザーを起動し、[ **https://github.com/Azure/azure-quickstart-templates/tree/master/application-workloads/sap/sap-3-tier-marketplace-image-md** ](https://github.com/Azure/azure-quickstart-templates/tree/master/application-workloads/sap/sap-3-tier-marketplace-image-md) を参照します
+1.  ラボ コンピューターでブラウザーを起動し、[ **https://github.com/Azure/azure-quickstart-templates/tree/master/application-workloads/sap/sap-3-tier-marketplace-image-md**](https://github.com/Azure/azure-quickstart-templates/tree/master/application-workloads/sap/sap-3-tier-marketplace-image-md) を参照します
 
     > **注**:Microsoft Edge またはサード パーティのブラウザーを使用してください。 Internet Explorer は使用しないでください。
 
@@ -181,7 +184,7 @@ Azure に SAP NetWeaver をデプロイする準備として、Adatum Corporatio
 
     -   可用性オプション:**インフラストラクチャ冗長は必要ありません**
 
-    -   イメージ: **[Windows Server 2019 Datacenter - Gen 1]**
+    -   イメージ:**Windows Server 2019 Datacenter - Gen2**
 
     -   サイズ:**Standard D2s_v3** または類似のもの
 
@@ -275,7 +278,7 @@ Azure に SAP NetWeaver をデプロイする準備として、Adatum Corporatio
 
 1.  az12003a-vm0 への RDP セッションのサーバー マネージャーで **ローカル サーバー** ビューに移動し、 **「IE セキュリティ強化の構成」** をオフにします。
 
-1.  az12003a-vm0 への RDP セッション内で、[ **https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html** ](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) から PuTTY をダウンロードしてインストールします。
+1.  az12003a-vm0 への RDP セッション内で、[ **https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html**](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) から PuTTY をダウンロードしてインストールします。
 
 1.  PuTTY を使用して、SSH 経由で **i20-db-0** Azure VM に接続します。 セキュリティ警告を確認し、プロンプトが表示されたら、次の認証情報を入力します。
 
@@ -553,12 +556,12 @@ Azure に SAP NetWeaver をデプロイする準備として、Adatum Corporatio
     az account show --query '{id:id, tenantId:tenantId}' --output json
     ```
 
-1.  結果の値を Notepad にコピーします。 この名前は、次のタスクで必要になります。
+1.  結果の値を Notepad にコピーします。 これは、次のタスクで必要になります。
 
 
 ### <a name="task-4-create-an-azure-ad-application-for-the-stonith-device"></a>タスク 4:STONITH デバイス用の Azure AD アプリケーションの作成
 
-1.  Azure portal で、Azure Active Directory ブレードに移動します。
+1.  Azure portal で、 [Azure Active Directory] ブレードに移動します。
 
 1.  Azure Active Directory ブレードから、**アプリの登録** ブレードに移動し、 **「+ 新規登録」** をクリックします。
 
@@ -656,7 +659,7 @@ Azure に SAP NetWeaver をデプロイする準備として、Adatum Corporatio
 
 1. このラボで作成したリソース グループのみが出力に含まれていることを確認します。 このリソース グループとそのすべてのリソースは、次のタスクで削除されます。
 
-#### <a name="task-2-delete-resource-groups"></a>タスク 2:リソース グループの削除
+#### <a name="task-2-delete-resource-groups"></a>タスク 2: リソース グループを削除する
 
 1. Cloud Shell ペインで次のコマンドを実行して、リソース グループとそのリソースを削除します。
 
