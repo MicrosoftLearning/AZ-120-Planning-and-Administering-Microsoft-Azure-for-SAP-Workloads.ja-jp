@@ -8,18 +8,18 @@ ms.locfileid: "137857594"
 ---
 # <a name="demonstration-explore-actve-directory-users-and-groups"></a>デモ:Active Directory のユーザーとグループを詳しく見る
 
->**注**:サブスクリプションによっては、「Active Directory」ブレードのすべての領域を利用できない場合があります。
+>**注**: サブスクリプションによっては、[Active Directory] ブレードの一部の領域を利用できない場合があります。
 
 ## <a name="determine-domain-information"></a>ドメイン情報を決定する
 
-1. Azure portal にアクセスし、「**Azure Active Directory**」ブレードに移動します。
+1. Azure portal にアクセスし、**[Azure Active Directory]** ブレードに移動します。
 2. 使用可能なドメイン名をメモします。 例: usergmail.onmicrosoft.com。
 
 ## <a name="explore-user-accounts"></a>ユーザー アカウントを詳しく見る
 
-1. 「**ユーザー**」ブレードを選択します。
+1. **[ユーザー]** ブレードを選択します。
 2. **[ 新規ユーザー]** を選択します。 
-3. 「**新しいゲスト ユーザー**」を作成する選択に注意してください。
+3. **[新しいゲスト ユーザー]** を作成する選択に注意してください。
 4. **[新しいユーザー]** を作成します。 ドメインを置き換え 
 
     + **名前**: *Chris Green*
@@ -32,8 +32,8 @@ ms.locfileid: "137857594"
 
 ## <a name="explore-group-accounts"></a>グループ アカウントを詳しく見る
 
-1. 「**グループ**」ブレードを選択します。
-2. 「**新しいグループ**」を追加します。 
+1. **[グループ]** ブレードを選択します。
+2. **[新しいグループ]** を追加します。 
 
     + **グループの種類**: *セキュリティ*
     + **グループ名**: *マネージャー*

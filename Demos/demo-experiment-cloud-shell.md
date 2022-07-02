@@ -12,9 +12,9 @@ ms.locfileid: "137857605"
 
 1. **Azure portal** にアクセスします。
 2. 上部バナーの **Cloud Shell** アイコンをクリックします。
-3. 「Shell へようこそ」ページで、Bash または PowerShell の選択内容を確認します。 **[PowerShell]** を選択します。
-4. Azure Cloud Shell はファイルを保持するために Azure ファイル共有が必要です。 時間がある場合は、「詳細情報」をクリックして、Cloud Shell ストレージと関連する価格に関する情報を取得します。
-5. 「**サブスクリプション**」を選択し、「**ストレージの作成**」をクリックします。 
+3. [Shell へようこそ] ページで、Bash または PowerShell の選択内容を確認します。 **[PowerShell]** を選択します。
+4. Azure Cloud Shell はファイルを保持するために Azure ファイル共有が必要です。 時間がある場合は、[詳細情報] をクリックして、Cloud Shell ストレージと関連する価格に関する情報を取得します。
+5. **[サブスクリプション]** を選択し、**[ストレージの作成]** をクリックします。 
 
 ## <a name="experiment-with-azure-powershell"></a>Azure PowerShell を使用してみる
 

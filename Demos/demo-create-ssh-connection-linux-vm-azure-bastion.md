@@ -12,7 +12,7 @@ ms.locfileid: "137857698"
 
 ## <a name="prerequisites"></a>前提条件
 
-このデモを完了するには、Linux VM を含む Azure 仮想ネットワークが必要です。 Azure VM を作成する方法の詳細については、「[デモ:ポータルで仮想マシンを作成する](https://github.com/MicrosoftLearning/AZ-120-Planning-and-Administering-Microsoft-Azure-for-SAP-Workloads/blob/master/Demos/demo-create-virtual-machine-portal.md)」、または「[デモ:PowerShell で仮想マシンを作成する](https://github.com/MicrosoftLearning/AZ-120-Planning-and-Administering-Microsoft-Azure-for-SAP-Workloads/blob/master/Demos/demo-create-virtual-machine-powershell.md)」を参照してください。
+このデモを完了するには、Linux VM を含む Azure 仮想ネットワークが必要です。 Azure VM を作成する方法の詳細については、「[デモ: ポータルで仮想マシンを作成する](https://github.com/MicrosoftLearning/AZ-120-Planning-and-Administering-Microsoft-Azure-for-SAP-Workloads/blob/master/Demos/demo-create-virtual-machine-portal.md)」または「[デモ: PowerShell で仮想スイッチを作成する](https://github.com/MicrosoftLearning/AZ-120-Planning-and-Administering-Microsoft-Azure-for-SAP-Workloads/blob/master/Demos/demo-create-virtual-machine-powershell.md)」を参照してください。
 
 VM が存在する仮想ネットワークの Azure Bastion ホストが設定されていることを確認します。 詳細については、[Azure Bastion ホストの作成](https://docs.microsoft.com/azure/bastion/tutorial-create-host-portal)に関する記事をご覧ください。 Bastion サービスをプロビジョニングし、仮想ネットワークにデプロイしたら、それを使用してこの仮想ネットワーク内の任意の VM に接続できます。 
 

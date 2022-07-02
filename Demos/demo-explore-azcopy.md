@@ -59,7 +59,7 @@ azcopy copy "C:\local\path" "https://account.blob.core.windows.net/mycontainer1/
 
 SAS トークンの詳細とその取得方法については、「[Shared Access Signatures (SAS) を使用して Azure Storage リソースへの制限付きアクセスを許可する](https://docs.microsoft.com/azure/storage/common/storage-sas-overview)」を参照してください。
 
-> **注:**  ストレージ　アカウントの[安全な転送が必須](storage-require-secure-transfer.md)の設定は、ストレージ　アカウントへの接続がトランスポート層セキュリティ (TLS) で保護されているかどうかを決定します。 既定では、この設定は有効になっています。   
+> **注:**  ストレージ　アカウントの [安全な転送が必須](storage-require-secure-transfer.md)の設定は、ストレージ　アカウントへの接続がトランスポート層セキュリティ (TLS) で保護されているかどうかを決定します。 既定では、この設定は有効になっています。   
 
 ## <a name="explore-the-help"></a>ヘルプを確認する
 
