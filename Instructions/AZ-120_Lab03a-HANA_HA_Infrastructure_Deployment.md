@@ -69,7 +69,7 @@ Azure に SAP NetWeaver をデプロイする準備として、Adatum Corporatio
 
     > **注**:可用性ゾーンをサポートする Azure リージョンを特定するには、[https://docs.microsoft.com/en-us/azure/availability-zones/az-region](https://docs.microsoft.com/en-us/azure/availability-zones/az-region) を参照してください
 
-1. [Cloud Shell] ペインで次のコマンドを実行して、変数「`RESOURCE_GROUP_NAME`」の値を、前のタスクでプロビジョニングしたリソースを含むリソース グループ名に設定します。
+1. [Cloud Shell] ペインで次のコマンドを実行して、変数 `RESOURCE_GROUP_NAME` の値を、前のタスクでプロビジョニングしたリソースを含むリソース グループ名に設定します。
 
     ```cli
     RESOURCE_GROUP_NAME='az12003a-sap-RG'
@@ -109,11 +109,11 @@ Azure に SAP NetWeaver をデプロイする準備として、Adatum Corporatio
 
     > **注**:Microsoft Edge またはサード パーティのブラウザーを使用してください。 Internet Explorer は使用しないでください。
 
-1.  **SAP NetWeaver 3-tier compatible template using a Marketplace image - MD** (Marketplace イメージを使った SAP NetWeaver 3 層構成互換テンプレート - MD) というタイトルのページで、 **「Azure にデプロイ」** をクリックします。 これにより、Azure portal に自動的にリダイレクトされ、**SAP NetWeaver 3-tier (managed disk)** ブレードが表示されます。
+1.  「**Marketplace イメージを使った SAP NetWeaver 3 層構成互換テンプレート - MD**」というタイトルのページで、**[Azure にデプロイ]** をクリックします。 これにより、Azure portal に自動的にリダイレクトされ、**SAP NetWeaver 3-tier (managed disk)** ブレードが表示されます。
 
-1.  **SAP NetWeaver 3-tier (managed disk)** ブレードで、 **「テンプレートの編集」** .を選択します。
+1.  **[SAP NetWeaver 3-tier (managed disk)]** ブレードで、**[テンプレートの編集]** を選択します。
 
-1.  **「テンプレートの編集」** ブレードで、次の変更を適用して **「保存」** を選択します。
+1.  **[テンプレートの編集]** ブレードで、次の変更を適用して、**[保存]** を選択します。
 
     -   **197** の行で、`"dbVMSize": "Standard_E8s_v3",` を `"dbVMSize": "Standard_D4s_v3",` に置き換えます
 
@@ -157,9 +157,9 @@ Azure に SAP NetWeaver をデプロイする準備として、Adatum Corporatio
 
     > **注**:CustomScriptExtension コンポーネントのデプロイ中に **競合** エラー メッセージが表示され、デプロイが失敗した場合は、次の手順を使用してこの問題を修復します。
 
-       - Azure portal の「**デプロイ**」ブレードで、デプロイの詳細を確認し、CustomScriptExtension のインストールが失敗した VM を特定します
+       - Azure portal の **[デプロイ]** ブレードで、デプロイの詳細を確認し、CustomScriptExtension のインストールが失敗した VM を特定します
 
-       - Azure portal で、前の手順で特定した VM のブレードに移動し、「**拡張機能**」を選択し、「**拡張機能**」ブレードから CustomScript 拡張機能を削除します
+       - Azure portal で、前の手順で特定した VM のブレードに移動し、**[拡張機能]** を選択し、**[拡張機能]** ブレードから CustomScript 拡張機能を削除します
 
        - Azure portal で、 **[az12003a-sap-RG]** リソース グループ ブレードに移動し、 **[デプロイ]** を選択して、失敗したデプロイへのリンクを選択します。 **[再デプロイ]** を選択し、ターゲット リソース グループ (**az12003a-sap-RG**) を選択して、ルート アカウントのパスワードを指定します (**Pa55w.rd1234**)。
 
@@ -168,9 +168,9 @@ Azure に SAP NetWeaver をデプロイする準備として、Adatum Corporatio
 
    > **注**:前のタスクでデプロイした Azure VM にはインターネットから直接アクセスできないため、ジャンプ ホストとして機能する Windows Server 2019 Datacenter を実行する Azure VM をデプロイします。 
 
-1.  ラボ コンピューターの Azure portal で、 **「+ リソースの作成」** をクリックします。
+1.  ラボ コンピューターの Azure portal で、**[+ リソースの作成]** をクリックします。
 
-1.  「**新規**」 ブレードから、**Windows Server 2019 Datacenter** イメージを基に新規 Azure VM の作成を開始します。
+1.  **[新規]** ブレードから、**Windows Server 2019 Datacenter** のイメージに基づいて、新しい Azure VM の作成を開始します。
 
 1.  Azure VM を次の設定でプロビジョニングします (その他の設定は既定値のままにします)。
 
@@ -257,7 +257,7 @@ Azure に SAP NetWeaver をデプロイする準備として、Adatum Corporatio
 
 1.  i20-db-0 のネットワーク インターフェイスのブレードから、その IP 構成ブレードに移動し、そこから **ipconfig1** ブレードを表示します。
 
-1.  **ipconfig1** ブレードで、プライベート IP アドレスを **10.3.0.20** に設定し、割り当てを「**静的**」に変更して変更を保存します。
+1.  **[ipconfig1]** ブレードで、プライベート IP アドレスを **10.3.0.20** に設定し、割り当てを **[静的]** に変更して変更を保存します。
 
 1.  Azure portal で、**i20-db-1** Azure VM ブレードに移動します。
 
@@ -276,7 +276,7 @@ Azure に SAP NetWeaver をデプロイする準備として、Adatum Corporatio
 
 1.  **az12003a-vm0** ブレードから、リモート デスクトップ経由で Azure VM az12003a-vm0 に接続します。 
 
-1.  az12003a-vm0 への RDP セッションのサーバー マネージャーで **ローカル サーバー** ビューに移動し、 **「IE セキュリティ強化の構成」** をオフにします。
+1.  az12003a-vm0 への RDP セッションのサーバー マネージャーで **[ローカル サーバー]** ビューに移動し、**[IE セキュリティ強化の構成]** をオフにします。
 
 1.  az12003a-vm0 への RDP セッション内で、[ **https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html**](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) から PuTTY をダウンロードしてインストールします。
 
@@ -297,7 +297,7 @@ Azure に SAP NetWeaver をデプロイする準備として、Adatum Corporatio
     sudo su -
     ```
 
-1.  パスワードの入力を求めるメッセージが表示されたら、 **「Pa55w.rd1234」** と入力し、**Enter** キーを押します。 
+1.  パスワードの入力を求めるメッセージが表示されたら、「**Pa55w.rd1234**」と入力し、**Enter** キーを押します。 
 
 1.  i20-db-0 への SSH セッションで、次を実行することにより、SAP HANA 関連ボリュームすべて ( **/usr/sap**、 **/hana/shared**、 **/hana/backup**、 **/hana/data**、 **/hana/logs** を含む) が適切にマウントされていることを確認します。
 
@@ -563,9 +563,9 @@ Azure に SAP NetWeaver をデプロイする準備として、Adatum Corporatio
 
 1.  Azure portal で、 [Azure Active Directory] ブレードに移動します。
 
-1.  Azure Active Directory ブレードから、**アプリの登録** ブレードに移動し、 **「+ 新規登録」** をクリックします。
+1.  [Azure Active Directory] ブレードから **[アプリの登録]** ブレードに移動して、**[+ 新規登録]** をクリックします。
 
-1.  **「アプリケーションの登録」** ブレードで、次の設定を指定し、 **「登録」** をクリックします。
+1.  **[アプリケーションの登録]** ブレードで次の設定を指定して、**[登録]** をクリックします。
 
     -   名前: **Stonith app**
 
@@ -573,11 +573,11 @@ Azure に SAP NetWeaver をデプロイする準備として、Adatum Corporatio
 
 1.  **Stonith アプリ** ブレードで、**アプリケーション (クライアント) ID** の値を Notepad にコピーします。 これは、このエクササイズの後半で **login_id** として参照します。
 
-1.  **Stonith アプリ** ブレードで、 **「証明書とシークレット」** をクリックします。
+1.  **[Stonith アプリ]** ブレードで、**[証明書とシークレット]** をクリックします。
 
-1.  **Stonith アプリ - 証明書とシークレット** ブレードで、 **「+ 新しいクライアント シークレット」** をクリックします。
+1.  **[Stonith アプリ - 証明書とシークレット]** ブレードで、**[+ 新しいクライアント シークレット]** をクリックします。
 
-1.  **[クライアント シークレットの追加]** ペインの **[説明]** テキスト ボックスで、 **[有効期限]** セクションに「**STONITH app key**」と入力し、既定の「**推奨:6 か月**」のままにして、 **[追加]** をクリックします。
+1.  **[クライアント シークレットの追加]** ペインの **[説明]** テキスト ボックスで、**[有効期限]** セクションに「**STONITH アプリ キー**」と入力し、既定の **[推奨: 6 か月]** のままにして、**[追加]** をクリックします。
 
 1.  結果の **値** をメモ帳にコピーします (このエントリは、 **[追加]** をクリックした後 1 度だけ表示されます)。 これは、このエクササイズの後半で **パスワード** として参照します。
 
@@ -643,7 +643,7 @@ Azure に SAP NetWeaver をデプロイする準備として、Adatum Corporatio
 
 #### <a name="task-1-open-cloud-shell"></a>タスク 1:Cloud Shell を開く
 
-1. ポータルの上部にある「**Cloud Shell**」アイコンをクリックして Cloud Shell ペインを開き、シェルとして Bash を選択します。
+1. ポータルの上部にある **[Cloud Shell]** アイコンをクリックして Cloud Shell ペインを開き、シェルとして Bash を選択します。
 
 1. [Cloud Shell] ペインで次のコマンドを実行して、変数「`RESOURCE_GROUP_PREFIX`」の値を、このラボでプロビジョニングしたリソースを含むリソース グループ名のプレフィックスに設定します。
 
