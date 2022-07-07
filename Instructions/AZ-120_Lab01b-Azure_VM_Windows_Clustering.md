@@ -1,16 +1,16 @@
 ---
 lab:
-  title: 02b - Azure VM 上に Windows クラスタリングを実装する
-  module: Module 02 - Explore the foundations of IaaS for SAP on Azure
-ms.openlocfilehash: e3158d4c4dcfeda55b2ecd9caf1761e014c21b3d
-ms.sourcegitcommit: 2d98b3c8cdd6f7b2b1a9a43868559bef227a5266
+  title: 01b - Azure VM 上に Windows クラスタリングを実装する
+  module: Module 01 - Explore the foundations of IaaS for SAP on Azure
+ms.openlocfilehash: c26666b82fca650d24943bf0fce29832a4dae4a5
+ms.sourcegitcommit: 8ca1b7551a98ecb9d367d5cb853f126f634029e9
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 05/19/2022
-ms.locfileid: "145179684"
+ms.lasthandoff: 06/29/2022
+ms.locfileid: "146649506"
 ---
-# <a name="az-120-module-2-explore-the-foundations-of-iaas-for-sap-on-azure"></a>AZ 120 モジュール 2:IaaS for SAP on Azure の基盤を探る
-# <a name="lab-2b-implement-windows-clustering-on-azure-vms"></a>ラボ 2b:Azure VM 上に Windows クラスタリングを実装する
+# <a name="az-120-module-1-explore-the-foundations-of-iaas-for-sap-on-azure"></a>AZ 120 モジュール 1: IaaS for SAP on Azure の基盤を探る
+# <a name="lab-1b-implement-windows-clustering-on-azure-vms"></a>ラボ 1b:Azure VM 上に Windows クラスタリングを実装する
 
 予想所要時間: 120 分
 
@@ -40,13 +40,13 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
 -   Azure Cloud Shell に対応した Web ブラウザーと Azure へのアクセスが可能なラボ コンピューター
 
-> **注**:リソースのデプロイには、**米国東部** または **米国東部 2** リージョンの使用を検討してください。
+> **注**: リソースのデプロイ用に選択した Azure リージョンが可用性ゾーンをサポートしていることを確認します。 このようなリージョンの一覧については、(https://docs.microsoft.com/en-us/azure/availability-zones/az-overview) を参照してください。 **米国東部** または **米国東部 2** の使用を検討してください。
 
 ## <a name="exercise-1-provision-azure-compute-resources-necessary-to-support-highly-available-sap-netweaver-deployments"></a>演習 1: 高可用性の SAP NetWeaver のデプロイをサポートするために必要な Azure コンピューティング リソースをプロビジョニングする
 
 期間:50 分
 
-この演習では、Windows Server 2019 を実行している Azure VM 上フェールオーバー クラスタリングを構成するために必要な Azure インフラストラクチャのコンピューティング コンポーネントをデプロイします。 これには、Active Directory ドメイン コントローラーのペアをデプロイした後、同じ仮想ネットワーク内の同じ可用性セットで Windows Server 2019 を実行する Azure VM のペアをデプロイすることが含まれます。 ドメイン コントローラーのデプロイを自動化するには、<https://aka.ms/az120-1bdeploy> から利用可能な Azure Resource Manager クイック スタート テンプレートを使用します
+この演習では、Windows Server 2019 を実行している Azure VM 上フェールオーバー クラスタリングを構成するために必要な Azure インフラストラクチャのコンピューティング コンポーネントをデプロイします。 これには、Active Directory ドメイン コントローラーのペアと、Windows Server 2019 を実行する Azure VM のペアのデプロイが含まれます。各 VM は新しいドメインの DC として作成され、同じ仮想ネットワーク内の個別の可用性ゾーンに配置されます。 ドメイン コントローラーのデプロイを自動化するには、<https://aka.ms/az120-1bdeploy> から利用可能な Azure Resource Manager クイック スタート テンプレートを使用します
 
 ### <a name="task-1-deploy-a-pair-of-azure-vms-running-highly-available-active-directory-domain-controllers-by-using-an-azure-resource-manager-template"></a>タスク 1:Azure Resource Manager テンプレートを使用して、高可用性な Active Directory ドメイン コントローラを実行する 2 組の Azure VM をデプロイする
 
@@ -54,19 +54,21 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
 1.  プロンプトが表示された場合は、このラボで使用する Azure サブスクリプションの所有者または共同作成者のロールを使用して、職場、学校または個人の Microsoft アカウントを使用してログインします。
 
-1.  新しい Web ブラウザー タブを開き、<https://aka.ms/az120-1bdeploy> にある Azure クイック スタート テンプレート ページに移動し、**2 つの新しい Windows VM、新しい AD フォレスト、ドメイン、2 つの DC を1 つの可用性セットに作成する** という名前のテンプレートを検索し、 **[Azure にデプロイ]** ボタンをクリックしてデプロイを開始します。
+1.  新しい Web ブラウザー タブを開き、[https://aka.ms/az120-1bdeployzone](https://aka.ms/az120-1bdeployzone) にある Azure クイック スタート テンプレート ページ「**2 つの新しい Windows VM、新しい AD フォレスト、ドメイン、2 つの DC を 1 つの可用性ゾーンに作成する**」に移動し、 **[Azure に配置する]** ボタンをクリックしてデプロイを開始します。
 
-1.  **カスタム デプロイ** ブレードで、次の設定を指定し、 **「Review + create」** 、次に **「作成」** をクリックしてデプロイを開始します。
+1.  **[カスタム デプロイ]** ブレードで、次の設定を指定し、**[確認および作成]**、次に **[作成]** をクリックしてデプロイを開始します。
 
     -   サブスクリプション: *Azure サブスクリプションの名前。*
 
     -   リソース グループ: *"新しいリソース グループの名前"* **az12001b-ad-RG**
 
-    -   場所: *Azure VM をデプロイできる Azure リージョン*
-
-    > **注**:リソースのデプロイには、**米国東部** または **米国東部 2** リージョンの使用を検討してください。 
+    -   リージョン: *ラボ VM をデプロイするのに十分なクォータがある Azure リージョン*
 
     -   管理者ユーザー名:**学生**
+
+    -   場所: *ラボ VM をデプロイするのに十分なクォータがある Azure リージョン*
+
+    > **注**:リソースのデプロイには、**米国東部** または **米国東部 2** リージョンの使用を検討してください。 
 
     -   パスワード: **Pa55w.rd1234**
 
@@ -78,7 +80,7 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
     -   Bdc RDP ポート:**13389**
 
-    -   _artifacts Location (成果物の場所): **https://raw.githubusercontent.com/polichtm/azure-quickstart-templates/master/active-directory-new-domain-ha-2-dc/**
+    -   _artifacts Location (成果物の場所): **https://aka.ms/az120-1bdeployzoneraw**
 
     -   _アーティファクト ロケーション SAS トークン: *空白のままにする*
 
@@ -86,18 +88,18 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
     > **注**:CustomScriptExtension コンポーネントのデプロイ中に **競合** エラー メッセージが表示され、デプロイが失敗した場合は、次の手順を使用してこの問題を修復します。
 
-       - Azure portal の「**デプロイ**」ブレードで、デプロイの詳細を確認し、CustomScriptExtension のインストールが失敗した VM を特定します
+       - Azure portal の **[デプロイ]** ブレードで、デプロイの詳細を確認し、CustomScriptExtension のインストールが失敗した VM を特定します
 
-       - Azure portal で、前の手順で特定した VM のブレードに移動し、「**拡張機能**」を選択し、「**拡張機能**」ブレードから CustomScript 拡張機能を削除します
+       - Azure portal で、前の手順で特定した VM のブレードに移動し、 **[拡張機能]** を選択し、 **[拡張機能]** ブレードから CustomScript 拡張機能を削除します
 
-       - GitHub クイックスタート テンプレート (<https://aka.ms/az120-1bdeploy>) に移動し、 **[Azure にデプロイ]** を選択し、ターゲット リソース グループ (**az12001b-ad-RG**) を選択して、ルート アカウントのパスワード (**Pa55w.rd1234**) を入力します。
+       - GitHub クイックスタート テンプレート ([https://aka.ms/az120-1bdeployzone](https://aka.ms/az120-1bdeployzone)) に移動し、 **[Azure に配置する]** を選択します。 ブラウザー セッションが Azure portal にリダイレクトされたら、このタスクの最後の手順を繰り返します。
 
 
 ### <a name="task-2-deploy-a-pair-of-azure-vms-running-windows-server-2019-in-a-new-availability-set"></a>タスク 2:新しい可用性セットで Windows Server 2019 を実行する Azure VM のペアをデプロイします。
 
-1.  ラボ コンピューターの Azure portal で、 **「+ リソースの作成」** をクリックします。
+1.  ラボ コンピューターの Azure portal で、**[+ リソースの作成]** をクリックします。
 
-1.  **「新規」** ブレードから、次の設定を使用して **Windows Server 2019 Datacenter** のプロビジョニングを開始します。
+1.  **[新規]** ブレードから、次の設定を使用して **Windows Server 2019 Datacenter** Azure VM のプロビジョニングを開始します。
 
     -   サブスクリプション: *Azure サブスクリプションの名前。*
 
@@ -237,7 +239,7 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
     > **注**:現在の Azure サブスクリプションで Cloud Shell を初めて起動する場合は、Azure ファイル共有を作成して Cloud Shell ファイルを永続化するように求められます。 その場合は、既定値に設定すると、自動的に生成されたリソース グループ内にストレージ アカウントが作成されます。
 
-1. [Cloud Shell] ペインで次のコマンドを実行して、変数「`$resourceGroupName`」の値を、前のタスクでプロビジョニングしたリソースを含むリソース グループ名に設定します。
+1. [Cloud Shell] ペインで次のコマンドを実行して、変数 `$resourceGroupName` の値を、前のタスクでプロビジョニングしたリソースを含むリソース グループ名に設定します。
 
     ```
     $resourceGroupName = 'az12001b-cl-RG'
@@ -312,7 +314,7 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
 1.  Azure portal 上の Cloud Shell で PowerShell セッションを開始します。 
 
-1. [Cloud Shell] ペインで次のコマンドを実行して、変数「`$resourceGroupName`」の値を、前の演習でプロビジョニングした **Windows Server 2019 Datacenter** Azure VM のペアを含むリソース グループ名に設定します。
+1. [Cloud Shell] ペインで次のコマンドを実行して、変数 `$resourceGroupName` の値を、前の演習でプロビジョニングした **Windows Server 2019 Datacenter** Azure VM のペアを含むリソース グループ名に設定します。
 
     ```
     $resourceGroupName = 'az12001b-cl-RG'
@@ -345,13 +347,13 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
     -   パスワード: **Pa55w.rd1234**
 
-1.  az12001b-cl-vm0 への RDP セッションのサーバー マネージャーで **ローカル サーバ** ビューに移動し、一時的に **「IE セキュリティ強化の構成」** をオフにします。
+1.  az12001b-cl-vm0 への RDP セッションのサーバー マネージャーで **ローカル サーバー** ビューに移動し、一時的に **[IE セキュリティ強化の構成]** をオフにします。
 
 1.  az12001b-cl-vm0 への RDP セッション内で、サーバー マネージャーの **[ファイルとストレージ サービス]**  ->  **[サーバー]** ノードに移動します。 
 
 1.  **記憶域プール** ビューに移動し、前の演習で Azure VM に接続したすべてのディスクが表示されていることを確認します。
 
-1.  **「新規記憶域プール ウィザード」** を使用して、次の設定で新しい記憶域プールを作成します。
+1.  **新しい記憶域プール ウィザード** を使用して、次の設定で新しい記憶域プールを作成します。
 
     -   名前: **Data Storage Pool**
 
@@ -359,7 +361,7 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
     > **注**:**Chassis** 列のエントリを使用して、**LUN** 番号を識別します。
 
-1.  **「新規仮想ディスク ウィザード」** を使用して、次の設定で新しい仮想ディスクを作成します。
+1.  **新しい仮想ディスク ウィザード** を使用して、次の設定で新しい仮想ディスクを作成します。
 
     -   仮想ディスク名:**Data Virtual Disk**
 
@@ -369,7 +371,7 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
     -   サイズ:**最大サイズ**
 
-1.  **「新規ボリューム ウィザード」** を使用して、次の設定で新しいボリュームを作成します。
+1.  **新規ボリューム ウィザード** を使用して、次の設定で新しいボリュームを作成します。
 
     -   サーバーとディスク: *既定値を受け入れる*
 
@@ -383,13 +385,13 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
     -   ボリューム ラベル:**データ**
 
-1.  **記憶域プール** ビューに戻り、 **「新規記憶域プール ウィザード」** を使用して、次の設定で新しい記憶域プールを作成します。
+1.  **[記憶域プール]** ビューに戻り、**新しい記憶域プール ウィザード** を使用して、次の設定で新しい記憶域プールを作成します。
 
     -   名前: **ログ記憶域プール**
 
     -   物理ディスク: *"4 つのディスクのうち最後の 1 つを選び、そのディスクの割り当てを"* **[自動]** "に設定します"
 
-1.  **「新規仮想ディスク ウィザード」** を使用して、次の設定で新しい仮想ディスクを作成します。
+1.  **新しい仮想ディスク ウィザード** を使用して、次の設定で新しい仮想ディスクを作成します。
 
     -   仮想ディスク名:**Log Virtual Disk**
 
@@ -399,7 +401,7 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
     -   サイズ:**最大サイズ**
 
-1.  **「新規ボリューム ウィザード」** を使用して、次の設定で新しいボリュームを作成します。
+1.  **新規ボリューム ウィザード** を使用して、次の設定で新しいボリュームを作成します。
 
     -   サーバーとディスク: *既定値を受け入れる*
 
@@ -429,9 +431,9 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
     > **注**:これにより、両方の Azure VM でゲスト オペレーティングシステムが再起動されます。
 
-1.  ラボ コンピューターで Azure portal を開き、「 **+ リソースを作成**」をクリックします。
+1.  ラボ コンピューターで Azure portal を開き、**[+ リソースの作成]** をクリックします。
 
-1.  **「新規」** ブレードから、次の設定を使用して **ストレージ アカウント** の新規作成を開始します。
+1.  **[新規]** ブレードから、次の設定を使用して新しい **ストレージ アカウント** の作成を開始します。
 
     -   サブスクリプション: *Azure サブスクリプションの名前。*
 
@@ -465,7 +467,7 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
     -   パスワード: **Pa55w.rd1234**
 
-1.  az12001b-cl-vm0 への RDP セッションで、サーバー マネージャーの「**ツール**」メニューから、**Active Directory 管理センター** を起動します。
+1.  az12001b-cl-vm0 への RDP セッションで、サーバー マネージャーの **[ツール]** メニューから、**Active Directory 管理センター** を起動します。
 
 1.  Active Directory Administrative Center で、adatum.com ドメインのルートに **クラスタ** という名前の新しい組織単位を作成します。
 
@@ -481,21 +483,21 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
 1.  az12001b-cl-vm0 への RDP セッションから、**Active Directory 管理センター** コンソールに切り替えます。
 
-1.  Active Directory 管理センターで、**クラスター** 組織単位に移動し、「**プロパティ**」ウィンドウを表示します。 
+1.  Active Directory 管理センターで、**[クラスター]** 組織単位に移動し、**[プロパティ]** ウィンドウを表示します。 
 
-1.  「**クラスター**」組織単位の「**プロパティ**」ウィンドウで、「**拡張機能**」セクションに移動し、「**セキュリティ**」タブを表示します。 
+1.  **[クラスター]** 組織単位の **[プロパティ]** ウィンドウで、**[拡張機能]** セクションに移動し、**[セキュリティ]** タブを表示します。 
 
-1.  「**セキュリティ**」タブで「**詳細**」ボタンをクリックして、「**Advanced Security Settings for Clusters**」 (クラスターの詳細なセキュリティ設定) ウィンドウを開きます。 
+1.  **[セキュリティ]** タブで **[詳細]** ボタンをクリックして、**[Advanced Security Settings for Clusters]\(クラスターの詳細なセキュリティ設定\)** ウィンドウを開きます。 
 
-1.  「**コンピューターの高度セキュリティ設定**」 (Advanced Security Settings for Computers) ウィンドウの「**アクセス許可**」タブで、「**追加**」をクリックします。
+1.  **[コンピューターの高度セキュリティ設定]\(Advanced Security Settings for Computers\)** ウィンドウの **[アクセス許可]** タブで、**[追加]** をクリックします。
 
-1.  「**クラスターのアクセス許可エントリ**」ウィンドウで、「**プリンシパルの選択**」をクリックします
+1.  **[クラスターのアクセス許可エントリ]** ウィンドウで、**[プリンシパルの選択]** をクリックします
 
-1.  「**ユーザー、サービス アカウントまたはグループの選択**」 (Select User, Service Account or Group) ダイアログ ボックスで、「**オブジェクトの種類**」をクリックし、「**コンピューター**」エントリの横にあるチェックボックスを有効にし、「**OK**」をクリックします。 
+1.  **[ユーザー、サービス アカウントまたはグループの選択]** ダイアログ ボックスで、**[オブジェクトの種類]** をクリックし、**[コンピューター]** エントリの横にあるチェックボックスを有効にし、**[OK]** をクリックします。 
 
-1.  **「ユーザー、コンピューター、サービス アカウント、またはグループの選択」** ダイアログ ボックスに戻り、 **「選択するオブジェクト名を入力する」** に **「az12001b-ascs-cl0」** と入力し、 **「OK」** をクリックします。
+1.  **[ユーザー、コンピューター、サービス アカウント、またはグループの選択]** ダイアログ ボックスに戻り、**[選択するオブジェクト名を入力する]** に「**az12001b-cl-cl0**」と入力し、**[OK]** をクリックします。
 
-1.  「**クラスターのアクセス許可エントリ**」ウィンドウで、「**タイプ**」ドロップダウン リストに「**許可**」が表示されるようにします。 次に、「**適用先**」ドロップダウン リストで、「**このオブジェクトとすべての子オブジェクト**」を選択します。 「**アクセス許可**」リストで、「**コンピューター オブジェクトの作成**」チェック ボックスと「**コンピューター オブジェクトの削除**」チェック ボックスをオンにし、「**OK**」を 2 回クリックします。
+1.  **[クラスターのアクセス許可エントリ]** ウィンドウで、**[種類]** ドロップダウン リストに **[許可]** が表示されるようにします。 次に、**[適用先]** ドロップダウン リストで、**[このオブジェクトとすべての子オブジェクト]** を選択します。 **[アクセス許可]** リストで、**[コンピューター オブジェクトの作成]** チェック ボックスと **[コンピューター オブジェクトの削除]** チェック ボックスをオンにし、**[OK]** を 2 回クリックします。
 
 1.  Windows PowerShell ISE セッション内で、次の実行して Az PowerShell モジュールをインストールします。
 
@@ -525,9 +527,9 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
     Set-ClusterQuorum -CloudWitness -AccountName $cwStorageAccountName -AccessKey $cwStorageAccountKey
     ```
 
-1.  結果の構成を確認するには、az12001b-cl-vm0 への RDP セッションのサーバー マネージャーで、 **「ツール」** メニューから **「フェールオーバー クラスター マネージャー」** を起動します。
+1.  結果の構成を確認するには、az12001b-cl-vm0 への RDP セッションのサーバー マネージャーで、**[ツール]** メニューから **[フェールオーバー クラスター マネージャー]** を起動します。
 
-1.  **「フェールオーバー クラスター マネージャー」** コンソールで、**az12001b-cl-cl0** クラスター構成 (ノードを含む) 、監視設定およびネットワーク設定を確認します。 クラスターには共有ストレージがないことに注意してください。
+1.  **[フェールオーバー クラスター マネージャー]** コンソールで、**az12001b-cl-cl0** クラスター構成 (ノードを含む)、監視設定およびネットワーク設定を確認します。 クラスターには共有ストレージがないことに注意してください。
 
 1.  az12001b-cl-vm0 への RDP セッションを終了します。
 
@@ -660,7 +662,7 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
 1.  Azure portal の Cloud Shell で PowerShell セッションを開始します。 
 
-1. [Cloud Shell] ペインで次のコマンドを実行して、変数「`$resourceGroupName`」の値を、このラボの最初の演習でプロビジョニングした **Windows Server 2019 Datacenter** Azure VM のペアを含むリソース グループ名に設定します。
+1. [Cloud Shell] ペインで次のコマンドを実行して、変数 `$resourceGroupName` の値を、このラボの最初の演習でプロビジョニングした **Windows Server 2019 Datacenter** Azure VM のペアを含むリソース グループ名に設定します。
 
     ```
     $resourceGroupName = 'az12001b-cl-RG'
@@ -698,11 +700,11 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
 1.  Azure portal で、Azure Load Balancer **az12001b-cl-lb1** のプロパティを表示するブレードに移動します。
 
-1.  **az12001b-cl-lb1** ブレードで、 **「バックエンド プール」** をクリックします。
+1.  **[az12001b-cl-lb1]** ブレードで、**[バックエンド プール]** をクリックします。
 
 1.  **az12001b-cl-lb1 - Backend pools** ブレードで、**az12001b-cl-lb1-bepool** をクリックします。
 
-1.  **az12001b-cl-lb1-bepool** ブレードで、次の設定を指定し、 **「保存」** をクリックします。
+1.  **[az12001b-cl-lb1-bepool]** ブレードで、次の設定を指定し、**[保存]** をクリックします。
 
     -   仮想ネットワーク: **adVNET (4 VM)**
 
@@ -710,7 +712,7 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
     -   仮想マシン: **az12001b-cl-vm1** IP アドレス: **ipconfig1**
 
-1.  **az12001b-cl-lb1** ブレードで、 **「正常性プローブ」** をクリックします。
+1.  **[az12001b-cl-lb1]** ブレードで、**[正常性プローブ]** をクリックします。
 
 1.  **az12001b-cl-lb1 - Health probes** ブレードから、次の設定で正常性プローブを追加します。
 
@@ -724,7 +726,7 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
     -   異常しきい値:**2** *"個の連続エラー"*
 
-1.  **az12001b-cl-lb1** ブレードで、 **「負荷分散ルール」** をクリックします。
+1.  **[az12001b-cl-lb1]** ブレードで、**[負荷分散規則]** をクリックします。
 
 1.  **az12001b-cl-lb1 - Load balancing rules** ブレードから、次の設定でネットワーク負荷分散ルールを追加します。
 
@@ -754,9 +756,9 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
    > **注**:2 つのクラスター化された Azure VM にはインターネットから直接アクセスできないため、ジャンプ ホストとして機能する Windows Server 2019 Datacenter を実行する Azure VM をデプロイします。 
 
-1.  ラボ コンピューターの Azure portal で、 **「+ リソースの作成」** をクリックします。
+1.  ラボ コンピューターの Azure portal で、**[+ リソースの作成]** をクリックします。
 
-1.  「**新規**」 ブレードから、**Windows Server 2019 Datacenter** イメージを基に新規 Azure VM の作成を開始します。
+1.  **[新規]** ブレードから、**Windows Server 2019 Datacenter** イメージを基に新規 Azure VM の作成を開始します。
 
 1.  次の設定を使用して Azure VM をプロビジョニングします:
 
@@ -836,9 +838,9 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
 #### <a name="task-1-open-cloud-shell"></a>タスク 1:Cloud Shell を開く
 
-1. ポータルの上部にある **「Cloud Shell」** アイコンをクリックして Cloud Shell ペインを開き、シェルとして PowerShell を選択します。
+1. ポータルの上部にある **[Cloud Shell]** アイコンをクリックして Cloud Shell ペインを開き、シェルとして PowerShell を選択します。
 
-1. [Cloud Shell] ペインで次のコマンドを実行して、変数「`$resourceGroupName`」の値を、このラボの最初の演習でプロビジョニングした **Windows Server 2019 Datacenter** Azure VM のペアを含むリソース グループ名に設定します。
+1. [Cloud Shell] ペインで次のコマンドを実行して、変数 `$resourceGroupName` の値を、このラボの最初の演習でプロビジョニングした **Windows Server 2019 Datacenter** Azure VM のペアを含むリソース グループ名に設定します。
 
     ```
     $resourceGroupNamePrefix = 'az12001b-'
