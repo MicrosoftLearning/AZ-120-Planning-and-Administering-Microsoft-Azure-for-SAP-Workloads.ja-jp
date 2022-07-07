@@ -1,19 +1,22 @@
 ---
-ms.openlocfilehash: 719d5988e5f36bef026d781ba3f5f82893e77efc
-ms.sourcegitcommit: 3d7a4cc1ab7f6dcb68f259736361cfe76302b595
+lab:
+  title: 02a - Azure VM に Linux クラスタリングを実装する
+  module: Module 02 - Explore the foundations of IaaS for SAP on Azure
+ms.openlocfilehash: 8c67722c10ee611341ab131231cbf9ab5064792f
+ms.sourcegitcommit: e16233cdb647e370a6a732eebd2dfcabab19b03a
 ms.translationtype: HT
 ms.contentlocale: ja-JP
-ms.lasthandoff: 03/24/2022
-ms.locfileid: "140872846"
+ms.lasthandoff: 06/01/2022
+ms.locfileid: "145995286"
 ---
 # <a name="az-120-module-2-explore-the-foundations-of-iaas-for-sap-on-azure"></a>AZ 120 モジュール 2:IaaS for SAP on Azure の基盤を探る
-# <a name="lab-1a-implement-linux-clustering-on-azure-vms"></a>ラボ 1a:Azure VM での Linux クラスタリングの実装
+# <a name="lab-2a-implement-linux-clustering-on-azure-vms"></a>ラボ 2a: Azure VM での Linux クラスタリングの実装
 
 予測される所要時間:90 分
 
 このラボのタスクすべては、Azure portal (Bash Cloud Shell セッションを含む) から実行されます  
 
-   > **注**:Cloud Shell を使用しない場合は、ラボ仮想マシンに Azure CLI がインストールされ ([ **https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows**](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows))、[ **https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html** ](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) から使用可能な PuTTY などの SSH クライアントが含まれている必要があります。
+   > **注**:Cloud Shell を使用しない場合は、ラボ仮想マシンに Azure CLI がインストールされ ([ **https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows**](https://docs.microsoft.com/en-us/cli/azure/install-azure-cli-windows))、[ **https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html**](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) から使用可能な PuTTY などの SSH クライアントが含まれている必要があります。
 
 ラボ ファイル: なし
 
@@ -31,7 +34,7 @@ Adatum Corporation は、Azure に SAP HANA をデプロイする準備として
 
 - 可用性の高い SAP HANA のデプロイをサポートするために必要となる Azure ネットワーク リソースのプロビジョニングを行う
 
-## <a name="requirements"></a>必要条件
+## <a name="requirements"></a>要件
 
 - 使用可能な DSv3 vCPU (4 x 4) と DSv2 (1 x 1) vCPU の十分な数を持つ Microsoft Azure サブスクリプション
 
@@ -49,9 +52,9 @@ Adatum Corporation は、Azure に SAP HANA をデプロイする準備として
 
 1. プロンプトが表示された場合は、このラボで使用する Azure サブスクリプションの所有者または共同作成者のロールを使用して、職場、学校または個人の Microsoft アカウントを使用してログインします。
 
-1. Azure portal で、Azure portal ページの上部にある **「リソース、サービス、およびドキュメントの検索」** テキスト ボックスを使用して、 **「近接配置グループ」** ブレードを検索してナビゲートし、 **「近接配置グループ」** ブレードで **「+ 作成」** を選択します。
+1. Azure portal で、Azure portal ページの上部にある **[リソース、サービス、およびドキュメントの検索]** テキスト ボックスを使用して、**[近接配置グループ]** ブレードを検索して移動し、**[近接配置グループ]** ブレードで **[+ 作成]** を選択します。
 
-1. **「近接配置グループの作成」** ブレードの **「基本」** タブで次の設定を指定し、 **「Review + create」** を選択します。
+1. **[近接配置グループの作成]** ブレードの **[基本]** タブで次の設定を指定し、**[確認および作成]** を選択します。
 
    - サブスクリプション: *Azure サブスクリプションの名前。*
 
@@ -63,7 +66,7 @@ Adatum Corporation は、Azure に SAP HANA をデプロイする準備として
 
    - 近接配置グループ名: **az12001a-ppg**
 
-1. **「近接配置グループの作成」** ブレードの **「Review + create」** タブで、「**作成**」を選択します。
+1. **[近接配置グループの作成]** ブレードの **[確認および作成]** タブで、**[作成]** を選択します。
 
    > **注**:プロビジョニングが完了するまで待ちます。 これに要する時間は 1 分未満です。
 
@@ -85,7 +88,7 @@ Adatum Corporation は、Azure に SAP HANA をデプロイする準備として
 
    - イメージ:**SUSE Enterprise Linux for SAP 12 SP5 - BYOS - Gen 1**
    
-   > **注**:イメージを検索するには、 **「イメージの選択」** ブレードで **「すべてのイメージを表示」** リンクをクリックし、検索テキスト ボックスに **「SUSE Enterprise Linux for SAP 12 BYOS」** を入力し、結果のリストで、 **「SUSE Enterprise Linux for SAP 12 SP5 - BYOS」** を選択します。
+   > **注**: イメージを検索するには、**[画像の選択]** ブレードで **[すべての画像を表示]** リンクをクリックし、検索テキスト ボックスに「**SUSE Enterprise Linux for SAP 12 BYOS**」と入力し、結果のリストで、**[SUSE Enterprise Linux for SAP 12 SP5 - BYOS]** を選択します。
 
    - Azure Spot インスタンス:"**いいえ**"
 
@@ -137,11 +140,11 @@ Adatum Corporation は、Azure に SAP HANA をデプロイする準備として
 
    - 自動シャットダウンを有効にする:"**オフ**"
 
-1. 「**仮想マシンの作成**」ブレードの「**詳細**」タブで、次の設定を指定して **「Review + create」** を選択します (既定値を他のユーザーのままにします)。
+1. **[仮想マシンの作成]** ブレードの **[詳細]** タブで、次の設定を指定して **[確認および作成]** を選択します (他のすべての設定は既定値のままにします)。
 
    - 近接配置グループ: **az12001a-ppg**
 
-1. 「**仮想ネットワークの作成**」ブレードの「**Review + create**」タブで、「**作成**」を選択します。
+1. **[仮想マシンの作成]** ブレードの **[確認および作成]** タブで、**[作成]** を選択します。
 
    > **注**:プロビジョニングが完了するまで待ちます。 これは 3 分もかかりません。
 
@@ -163,7 +166,7 @@ Adatum Corporation は、Azure に SAP HANA をデプロイする準備として
 
    - イメージ:**SUSE Enterprise Linux for SAP 12 SP5 - BYOS - Gen 1**
    
-   > **注**:イメージを検索するには、 **「イメージの選択」** ブレードで **「すべてのイメージを表示」** リンクをクリックし、検索テキスト ボックスに **「SUSE Enterprise Linux for SAP 12 BYOS」** を入力し、結果のリストで、 **「SUSE Enterprise Linux for SAP 12 SP5 - BYOS」** を選択します。
+   > **注**: イメージを検索するには、**[画像の選択]** ブレードで **[すべての画像を表示]** リンクをクリックし、検索テキスト ボックスに「**SUSE Enterprise Linux for SAP 12 BYOS**」と入力し、結果のリストで、**[SUSE Enterprise Linux for SAP 12 SP5 - BYOS]** を選択します。
 
    - Azure Spot インスタンス:"**いいえ**"
 
@@ -211,11 +214,11 @@ Adatum Corporation は、Azure に SAP HANA をデプロイする準備として
 
    - 自動シャットダウンを有効にする:"**オフ**"
 
-1. 「**仮想マシンの作成**」ブレードの「**詳細**」タブで、次の設定を指定して **「Review + create」** を選択します (既定値を他のユーザーのままにします)。
+1. **[仮想マシンの作成]** ブレードの **[詳細]** タブで、次の設定を指定して **[確認および作成]** を選択します (他のすべての設定は既定値のままにします)。
 
    - 近接配置グループ: **az12001a-ppg**
 
-1. 「**仮想ネットワークの作成**」ブレードの「**Review + create**」タブで、「**作成**」を選択します。
+1. **[仮想マシンの作成]** ブレードの **[確認および作成]** タブで、**[作成]** を選択します。
 
    > **注**:プロビジョニングが完了するまで待ちます。 これは 3 分もかかりません。
 
@@ -317,7 +320,7 @@ Adatum Corporation は、Azure に SAP HANA をデプロイする準備として
 
 1. パスワードの入力を求めるメッセージが表示されたら、「`Pa55w.rd1234`」と入力し、**Enter** キーを押します。 
 
-1. 「Cloud Shell」ツールバーの「**新しいセッションを開く**」アイコンをクリックして、別の Cloud Shell Bash セッションを開きます。
+1. [Cloud Shell] ツールバーの **[新しいセッションを開く]** アイコンをクリックして、別の Cloud Shell Bash セッションを開きます。
 
 1. 新しく開いた Cloud Shell Bash セッションで、このタスクのすべての手順を繰り返して、IP アドレス **az12001a-vm0-ip** を介して **az12001a-vm1** Azure VM に接続します。
 
@@ -593,7 +596,7 @@ Adatum Corporation は、Azure に SAP HANA をデプロイする準備として
    exit
    ```
 
-1. 構成が成功したことを確認するには、 「Cloud Shell」 ペインの SSH セッションで az12001a-vm1 に対して、次を実行して az12001a-vm1 から az12001a-vm0 への SSH セッションを **root** として確立します。 
+1. 構成が成功したことを確認するには、[Cloud Shell] ペインの SSH セッションで az12001a-vm1 に対して、次を実行して SSH セッションを az12001a-vm1 から az12001a-vm0 への **root** として確立します。 
 
    ```cli
    ssh root@az12001a-vm0
@@ -633,13 +636,13 @@ Adatum Corporation は、Azure に SAP HANA をデプロイする準備として
 
 1. **[az12001a-vm0]** ブレードから **[az12001a-vm0 \| ネットワーク]** ブレードに移動し、 **[az12001a-vm0 \| ネットワーク]** ブレードで、そのネットワーク アダプターに関連付けられているパブリック IP アドレス **az12001a-vm0-ip** を表すエントリを選択します。
 
-1. **「az12001a-vm0-ip」** ブレードで、 **「切り離し」** を選択してパブリック IP アドレスをネットワーク インターフェイスから切り離し、次に **「削除」** を選択して削除します。
+1. **[az12001a-vm0-ip]** ブレードで、 **[関連付けの解除]** を選択してから、 **[はい]** を選択してパブリック IP アドレスをネットワーク インターフェイスから切り離し、次に **[削除]** 、 **[はい]** の順に選択して削除します。
 
 1. Azure portal で、**az12001a-vm1** Azure VM のブレードに移動します。
 
 1. **[az12001a-vm1]** ブレードから **[az12001a-vm1 \| ネットワーク]** ブレードに移動し、 **[az12001a-vm1 \| ネットワーク]** ブレードで、そのネットワーク アダプターに関連付けられているパブリック IP アドレス **az12001a-vm1-ip** を表すエントリを選択します。
 
-1. **[az12001a-vm1-ip]** ブレードで、 **[切り離し]** を選択してパブリック IP アドレスをネットワーク インターフェイスから切り離し、次に **[削除]** を選択して削除します。
+1. **[az12001a-vm1-ip]** ブレードで、 **[関連付けの解除]** を選択してから、 **[はい]** を選択してパブリック IP アドレスをネットワーク インターフェイスから切り離し、次に **[削除]** 、 **[はい]** の順に選択して削除します。
 
 1. Azure portal で、**az12001a-vm0** Azure VM のブレードに移動します。
 
@@ -664,9 +667,9 @@ Adatum Corporation は、Azure に SAP HANA をデプロイする準備として
 
 ### <a name="task-2-create-and-configure-azure-load-balancers-handling-inbound-traffic"></a>タスク 2:受信トラフィックを処理する Azure Load Balancers を作成して構成する
 
-1. Azure portal で、Azure ポータル ページの上部にある **「リソース、サービス、およびドキュメントの検索」** テキスト ボックスを使用して、 **「ロード バランサー」** ブレードを検索して移動し、 **「ロード バランサー」** ブレードで **「+ 追加」** を選択します。
+1. Azure portal で、Azure portal ページの上部にある **[リソース、サービス、およびドキュメントの検索]** テキスト ボックスを使用して、**[ロード バランサー]** ブレードを検索して移動し、**[ロード バランサー]** ブレードで **[+ 追加]** を選択します。
 
-1. 「**ロード バランサ―の作成**」ブレードの「**基本**」タブで、次の設定を指定して **「Review + create」** を選択します (他の設定は既定値のままにします)。
+1. **[ロード バランサーの作成]** ブレードの **[基本]** タブで、次の設定を指定して **[確認および作成]** を選択します (他の設定は既定値のままにします)。
 
    - サブスクリプション: *Azure サブスクリプションの名前。*
 
@@ -699,7 +702,7 @@ Adatum Corporation は、Azure に SAP HANA をデプロイする準備として
 
 1. Azure portal で、新しくプロビジョニングされた **az12001a-lb0** という名前のロード バランサ―のプロパティを表示するブレードに移動します。 
 
-1. **「az12001a lb0」** ブレードで、 **「バックエンド プール」** を選択し、 **「+ 追加」** を選択し、 **「バックエンド プールを追加」** で次の設定を指定します (他は既定の設定のままにします)。
+1. **[az12001a lb0]** ブレードで、**[バックエンド プール]** を選択し、**[+ 追加]** を選択し、**[バックエンド プールの追加]** で次の設定を指定します (他は既定値のままにします)。
 
    - 名前: **az12001a-lb0-bepool**
 
@@ -709,7 +712,7 @@ Adatum Corporation は、Azure に SAP HANA をデプロイする準備として
 
    - 仮想マシン: **az12001a-vm1** IP 構成: **ipconfig1 (192.168.0.5)**
 
-1. **「az12001a lb0」** ブレードで、 **「正常性プローブ」** を選択して **「追加」** を選択し、 **「正常性プローブの追加」** ブレードで次の設定を指定します (他は既定値のままにします)。
+1. **[az12001a lb0]** ブレードで、**[正常性プローブ]** を選択して **[追加]** を選択し、**[正常性プローブの追加]** ブレードで次の設定を指定します (他は既定値のままにします)。
 
    - 名前: **az12001a-lb0-hprobe**
 
@@ -721,7 +724,7 @@ Adatum Corporation は、Azure に SAP HANA をデプロイする準備として
 
    - 異常しきい値:**2** *個の連続エラー*
 
-1. **「az12001a lb0」** ブレードで、 **「負荷分散規則」** を選択し、 **「+ 追加」** を選択し、 **「負荷分散規則を追加」** で、次の設定を指定します (他は既定のままにします)。
+1. **[az12001a lb0]** ブレードで、**[負荷分散規則]** を選択し、**[+ 追加]** を選択し、**[負荷分散規則の追加]** で、次の設定を指定します (他は既定値のままにします)。
 
    - 名前: **az12001a-lb0-lbruleAll**
 
@@ -787,11 +790,11 @@ Adatum Corporation は、Azure に SAP HANA をデプロイする準備として
 
 1. Azure portal で、新しくデプロイされた Azure Load Balancer **az12001a-lb** のプロパティを表示するブレードに移動します。
 
-1. **az12001a-lb1** ブレードで、「**バックエンド プール**」をクリックします。
+1. **[az12001a-lb1]** ブレードで、**[バックエンド プール]** をクリックします。
 
 1. **[az12001a-lb1 \| バックエンド プール]** ブレードで、 **[az12001a-lb1-bepool]** をクリックします。
 
-1. **az12001a-lb1-bepool** ブレードで、次の設定を指定し、「**保存**」をクリックします。
+1. **[az12001a-lb1-bepool]** ブレードで、次の設定を指定し、**[保存]** をクリックします。
 
    - 仮想ネットワーク: **az12001a-rg-vnet (2 VM)**
 
@@ -875,15 +878,15 @@ Adatum Corporation は、Azure に SAP HANA をデプロイする準備として
 
    - ゲスト OS の更新:**手動更新**
 
-1. 「**仮想マシンの作成**」ブレードの「**詳細**」タブで、 **「Review + create」** を選択します (他の設定はすべて既定値のままにします)。
+1. **[仮想マシンの作成]** ブレードの **[詳細]** タブで、**[確認および作成]** を選択します (他の設定はすべて既定値のままにします)。
 
-1. 「**仮想ネットワークの作成**」ブレードの「**Review + create**」タブで、「**作成**」を選択します。
+1. **[仮想マシンの作成]** ブレードの **[確認および作成]** タブで、**[作成]** を選択します。
 
    > **注**:プロビジョニングが完了するまで待ちます。 これは 3 分もかかりません。
 
 1. RDP 経由で新しくプロビジョニングされた Azure VM に接続します。 
 
-1. az12001a-vm2 への RDP セッション内で、[ **https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html** ](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) から PuTTY をダウンロードします。
+1. az12001a-vm2 への RDP セッション内で、[ **https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html**](https://www.chiark.greenend.org.uk/~sgtatham/putty/latest.html) から PuTTY をダウンロードします。
 
 1. プライベート IP アドレス (それぞれ 192.168.0.4 および 192.168.0.5) を介して az12001a-vm0 と az12001a-vm1 の両方に SSH セッションを確立できることを確認します。 
 
@@ -898,7 +901,7 @@ Adatum Corporation は、Azure に SAP HANA をデプロイする準備として
 
 #### <a name="task-1-open-cloud-shell"></a>タスク 1:Cloud Shell を開く
 
-1. ポータルの上部にある「**Cloud Shell**」アイコンをクリックして Cloud Shell ペインを開き、シェルとして Bash を選択します。
+1. ポータルの上部にある **[Cloud Shell]** アイコンをクリックして Cloud Shell ペインを開き、シェルとして Bash を選択します。
 
 1. [Cloud Shell] ペインで次のコマンドを実行して、変数「`RESOURCE_GROUP_PREFIX`」の値を、このラボでプロビジョニングしたリソースを含むリソース グループ名のプレフィックスに設定します。
 
