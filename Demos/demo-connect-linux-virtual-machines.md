@@ -1,11 +1,3 @@
----
-ms.openlocfilehash: abd3e588821bd66c01eefe39ae06cb48fb129ead
-ms.sourcegitcommit: 0113753baec606c586c0bdf4c9452052a096c084
-ms.translationtype: HT
-ms.contentlocale: ja-JP
-ms.lasthandoff: 01/13/2022
-ms.locfileid: "137857581"
----
 # <a name="demonstration-connect-to-linux-virtual-machines"></a>デモ: Linux 仮想マシンに接続する
 
 このデモでは、Linux マシンを作成して SSL でアクセスします。
@@ -14,23 +6,23 @@ ms.locfileid: "137857581"
 
 ## <a name="create-the-ssh-keys"></a>SSH キーの作成
 
-1. PuTTY ツールをダウンロードします。 このツールには [PuTTYgen](https://putty.org/) が含まれています。 
+1. Download the PuTTY tool. This will include <bpt id="p1">[</bpt>PuTTYgen<ept id="p1">](https://putty.org/)</ept>. 
 2. インストールされたら、**PuTTYgen** プログラムを見つけて開きます。
 3. **[パラメーター]** オプション グループで、**[RSA]** を選択します。
 4. **[生成]** ボタンをクリックします。
 5. マウスをウィンドウ内の空白領域の辺りに移動して、ある程度のランダム性を生成します。
 6. **[認可されたキー ファイルに貼り付けるための公開キー]** のテキストをコピーします。
-7. オプションで、**[キーのパスフレーズ]**、**[パス フレーズの確認入力]** の順に指定できます。 プライベート SSH キーを使用して VM の認証を受けると、パスフレーズの入力を求められます。 パスフレーズを使用しない場合、だれかが秘密キーを入手すると、その人物はそのキーを使用するすべての VM またはサービスにサインインできるようになります。 そのため、パスフレーズを作成することをお勧めします。 ただし、パスフレーズを忘れた場合、それを回復する方法はありません。
+7. Optionally you can specify a <bpt id="p1">**</bpt>Key passphrase<ept id="p1">**</ept> and then <bpt id="p2">**</bpt>Confirm passphrase.<ept id="p2">**</ept> You will be prompted for the passphrase when you authenticate to the VM with your private SSH key. Without a passphrase, if someone obtains your private key, they can sign in to any VM or service that uses that key. We recommend you create a passphrase. However, if you forget the passphrase, there is no way to recover it.
 8. **[秘密キーを保存]** をクリックします。
-9. 場所とファイル名を選択し、**[保存]** をクリックします。 このファイルは VM にアクセスするために必要になります。 
+9. Choose a location and filename and click <bpt id="p1">**</bpt>Save<ept id="p1">**</ept>. You will need this file to access the VM. 
 
 ## <a name="create-the-linux-machine-and-assign-the-public-ssh-key"></a>Linux マシンを作成し、SSH 公開キーを割り当てる
 
 1. Azure portal で選択した Linux マシンを作成します。
 2. **[認証の種類]** として (**[パスワード]** ではなく) **[SSH 公開キー]** を選択します。
 3. **[ユーザー名]** を指定します。
-4. PuTTY の SSH 公開キーを **[SSH 公開キー]** テキスト領域に貼り付けます。 キーがチェックマークで検証されることを確認します。 
-5. VM を作成します。 デプロイされるまで待ちます。
+4. Paste the public SSH key from PuTTY into the <bpt id="p1">**</bpt>SSH public key<ept id="p1">**</ept> text area. Ensure the key validates with a checkmark. 
+5. Create the VM. Wait for it to deploy.
 6. 実行中の VM にアクセスします。 
 7. **[概要]** ブレードから、**[接続]** をクリックします。
 8. ユーザーとパブリック IP アドレスを含むログイン情報を書き留めておきます。

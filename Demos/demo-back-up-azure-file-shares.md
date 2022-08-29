@@ -1,11 +1,3 @@
----
-ms.openlocfilehash: 63b98ae1978da2870770c6a68e9c660aebecbf15
-ms.sourcegitcommit: 0113753baec606c586c0bdf4c9452052a096c084
-ms.translationtype: HT
-ms.contentlocale: ja-JP
-ms.lasthandoff: 01/13/2022
-ms.locfileid: "137857578"
----
 # <a name="demonstration-back-up-azure-file-shares"></a>デモ: Azure ファイル共有をバックアップする
 
 このデモでは、Azure Portal でのファイル共有のバックアップについて詳しく見ていきます。
@@ -14,11 +6,11 @@ ms.locfileid: "137857578"
 
 ## <a name="create-a-recovery-services-vault"></a>Recovery Services コンテナーを作成する
 
-1. Azure portal で Recovery Services と入力し、**Recovery Services コンテナー** をクリックします。
+1. Azure portal で Recovery Services と入力し、**Recovery Services コンテナー**をクリックします。
 3. **[追加]** をクリックします。
-4. **名前**、**サブスクリプション**、**リソース グループ**、および **場所** を指定します。 
+4. **名前**、**サブスクリプション**、**リソース グループ**、および**場所**を指定します。 
 5. 新しいコンテナーは、ファイル共有と同じ場所にあることが必要です。 
-5. **Create** をクリックしてください。 Recovery Services コンテナーの作成には数分かかることがあります。 ポータルの右上の領域に状態が通知され、確認することが出来ます。 コンテナーが作成されると、Recovery Services コンテナーの一覧に表示されます。 
+5. Click <bpt id="p1">**</bpt>Create<ept id="p1">**</ept>. It can take several minutes for the Recovery Services vault to be created. Monitor the status notifications in the upper right-hand area of the portal. Once your vault is created, it appears in the list of Recovery Services vaults. 
 6. 数分後にコンテナーが追加されない場合は、 **[更新]** をクリックします。
 
 ## <a name="configure-the-vault"></a>コンテナーの構成
@@ -28,13 +20,13 @@ ms.locfileid: "137857578"
 3. **[ワークロードはどこで実行されていますか?]** ドロップダウン メニューから、 **[Azure]** を選択します。
 4. **[何をバックアップしますか?]** メニューから、 **[Azure FileShare]** を選択します。
 5. [**バックアップ**] をクリックします。
-6. ストレージ アカウントのリストから、 **[ストレージ アカウント]** を選択し、 **[OK]** をクリックします。 Azure は、バックアップ可能なファイル共有のストレージ アカウントを検索します。 ファイル共有を最近追加した場合は、ファイル共有が表示されるまで多少時間がかかります。
-7. [ファイル共有] リストから、バックアップする **ファイル共有を 1 つ以上選択** し、 **[OK]** をクリックします。
-8. バックアップ ポリシー ページで、 **[新しいバックアップ ポリシーを作成]** を選択し、名前、スケジュール、および保持情報を指定します。 **[OK]** をクリックします。
+6. From the list of Storage accounts, <bpt id="p1">**</bpt>select a storage account<ept id="p1">**</ept>, and click <bpt id="p2">**</bpt>OK<ept id="p2">**</ept>. Azure searches the storage account for files shares that can be backed up. If you recently added your file shares, allow a little time for the file shares to appear.
+7. [ファイル共有] リストから、バックアップする**ファイル共有を 1 つ以上選択**し、 **[OK]** をクリックします。
+8. On the Backup Policy page, choose <bpt id="p1">**</bpt>Create New backup policy<ept id="p1">**</ept> and provide Name, Schedule, and Retention information. Click <bpt id="p1">**</bpt>OK<ept id="p1">**</ept>.
 9. バックアップの構成が完了したら、 **[バックアップを有効にする]** をクリックします。 
 
 ## <a name="explore-recovery-services-vault-information"></a>回復サービスのコンテナー情報を詳しく見る
 
-1. **[バックアップ項目]** ブレードを詳しく見ていきます。 バックアップされたアイテムとレプリケートされたアイテムに関する情報があります。
-2. **[バックアップ ポリシー]** ブレードを詳しく見てゆきます。 バックアップ ポリシーを追加または削除できます。 
-3. **[バックアップ ジョブ]** ブレードを詳しく見てゆきます。 ここでは、バックアップ ジョブの状態をレビューできます。
+1. Explore the <bpt id="p1">**</bpt>Backup items<ept id="p1">**</ept> blade. There is information on backed up items and replicated items.
+2. Explore the <bpt id="p1">**</bpt>Backup policies<ept id="p1">**</ept> blade. You can add or delete backup policies. 
+3. Explore the <bpt id="p1">**</bpt>Backup jobs<ept id="p1">**</ept> blade. Here you can review the status of your backup jobs.

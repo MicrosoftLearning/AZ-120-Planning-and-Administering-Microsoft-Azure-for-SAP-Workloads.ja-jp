@@ -1,15 +1,7 @@
----
-ms.openlocfilehash: beb1c622d0a76e56d03dbbef534988edcdc44b93
-ms.sourcegitcommit: 0113753baec606c586c0bdf4c9452052a096c084
-ms.translationtype: HT
-ms.contentlocale: ja-JP
-ms.lasthandoff: 01/13/2022
-ms.locfileid: "137857714"
----
 # <a name="demonstration-review-common-storage-explorer-tasks"></a>デモ: Storage Explorer の一般的なタスクを確認する
 
 >**注**:
->- 古いバージョンのストレージ エクスプローラーをお持ちの場合は、必ずアップグレードしてください。 これらの手順は、バージョン 1.6.2 を使用します。
+>- If you have an older version of the Storage Explorer, be sure to upgrade. These steps use version 1.6.2.
 >- デモでは、基本的なストレージ アカウント接続のみを行います。
 
 ## <a name="download-and-install-storage-explorer"></a>Storage Explorer をダウンロードしてインストールする
@@ -20,8 +12,8 @@ ms.locfileid: "137857714"
 
 ## <a name="connect-to-an-azure-subscription"></a>Azure サブスクリプションに接続する
 
-1. ストレージ エクスプローラーで、 **[アカウントの管理]** を選択し、左上の 2 番目のアイコンを選択します。 これにより、アカウント管理パネルが開きます。
-2. 左側のウィンドウに、サインインしている Azure アカウントがすべて表示されます。 別のアカウントに接続するには、 **[アカウントの追加]** を選択します。
+1. In Storage Explorer, select <bpt id="p1">**</bpt>Manage Accounts<ept id="p1">**</ept>, second icon top left. This will take you to the Account Management Panel.
+2. The left pane now displays all the Azure accounts you've signed in to. To connect to another account, select <bpt id="p1">**</bpt>Add an account<ept id="p1">**</ept>.
 3. 国内クラウドまたは Azure Stack にサインインする場合は、[Azure 環境] ドロップダウンをクリックして、使用する Azure クラウドを選択します。 
 4. 環境を選択したら、**[サインイン]** ボタンをクリックします。 
 5. Azure アカウントでのサインインに成功すると、そのアカウントおよびそのアカウントに関連付けられている Azure サブスクリプションが左側のウィンドウに追加されます。 
@@ -33,10 +25,10 @@ ms.locfileid: "137857714"
 ## <a name="attach-an-azure-storage-account"></a>Azure Storage アカウントをアタッチする
 
 1. Azure Portal とストレージ アカウントにアクセスします。
-2. **ストレージ エクスプローラー** の選択肢を探索します。
+2. **ストレージ エクスプローラー**の選択肢を探索します。
 3. **[アクセス キー]** を選択し、キーの使用に関する情報を読んでください。 
-4. ストレージ エクスプローラーに接続するには、**ストレージ アカウント名** と **Key1** の情報が必要です。
+4. ストレージ エクスプローラーに接続するには、**ストレージ アカウント名**と **Key1** の情報が必要です。
 5. ストレージ エクスプローラーで、**アカウントを追加します**。
 6. [アカウント名] ボックスにアカウント名を、[アカウント キー] ボックスにアカウント キー (Azure Portal から得た key1 の値) をそれぞれ貼り付けて、**[次へ]** を選択します。
-7. [ナビゲーション] ペインで、ストレージ アカウントが使用可能であることを確認します。 ページを更新する必要がある場合があります。 
+7. 古いバージョンのストレージ エクスプローラーをお持ちの場合は、必ずアップグレードしてください。 
 8. ストレージ アカウントを右クリックし、**[Portal で開く]**、**[キーのコピー]**、**[クイック アクセスへの追加]** などの選択肢に注目してください。

@@ -1,11 +1,3 @@
----
-ms.openlocfilehash: f925b00bee5e45d5636ec833a64601cfe8df7475
-ms.sourcegitcommit: 0113753baec606c586c0bdf4c9452052a096c084
-ms.translationtype: HT
-ms.contentlocale: ja-JP
-ms.lasthandoff: 01/13/2022
-ms.locfileid: "137857576"
----
 # <a name="demonstration-create-and-delete-resource-groups"></a>デモンストレーション: リソース グループの作成と削除
 
 >**注**:リソースのロックを管理できるのは、所有者とユーザー アクセス管理者のロールだけです。
@@ -13,10 +5,10 @@ ms.locfileid: "137857576"
 ## <a name="manage-resource-groups-in-the-portal"></a>ポータルでのリソース グループの管理
 
 1. Azure ポータルにアクセスします。
-1. リソース グループを作成します。 このリソース グループの名前を覚えておいてください。 
+1. Create a resource group. Remember the name of this resource group. 
 1. リソース グループの **[設定]** ブレードで、**[ロック]** を選択します。
-1. ロックを追加するには、**[追加]** を選択します。 親レベルでロックを作成する場合は、親を選択します。 現在選択されているリソースは、ロックを親から継承します。 たとえば、リソース グループをロックすることで、グループのリソースすべてにロックを適用することができます。
-1. ロックに **名前** と **ロックの種類** を指定します。 必要に応じて、ロックについて説明したメモを追加することができます。
+1. To add a lock, select <bpt id="p1">**</bpt>Add<ept id="p1">**</ept>. If you want to create a lock at a parent level, select the parent. The currently selected resource inherits the lock from the parent. For example, you could lock the resource group to apply a lock to all its resources.
+1. Give the lock a <bpt id="p1">**</bpt>name<ept id="p1">**</ept> and <bpt id="p2">**</bpt>lock type<ept id="p2">**</ept>. Optionally, you can add notes that describe the lock.
 1. ロックを削除するには、省略記号 (...) を選択し、表示されるオプションから **[削除]** を選択します。
 
 ## <a name="manage-resource-groups-with-powershell"></a>PowerShell を使用してリソース グループを管理する
@@ -28,7 +20,7 @@ ms.locfileid: "137857576"
         New-AzResourceLock -LockName <lockName> -LockLevel CanNotDelete -ResourceGroupName <resourceGroupName>
     ```
 
-3. リソース ロック情報を表示します。 ロックを削除するために、次の手順で使用する LockId に注意してください。
+3. View resource lock information. Notice the LockId that will be used in the next step to delete the lock.
 
     ```
         Get-AzResourceLock

@@ -1,11 +1,3 @@
----
-ms.openlocfilehash: bb16d23d49812985c78c3e7fe75e440c0a79de3e
-ms.sourcegitcommit: 0113753baec606c586c0bdf4c9452052a096c084
-ms.translationtype: HT
-ms.contentlocale: ja-JP
-ms.lasthandoff: 01/13/2022
-ms.locfileid: "137857574"
----
 # <a name="demonstration-create-and-manage-file-shares-and-snapshots"></a>デモ: ファイル共有とスナップショットを作成して管理する
 
 >**注**:これらの手順では、ストレージ アカウントが必要です。 
@@ -13,9 +5,9 @@ ms.locfileid: "137857574"
 ## <a name="create-a-file-share-and-upload-a-file"></a>ファイル共有を作成してファイルをアップロードする
 
 1. ストレージ アカウントにアクセスし、 **[ファイル]** をクリックします。
-2. **[+ ファイル共有]** をクリックして、新しいファイル共有に **名前** と **クォータ** を付与します。
-3. ファイル共有の作成後、ファイルを **アップロード** します。 
-4. **ディレクトリの追加**、**共有の削除**、および **クォータ** を編集する機能に注目してください。
+2. **[+ ファイル共有]** をクリックして、新しいファイル共有に**名前** と**クォータ**を付与します。
+3. ファイル共有の作成後、ファイルを**アップロード**します。 
+4. **ディレクトリの追加**、**共有の削除**、および**クォータ**を編集する機能に注目してください。
 
 ## <a name="manage-snapshots"></a>スナップショットを管理する
 
@@ -24,9 +16,9 @@ ms.locfileid: "137857574"
 1. **[スナップショットの表示]** を選択し、スナップショットが作成されたことを確認します。
 1. スナップショットをクリックし、アップロードしたファイルが含まれていることを確認します。
 1. スナップショットの一部であるファイルをクリックし、 **[ファイル プロパティ]** を確認します。 
-1. スナップショット ファイルの **ダウンロード** および **復元** の選択に注目してください。 
+1. スナップショット ファイルの**ダウンロード**および**復元**の選択に注目してください。 
 1. ファイル共有にアクセスし、以前にアップロードしたファイルを削除します。
-1. ファイルをスナップショットから **復元** します。 
+1. ファイルをスナップショットから**復元**します。 
  
 ## <a name="create-a-file-share-powershell"></a>ファイル共有を作成する (PowerShell)
 
@@ -36,7 +28,7 @@ ms.locfileid: "137857574"
     $storageContext = New-AzStorageContext storage-account-name storage-account-key
     ```
 
-2. ファイル共有を作成します。 ファイル共有の名前はすべて小文字にする必要があります。
+2. Create the file share. The name of your file share must be all lowercase.
 
     ```PowerShell
     $share = New-AzStorageShare logs -Context $storageContext
@@ -44,7 +36,7 @@ ms.locfileid: "137857574"
 
 ## <a name="mount-a-file-share-powershell"></a>ファイル共有をマウントする (PowerShell)
 
-1. Azure ファイル共有をマウントするには、管理者特権ではない通常の PowerShell セッションから次のコマンドを実行します。 **your-resource-group-name**、**your-storage-account-name**、**your-file-share-name**、および **desired-drive-letter** を適切な情報に置き換えることを忘れないでください。
+1. Run the following commands from a regular (i.e. not an elevated) PowerShell session to mount the Azure file share. Remember to replace <bpt id="p1">**</bpt>your-resource-group-name<ept id="p1">**</ept>, <bpt id="p2">**</bpt>your-storage-account-name<ept id="p2">**</ept>, <bpt id="p3">**</bpt>your-file-share-name<ept id="p3">**</ept>, and <bpt id="p4">**</bpt>desired-drive-letter<ept id="p4">**</ept> with the proper information.
 
     ```PowerShell
     $resourceGroupName = "your-resource-group-name"

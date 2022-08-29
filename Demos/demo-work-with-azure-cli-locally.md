@@ -1,11 +1,3 @@
----
-ms.openlocfilehash: 5acbb0fe25c7ef36bcf0f85ba38547d4d8c419ba
-ms.sourcegitcommit: 0113753baec606c586c0bdf4c9452052a096c084
-ms.translationtype: HT
-ms.contentlocale: ja-JP
-ms.lasthandoff: 01/13/2022
-ms.locfileid: "137857600"
----
 # <a name="demonstration-work-with-azure-cli-locally"></a>デモンストレーション: Azure CLI をローカルで使用する
 
 このデモでは、CLI をインストールして使用し、リソースを作成します。
@@ -28,17 +20,17 @@ Azure CLI を起動し、バージョン チェックを実行してインスト
 az --version
  ```
 
->**注**:PowerShell から Azure CLI を実行する場合、Windows コマンド プロンプトから Azure CLI を実行するよりもメリットがあります。 PowerShell には、コマンド プロンプトよりも多くのタブ補完機能があります。
+><bpt id="p1">**</bpt>Note<ept id="p1">**</ept>: Running Azure CLI from PowerShell has some advantages over running Azure CLI from the Windows command prompt. PowerShell provides more tab completion features than the command prompt.
 
 ## <a name="login-to-azure"></a>Azure にログインする
 
-ローカルの Azure CLI インストールを操作するため、Azure コマンドを実行する前に認証を行う必要があります。 これは、Azure CLI の **ログイン** コマンドを使用して実行します。
+Because you're working with a local Azure CLI installation, you'll need to authenticate before you can execute Azure commands. You do this by using the Azure CLI <bpt id="p1">**</bpt>login<ept id="p1">**</ept> command:
 
 ```azurecli
 az login
 ```
 
-通常、Azure CLI は既定のブラウザーを起動して Azure サインイン ページを開きます。 これでうまくいかない場合、コマンドラインの指示に従い、[https://aka.ms/devicelogin](https://aka.ms/devicelogin) で承認コードを入力します。
+Azure CLI will typically launch your default browser to open the Azure sign-in page. If this doesn't work, follow the command-line instructions and enter an authorization code at <bpt id="p1">[</bpt><ph id="ph1">https://aka.ms/devicelogin</ph><ept id="p1">](https://aka.ms/devicelogin)</ept>.
 
 サインインに成功すると、ご利用の Azure サブスクリプションに接続されます。
 
@@ -46,7 +38,7 @@ az login
 
 新しい Azure サービスを作成する前に新しいリソース グループを作成しなければならないことが頻繁にあります。そこで、例としてリソース グループを使用し、CLI から Azure リソースを作成する方法について示します。
 
-Azure CLI **group create** コマンドは、リソース グループを作成します。 名前と場所を指定する必要があります。 *名前* はサブスクリプション内で一意である必要があります。 *保存先* によって、リソース グループのメタデータが格納される場所が決まります。 "米国西部"、"北ヨーロッパ"、"インド西部" などの文字列を使用して場所を指定するか、westus、northeurope、westindia など、同じものを意味する 1 つの単語を使用できます。 中心的な構文は次のようになります。
+Azure CLI <bpt id="p1">**</bpt>group create<ept id="p1">**</ept> command creates a resource group. You must specify a name and location. The <bpt id="p1">*</bpt>name<ept id="p1">*</ept> must be unique within your subscription. The <bpt id="p1">*</bpt>location<ept id="p1">*</ept> determines where the metadata for your resource group will be stored. You use strings like "West US", "North Europe", or "West India" to specify the location; alternatively, you can use single word equivalents, such as westus, northeurope, or westindia. The core syntax is:
 
 ```azurecli
 az group create --name <name> --location <location>
@@ -54,7 +46,7 @@ az group create --name <name> --location <location>
 
 ## <a name="verify-the-resource-group"></a>リソース グループを確認する
 
-多くの Azure リソースでは、Azure CLI には、リソースの詳細を表示するための **list** サブコマンドが用意されています。 たとえば、Azure CLI **group list** コマンドによって Azure リソース グループが一覧表示されます。 これは、リソース グループの作成が成功したかどうかを確認するのに役立ちます。
+For many Azure resources,  Azure CLI provides a <bpt id="p1">**</bpt>list<ept id="p1">**</ept> subcommand to view resource details. For example, the Azure CLI <bpt id="p1">**</bpt>group list<ept id="p1">**</ept> command lists your Azure resource groups. This is useful to verify whether resource group creation was successful:
 
 ```azurecli
 az group list
@@ -66,10 +58,10 @@ az group list
 az group list --output table
 ```
 
-グループ リストに複数の項目がある場合は、**クエリ** オプションを追加すると戻り値をフィルタリングできます。 次のコマンドを試してください。
+If you have several items in the group list, you can filter the return values by adding a <bpt id="p1">**</bpt>query<ept id="p1">**</ept> option. Try this command:
 
 ```azurecli
 az group list --query "[?name == '<rg name>']"
 ```
 
->**注:**  JSON 要求の標準クエリ言語である **JMESPath** を使用して、クエリの書式を設定します。 この強力なフィルター言語の詳細については、[http://jmespath.org/](http://jmespath.org/) を参照してください。
+><bpt id="p1">**</bpt>Note:<ept id="p1">**</ept> You format the query using <bpt id="p2">**</bpt>JMESPath<ept id="p2">**</ept>, which is a standard query language for JSON requests. Learn more about this powerful filter language at <bpt id="p1">[</bpt><ph id="ph1">http://jmespath.org/</ph><ept id="p1">](http://jmespath.org/)</ept>.

@@ -1,11 +1,3 @@
----
-ms.openlocfilehash: 5673f081ce1335404538fd8bb648084293cb873c
-ms.sourcegitcommit: 0113753baec606c586c0bdf4c9452052a096c084
-ms.translationtype: HT
-ms.contentlocale: ja-JP
-ms.lasthandoff: 01/13/2022
-ms.locfileid: "137857579"
----
 # <a name="demonstration-explore-azure-blob-storage"></a>デモ: Azure Blob Storage を調べる
 
 >**注**:このデモでは、ストレージ アカウントが必要です。
@@ -15,20 +7,20 @@ ms.locfileid: "137857579"
 1. Azure portal で、ストレージ アカウントに移動します。
 2. ストレージ アカウントの左側のメニューで、**[Blob service]** セクションまでスクロールしてから、**[BLOB]** を選択します。
 3. **[+ コンテナー]** ボタンを選択します。
-4. 新しいコンテナーの **[名前]** を入力します。 コンテナー名は小文字である必要があり、英文字または数字で始まる必要があり、英文字、数字、ダッシュ (-) 文字のみを含めることができます。 
-5. コンテナーにパブリック アクセスのレベルを設定します。 既定のレベルは [ プライベート (匿名アクセスなし)] です。
+4. Type a <bpt id="p1">**</bpt>Name<ept id="p1">**</ept> for your new container. The container name must be lowercase, must start with a letter or number, and can include only letters, numbers, and the dash (-) character. 
+5. Set the level of public access to the container. The default level is Private (no anonymous access).
 6. **[OK]** を選択してコンテナーを作成します。
 
 ## <a name="upload-a-block-blob"></a>ブロック BLOB をアップロードする
 
 1. Azure Portal で、前のセクションで作成したコンテナーに移動します。
-2. コンテナーを選択して、それに含まれている BLOB の一覧を表示します。 このコンテナーは新しいため、BLOB はまだ含まれていません。
+2. Select the container to show a list of blobs it contains. Since this container is new, it won't yet contain any blobs.
 3. **[アップロード]** ボタンを選択して、コンテナーに BLOB をアップロードします。
 4. **[詳細設定]** セクションを展開します。
 5. **[認証タイプ]**、**[BLOB タイプ]**、**[ブロック サイズ]**、**[フォルダーへのアップロード]** 機能に注意してください。
 6. 既定の **[認証タイプ]** は、SAS であることに注意してください。
 4. ローカル ファイル システムを参照して、ブロック BLOB としてアップロードするファイルを見つけて、**[アップロード]** を選択します。
-5. この方法で、希望する数の BLOB をアップロードします。 これで、新しい BLOB がコンテナー内に一覧表示されます。
+5. Upload as many blobs as you like in this way. You'll observe that the new blobs are now listed within the container.
 
 ## <a name="download-a-block-blob"></a>ブロック BLOB をダウンロードする
 

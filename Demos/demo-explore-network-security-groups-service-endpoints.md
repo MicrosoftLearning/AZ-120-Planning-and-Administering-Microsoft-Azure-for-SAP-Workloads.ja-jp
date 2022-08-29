@@ -1,22 +1,14 @@
----
-ms.openlocfilehash: 1d4de1703fcc0710202ba868a8fabaf5df557ff4
-ms.sourcegitcommit: 0113753baec606c586c0bdf4c9452052a096c084
-ms.translationtype: HT
-ms.contentlocale: ja-JP
-ms.lasthandoff: 01/13/2022
-ms.locfileid: "137857694"
----
 # <a name="demonstration-explore-network-security-groups-nsgs-and-service-endpoints"></a>デモ: ネットワーク セキュリティ グループ (NSG) とサービス エンドポイントの詳細を確認する
 
 ## <a name="access-the-nsgs-blade"></a>NSG ブレードにアクセスする
 
 1. Azure portal にアクセスします。
 2. **[ネットワーク セキュリティ グループ]** ブレードを検索してアクセスします。
-3. 仮想マシンを使用している場合は、NSG が既に使用されている可能性があります。 一覧をフィルターできることに注意してください。
+3. If you have virtual machines, you may already have NSGs. Notice the ability to filter the list.
 
 ## <a name="add-a-new-nsg"></a>新しい NSG を追加する
 
-1. ネットワーク セキュリティ グループを **+ 追加** します。
+1. ネットワーク セキュリティ グループを **+ 追加**します。
 
     + **名前**: *"一意の名前を選択します"*
     + **サブスクリプション**: *"ご使用のサブスクリプションを選択します"*
@@ -37,7 +29,7 @@ ms.locfileid: "137857694"
 6. 新しい受信セキュリティ規則を **[+ 追加]** します。
 7. **[基本]** をクリックして、詳細モードに変更します。
 8. **[サービス]** ドロップダウンを使用して、使用可能な定義済みのサービスを確認します。
-9. HTTPS などのサービスを選択すると、ポート範囲 (443 など) が自動的に設定されます。 これにより、規則の構成が容易になります。
+9. When you make a service selection (like HTTPS) the port range (like 443) is automatically populated. This makes it easy to configure the rule.
 10. 優先度ラベルの横にある情報アイコンを使用して、優先度を設定する方法を確認します。
 11. 変更を行わずに規則を終了します。 
 12. 時間がある場合は、送信セキュリティ規則の追加について確認してください。

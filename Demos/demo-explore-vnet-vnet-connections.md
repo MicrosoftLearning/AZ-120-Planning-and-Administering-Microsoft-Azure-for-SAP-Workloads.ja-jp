@@ -1,14 +1,6 @@
----
-ms.openlocfilehash: 8ba040ee1f7757643c89688f53abb1206250c787
-ms.sourcegitcommit: 0113753baec606c586c0bdf4c9452052a096c084
-ms.translationtype: HT
-ms.contentlocale: ja-JP
-ms.lasthandoff: 01/13/2022
-ms.locfileid: "137857619"
----
 # <a name="demonstration-explore-vnet-to-vnet-connections"></a>デモ: VNet から VNet への接続の詳細を確認する
 
->**注**:このデモは、サブネットによる 2 つの仮想ネットワークに最適です。 すべての手順はポータルにあります。 
+><bpt id="p1">**</bpt>Note<ept id="p1">**</ept>: This demonstration works best with two virtual networks with subnets. All the steps are in the portal. 
 
 ## <a name="explore-the-gateway-subnet-blade"></a>ゲートウェイ サブネット ブレードを詳しく見る
 
@@ -16,10 +8,10 @@ ms.locfileid: "137857619"
 1. **+ ゲートウェイ サブネット** を選択します。
 
     - サブネットの名前は変更できないことに注意してください。  
-    - ゲートウェイ サブネットの **アドレスの範囲** に注意してください。 アドレスは、仮想ネットワークのアドレス空間に含まれている必要があります。 
+    - Notice the <bpt id="p1">**</bpt>address range<ept id="p1">**</ept> of the gateway subnet. The address must be contained by the address space of the virtual network. 
 
 1. 各仮想ネットワークにはゲートウェイ サブネットが必要であることに注意してください。 
-1. [ゲートウェイ サブネットの追加] ページを閉じます。 変更を保存する必要はありません。
+1. **注**:このデモは、サブネットによる 2 つの仮想ネットワークに最適です。
 
 ## <a name="explore-the-connected-devices-blade"></a>接続されたデバイス ブレードを詳しく見る
 
@@ -37,15 +29,15 @@ ms.locfileid: "137857619"
 5. **ゲートウェイ タイプ**、**VPN タイプ**、**SKU** に注意してください。 
 6. **パブリック IP アドレス** が必要なことに注意してください。
 7. 各仮想ネットワークには仮想ネットワーク ゲートウェイが必要である 
-8. **仮想ネットワーク ゲートウェイの追加** ページを閉じます。 変更を保存する必要はありません。 
+8. すべての手順はポータルにあります。 
 
 ## <a name="explore-adding-a-connection-between-the-virtual-networks"></a>仮想ネットワーク間の接続の追加を確認する
 
 1. **接続** を検索します。
 2. **[+ 追加]** をクリックします。
-3. **接続の種類** は、VNet 間、サイト間 (IPsec)、ExpressRoute にできることに注意してください。
+3. **接続の種類**は、VNet 間、サイト間 (IPsec)、ExpressRoute にできることに注意してください。
 4. **[OK]** ボタンをクリックできるように、十分な情報を入力します。
 5. **[設定]** ページで、2 つの異なる仮想ネットワークを選択する必要があることに注意してください。
 6. **双方向接続の確立** チェックボックスにヘルプ情報を参照してください。
 7. **共有キー (PSK)** 情報に注意してください。
-8. **[接続の追加]** ページを閉じます。 変更を保存する必要はありません。 
+8. Close the <bpt id="p1">**</bpt>Add connection<ept id="p1">**</ept> page. You do not need to save your changes. 
