@@ -1,58 +1,58 @@
-# デモ: ポータルで仮想マシンを作成する
+# <a name="demonstration-create-a-virtual-machine-in-the-portal"></a>デモンストレーション: ポータルで仮想マシンを作成する
 
-このデモでは、ポータルに Windows 仮想マシンを作成してアクセスします。
+このデモでは、Azure portal で Windows 仮想マシンを作成してアクセスします。
 
-## 仮想マシンを作成する
+## <a name="create-the-virtual-machine"></a>仮想マシンの作成
 
-1. Azure Portal の左上隅にある 「**リソースの作成**」 を選択します。
-2. Azure Marketplace リソースの一覧の上にある検索ボックスで、**Windows Server 2016 Datacenter** を検索します。イメージを見つけたら、「**作成**」 をクリックします。
-3. 「**基本**」 タブの 「**プロジェクトの詳細**」 に、正しいサブスクリプションが選択されていることを確認し、「**新しいリソース グループの作成**」 を選択します。名前に *myResourceGroup* を入力します。
+1. Azure portal の左上隅にある **[リソースの作成]** を選択します。
+2. In the search box above the list of Azure Marketplace resources, search for <bpt id="p1">**</bpt>Windows Server 2016 Datacenter<ept id="p1">**</ept>. After locating the image, click <bpt id="p1">**</bpt>Create<ept id="p1">**</ept>.
+3. In the <bpt id="p1">**</bpt>Basics<ept id="p1">**</ept> tab, under <bpt id="p2">**</bpt>Project details<ept id="p2">**</ept>, make sure the correct subscription is selected and then choose to <bpt id="p3">**</bpt>Create new<ept id="p3">**</ept> resource group. Type <bpt id="p1">*</bpt>myResourceGroup<ept id="p1">*</ept> for the name.
 
-    ![VMのために新しいリソースグループを作成します](Images/AZ103_Demo_Creating_VMs1.png)
+    ![VM の新しいリソース グループを作成する](Images/AZ103_Demo_Creating_VMs1.png)
 
-4. 「**インスタンスの詳細**」の 「**仮想マシン名**」 に「*myVM*」を入力し、**場所**として 「*米国東部*」 を選択します。他の既定値をそのままにします。
+4. Under <bpt id="p1">**</bpt>Instance details<ept id="p1">**</ept>, type <bpt id="p2">*</bpt>myVM<ept id="p2">*</ept> for the <bpt id="p3">**</bpt>Virtual machine name<ept id="p3">**</ept> and choose <bpt id="p4">*</bpt>East US<ept id="p4">*</ept> for your <bpt id="p5">**</bpt>Location<ept id="p5">**</ept>. Leave the other defaults.
 
-    ![インスタンスの詳細セクション](Images/AZ103_Demo_Creating_VMs2.png)
+    ![[Instance details] (インスタンスの詳細) セクション](Images/AZ103_Demo_Creating_VMs2.png)
 
-5. 「**管理者アカウント**」 に、*azureuser* などのユーザー名とパスワードを指定します。パスワードの長さは 12 文字以内で、定義された複雑さの要件を満たす必要があります。
+5. Under <bpt id="p1">**</bpt>Administrator account<ept id="p1">**</ept>, provide a username, such as <bpt id="p2">*</bpt>azureuser<ept id="p2">*</ept> and a password. The password must be at least 12 characters long and meet the defined complexity requirements.
 
-    ![ユーザー名とパスワードを入力します](Images/AZ103_Demo_Creating_VMs3.png)
+    ![ユーザー名とパスワードを入力する](Images/AZ103_Demo_Creating_VMs3.png)
 
-6. **受信ポートの規則** で、**選択したポートを許可します**を選択し、ドロップダウンから **RDP (3389)** と **HTTP** を選択します。
+6. **[受信ポートの規則]** で、**[Allow selected ports] (選択されたポートを許可する)** を選択してから、ドロップダウンから **[RDP (3389)]** と **[HTTP]** を選択します。
 
-    ![RDP および HTTP 用のポートをオープン](Images/AZ103_Demo_Creating_VMs4.png)
+    ![RDP と HTTP のポートを開く](Images/AZ103_Demo_Creating_VMs4.png)
 
-7. **管理** タブに移動し、**監視** の下で「ブート診断を **オフ** にする」 をクリックします。これにより、検証エラーが解消されます。 
-8. 残りの既定値をそのままにして、ページの下部にある 「**Review + create**」 ボタンを選択します。検証を待ってから、「**作成**」 をクリックします。 
+7. Move to the <bpt id="p1">**</bpt>Management<ept id="p1">**</ept> tab, and under <bpt id="p2">**</bpt>Monitoring<ept id="p2">**</ept> turn <bpt id="p3">**</bpt>Off<ept id="p3">**</ept> Boot Diagnostics. This will eliminate validation errors. 
+8. Azure Marketplace リソースの一覧の上にある検索ボックスで、**Windows Server 2016 Datacenter** を検索します。 
 
-    ![レビューと作成](Images/AZ103_Demo_Creating_VMs5.png)
+    ![[Review and create] (確認および作成)](Images/AZ103_Demo_Creating_VMs5.png)
 
-## 仮想マシンに接続する
+## <a name="connect-to-the-virtual-machine"></a>仮想マシンへの接続
 
-仮想マシンへのリモート デスクトップ接続を作成します。これらの方法により、Windows コンピューターから VM に接続する方法がわかります。Mac では、Mac App Store から RDP クライアントをインストールする必要があります。
+イメージを見つけたら、 **[作成]** をクリックします。
 
-1. 仮想マシンのプロパティ ページで 「**接続**」 ボタンを選択します。
-2. 「**仮想マシンに接続**」 ページで、ポート 3389 経由で DNS 名で接続する既定のオプションを保持し、「**RDP ファイルのダウンロード**」 をクリックします。
-3. ダウンロードした RDP ファイルを開き、プロンプトが表示されたときに 「**接続**」 を選択します。
-4. 「**Windows セキュリティ**」 ウィンドウで 「**その他**」 を選択し、「**別のアカウントを使用する**」 を選択します。localhost\username としてユーザー名を入力して、仮想マシン用に作成したパスワードを入力し 「**OK**」 を選択します。
-5. サインイン プロセス中に証明書の警告が表示されることがあります。「**はい**」 または 「**続行**」 を選択して接続を作成します。
+1. 仮想マシンのプロパティ ページで **[接続]** ボタンを選択します。
+2. **[Connect to virtual machine]\(仮想マシンへの接続\)** ページで、ポート 3389 を介して DNS 名で接続する既定のオプションをそのまま使用して、**[RDP ファイルのダウンロード]** をクリックします。
+3. ダウンロードした RDP ファイルを開き、プロンプトが表示されたら **[接続]** を選択します。
+4. In the <bpt id="p1">**</bpt>Windows Security<ept id="p1">**</ept> window, select <bpt id="p2">**</bpt>More choices<ept id="p2">**</ept> and then <bpt id="p3">**</bpt>Use a different account<ept id="p3">**</ept>. Type the username as localhost\username, enter password you created for the virtual machine, and then select <bpt id="p1">**</bpt>OK<ept id="p1">**</ept>.
+5. **[基本]** タブの **[Project details] (プロジェクトの詳細)** で、正しいサブスクリプションが選択されていることを確認し、リソース グループの **[新規作成]** を選択します。
 
-## Web サーバーのインストール
+## <a name="install-web-server"></a>Web サーバーのインストール
 
-VM の操作を確認するには、IIS Web サーバーをインストールします。VM で PowerShell プロンプトを開き、次のコマンドを実行します。
+名前として「*myResourceGroup*」と入力します。
 
 ```PowerShell
 Install-WindowsFeature -name Web-Server -IncludeManagementTools
 ```
 
-完了したら、VM への RDP 接続を閉じます。
+終了したら、VM への RDP 接続を閉じます。
 
-## IIS のウェルカム ページを表示する
+## <a name="view-the-iis-welcome-page"></a>IIS のようこそページの表示
 
-portal にVM を選択し、VM の概要ウィンドウに Public IP Addresses の右側にある 「**コピーへクリック**」 ボタンを使用してコピーし、ブラウザー タブに貼り付けます。既定の IIS ウェルカム ページが開きます。
+portal にVM を選択し、VM の概要ウィンドウに Public IP Addresses の右側にある **[コピーへクリック]** ボタンを使用してコピーし、ブラウザー タブに貼り付けます。既定の IIS ウェルカム ページが開きます。
 
 ![IIS の既定のサイト](Images/AZ103_Demo_Creating_VMs6.png)
 
-## リソースをクリーン アップする
+## <a name="clean-up-resources"></a>リソースをクリーンアップする
 
->**注:** 不要になった場合は、リソース グループ、仮想マシン、およびすべての関連リソースを削除できます。これを行うには、仮想マシンのリソース グループを選択し、**削除** を選択 し、削除するリソース グループの名前を確認します。
+><bpt id="p1">**</bpt>Note:<ept id="p1">**</ept> When no longer needed, you can delete the resource group, virtual machine, and all related resources. To do so, select the resource group for the virtual machine, select <bpt id="p1">**</bpt>Delete<ept id="p1">**</ept>, then confirm the name of the resource group to delete.

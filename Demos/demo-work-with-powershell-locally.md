@@ -1,26 +1,26 @@
-# デモ: PowerShell をローカルで操作する
+# <a name="demonstration-work-with-powershell-locally"></a>デモンストレーション: PowerShell をローカルで使用する
 
-このデモでは、Az PowerShell モジュールをインストールします。Az モジュールは、*PowerShell ギャラリー*と呼ばれるグローバル リポジトリから入手できます。**Install-Module** コマンドを使用して、モジュールをローカル マシンにインストールします。PowerShell ギャラリーからモジュールをインストールする場合、昇格された PowerShell シェル プロンプトが必要です。 
+In this demonstration, we will install Azure Az PowerShell module. The Az module is available from a global repository called the <bpt id="p1">*</bpt>PowerShell Gallery<ept id="p1">*</ept>. You can install the module onto your local machine through the <bpt id="p1">**</bpt>Install-Module<ept id="p1">**</ept> command. You need an elevated PowerShell shell prompt to install modules from the PowerShell Gallery. 
 
-## Az モジュールをインストールする
+## <a name="install-the-az-module"></a>Az モジュールをインストールする
 
-1. 「**スタート**」 メニューを開き、「**Windows PowerShell**」と入力します。
-2. **Windows PowerShell** アイコンを右クリックし、「**管理者として実行する**」 を選択します。
-3. 「**ユーザー アカウント制御**」 ダイアログ ボックスで、「**はい**」 を選択します。
-4. 次のコマンドを入力し、Enter を押します。このコマンドは、既定ではすべてのユーザーにモジュールをインストールします。(スコープ パラメーターによって制御されます。)AllowClobber は、以前の PowerShell モジュールを上書きします。 
+1. **[スタート]** メニューを開き、「**Windows PowerShell**」と入力します。
+2. **Windows PowerShell** アイコンを右クリックし、 **[管理者として実行する]** を選択します。
+3. **[ユーザー アカウント制御]** ダイアログで、**[はい]** を選択します。
+4. Type the following command, and then press Enter. This command installs the module for all users by default. (It's controlled by the scope parameter.) AllowClobber overwrites the previous PowerShell module. 
 
     ```
     Install-Module -Name Az -AllowClobber
     ```
 
-## NuGet をインストールする (必要な場合)
+## <a name="install-nuget-if-needed"></a>NuGet をインストールする (必要な場合)
 
 1. インストールした NuGet バージョンによっては、最新バージョンのダウンロードとインストールを求めるプロンプトが表示される場合があります。
 2. プロンプトが表示された場合は、NuGet プロバイダーをインストールしてインポートします。
 
-## リポジトリを信頼する
+## <a name="trust-the-repository"></a>リポジトリを信頼する
 
-1. 既定では、PowerShell ギャラリーは PowerShellGet の信頼できるリポジトリとして構成されていません。PowerShell ギャラリーを初めて使用する場合、プロンプトが表示されます。
+1. このデモでは、Az PowerShell モジュールをインストールします。
 
     ```
     You are installing the modules from an untrusted repository. If you trust this repository, change its
@@ -30,7 +30,7 @@
 
 2. プロンプトに従い、モジュールをインストールします。 
 
-## Azure に接続し、サブスクリプション情報を表示する
+## <a name="connect-to-azure-and-view-your-subscription-information"></a>Azure に接続し、サブスクリプション情報を表示する
 
 1. Azure にログインする
 
@@ -45,9 +45,9 @@
     Get-AzSubscription
     ```
 
-## リソースを作成する
+## <a name="create-resources"></a>リソースを作成する
 
-1. 新しいリソース グループを作成します。必要に応じて、別の保存先を指定します。*名前*はサブスクリプション内で一意である必要があります。*保存先*によって、リソース グループのメタデータが格納される場所が決まります。保存先を指定するには、「米国西部」、「北ヨーロッパ」、「インド西部」 などの文字列を使用します。または、westus、northeurope、westindia など、相当する 1 つの単語を使用することもできます。構文の基本は以下のとおりです。
+1. Az モジュールは、*PowerShell ギャラリー*と呼ばれるグローバル リポジトリから入手できます。
 
     ```
     New-AzResourceGroup -name <name> -location <location>
@@ -59,7 +59,7 @@
     Get-AzResourceGroup
     ```
 
-3. リソース グループを削除します。プロンプトが表示されたら確認します。 
+3. **Install-Module** コマンドを使用して、モジュールをローカル マシンにインストールします。 
 
     ```
     Remove-AzResourceGroup -Name Test

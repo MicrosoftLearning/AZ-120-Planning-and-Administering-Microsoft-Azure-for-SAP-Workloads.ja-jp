@@ -1,13 +1,13 @@
-# デモ: PowerShell で仮想マシンを作成する
+# <a name="demonstration-create-a-virtual-machine-with-powershell"></a>デモンストレーション: PowerShell を使用して仮想マシンを作成する
 
 このデモでは、PowerShell を使用して仮想マシンを作成します。
 
-## 仮想マシンを作成する
+## <a name="create-the-virtual-machine"></a>仮想マシンの作成
 
 >**注:** Cloud Shell またはローカル バージョンの PowerShell を使用できます。 
 
 1. Cloud Shell を起動します。
-2. このコードを実行します｡
+2. このコードを実行します。
 
 ```
     # create a resource group
@@ -26,7 +26,7 @@
         -OpenPorts 80,3389
 ```
 
-## ポータルでのマシンの作成を確認する
+## <a name="verify-the-machine-creation-in-the-portal"></a>ポータルでのマシンの作成を確認する
 
 1. ポータルにアクセスし、仮想マシンを表示します。
 2. **myVM**が作成されたことを確認します。
@@ -35,22 +35,22 @@
 5. コマンドがマシンを起動したのに注意してください。 
 6. この時点で、ポータルまたは PowerShell を使用して変更を加えることができます。 
 
-## 仮想マシンに接続する
+## <a name="connect-to-the-virtual-machine"></a>仮想マシンへの接続
 
 1. マシンのパブリック IP アドレスを取得します。
 
 ```
 Get-AzPublicIpAddress -ResourceGroupName "myResourceGroup" | Select "IpAddress"
 ```
-2. ローカル マシンから RDP セッションを作成します。IP アドレスを VM のパブリック IP アドレスに置き換えます。このコマンドは、cmd ウィンドウから実行されます。
+2. Create an RDP session from your local machine. Replace the IP address with the public IP address of your VM. This command runs from a cmd window.
 
 ```
 mstsc /v:publicIpAddress
 ```
 
-3. プロンプトが表示された場合は、マシンのログイン資格情報を入力します。必ず **別のアカウントを使用**してください。localhost\username としてユーザー名を入力して、仮想マシン用に作成したパスワードを入力し 「**OK**」 を選択します。サインイン プロセス中に証明書の警告が表示されることがあります。**はい**または**続行**を選択して接続を作成します
-4. 完了したら、VM への RDP 接続を閉じます。
-5. リソースをクリーンアップします。数分かかるこの処理により、リソースグループと仮想マシンが削除されます。
+3. When prompted, provide your login credentials for the machine. Be sure to <bpt id="p1">**</bpt>Use a different account<ept id="p1">**</ept>. Type the username as localhost\username, enter password you created for the virtual machine, and then select <bpt id="p1">**</bpt>OK<ept id="p1">**</ept>. You may receive a certificate warning during the sign-in process. Select <bpt id="p1">**</bpt>Yes<ept id="p1">**</ept> or <bpt id="p2">**</bpt>Continue<ept id="p2">**</ept> to create the connection
+4. 終了したら、VM への RDP 接続を閉じます。
+5. Clean up your resources. This will take a few minutes and remove the resource group and virtual machine.
 
 ```
 Remove-AzResourceGroup -Name myResourceGroup 

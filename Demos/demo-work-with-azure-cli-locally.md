@@ -1,16 +1,16 @@
-# デモ: Azure CLI をローカルで操作する
+# <a name="demonstration-work-with-azure-cli-locally"></a>デモンストレーション: Azure CLI をローカルで使用する
 
 このデモでは、CLI をインストールして使用し、リソースを作成します。
 
-## Windows に CLI を インストールする
+## <a name="install-the-cli-on-windows"></a>Windows に CLI を インストールする
 
 MSI インストーラーを使用して Windows オペレーティング システムに Azure CLI をインストールします。
 
-1. [MSI インストーラー](https://aka.ms/installazurecliwindows)をダウンロードして、ブラウザーのセキュリティ ダイアログ ボックスで 「**実行**」 をクリックします。
-2. インストーラーで、ライセンス条項に同意し、「**インストール**」 をクリックします。
-3. 「**ユーザー アカウント制御**」 ダイアログ ボックスで、「**はい**」 を選択します。
+1. [MSI インストーラー](https://aka.ms/installazurecliwindows)をダウンロードして、ブラウザーのセキュリティ ダイアログ ボックスで **[実行]** をクリックします。
+2. インストーラーで、ライセンス条項に同意し、**[インストール]** をクリックします。
+3. **[ユーザー アカウント制御]** ダイアログで、**[はい]** を選択します。
 
-## Azure CLI インストールを確認する
+## <a name="verify-azure-cli-installation"></a>Azure CLI のインストールの確認
 
 Azure CLI は、Linux または Mac OS で Bash シェルを開くか、Windows でコマンド プロンプトまたは PowerShell から実行できます。
 
@@ -20,48 +20,48 @@ Azure CLI を起動し、バージョン チェックを実行してインスト
 az --version
  ```
 
-> **注**: PowerShell から Azure CLI を実行すると、Windows コマンド プロンプトから Azure CLI を実行するよりもメリットがあります。PowerShell には、コマンド プロンプトよりも多くのタブ補完機能があります。
+><bpt id="p1">**</bpt>Note<ept id="p1">**</ept>: Running Azure CLI from PowerShell has some advantages over running Azure CLI from the Windows command prompt. PowerShell provides more tab completion features than the command prompt.
 
-## Azure にログインする
+## <a name="login-to-azure"></a>Azure にログインする
 
-ローカルの Azure CLI インストールを使用しているため、Azure コマンドを実行する前に認証する必要があります。これは、Azure CLI の**ログイン** コマンドを使用して実行します。
+Because you're working with a local Azure CLI installation, you'll need to authenticate before you can execute Azure commands. You do this by using the Azure CLI <bpt id="p1">**</bpt>login<ept id="p1">**</ept> command:
 
 ```azurecli
 az login
 ```
 
-通常、Azure CLI は既定のブラウザーを起動して Azure サインイン ページを開きます。これがうまくいかない場合は、コマンドラインの指示に従い、[https://aka.ms/devicelogin](https://aka.ms/devicelogin) で認証コードを入力します。
+Azure CLI will typically launch your default browser to open the Azure sign-in page. If this doesn't work, follow the command-line instructions and enter an authorization code at <bpt id="p1">[</bpt><ph id="ph1">https://aka.ms/devicelogin</ph><ept id="p1">](https://aka.ms/devicelogin)</ept>.
 
-サインインが成功すると、Azure サブスクリプションに接続されます。
+サインインに成功すると、ご利用の Azure サブスクリプションに接続されます。
 
-## リソース グループを作成する
+## <a name="create-a-resource-group"></a>リソース グループを作成する
 
-新しい Azure サービスを作成する前に、新しいリソース グループの作成が必要な場合がよくあるため、リソース グループを使用して CLI から Azure リソースを作成する方法を例として示します。
+新しい Azure サービスを作成する前に新しいリソース グループを作成しなければならないことが頻繁にあります。そこで、例としてリソース グループを使用し、CLI から Azure リソースを作成する方法について示します。
 
-Azure CLI **group create** コマンドは、リソース グループを作成します。名前と保存先を指定する必要があります。*名前*はサブスクリプション内で一意である必要があります。*保存先*によって、リソース グループのメタデータが格納される場所が決まります。保存先を指定するには、「米国西部」、「北ヨーロッパ」、「インド西部」 などの文字列を使用します。または、westus、northeurope、westindia など、相当する 1 つの単語を使用することもできます。構文の基本は以下のとおりです。
+Azure CLI <bpt id="p1">**</bpt>group create<ept id="p1">**</ept> command creates a resource group. You must specify a name and location. The <bpt id="p1">*</bpt>name<ept id="p1">*</ept> must be unique within your subscription. The <bpt id="p1">*</bpt>location<ept id="p1">*</ept> determines where the metadata for your resource group will be stored. You use strings like "West US", "North Europe", or "West India" to specify the location; alternatively, you can use single word equivalents, such as westus, northeurope, or westindia. The core syntax is:
 
 ```azurecli
 az group create --name <name> --location <location>
 ```
 
-## リソース グループを確認する
+## <a name="verify-the-resource-group"></a>リソース グループを確認する
 
-多くの Azure リソースでは、Azure CLI には、リソースの詳細を表示するための **list** サブコマンドが用意されています。たとえば、Azure CLI **group list** コマンドは、Azure リソース グループを一覧表示します。これは、リソース グループの作成が成功したかどうかを確認するのに役立ちます。
+For many Azure resources,  Azure CLI provides a <bpt id="p1">**</bpt>list<ept id="p1">**</ept> subcommand to view resource details. For example, the Azure CLI <bpt id="p1">**</bpt>group list<ept id="p1">**</ept> command lists your Azure resource groups. This is useful to verify whether resource group creation was successful:
 
 ```azurecli
 az group list
 ```
 
-より簡潔なビューを取得するには、出力を単純なテーブルとして書式設定できます。
+さらに簡潔なビューを得るために、出力をシンプルな表として書式設定できます。
 
 ```azurecli
 az group list --output table
 ```
 
-グループ リストに複数の項目がある場合は、**クエリ** オプションを追加すると戻り値をフィルタリングできます。次のコマンドを試してください。
+If you have several items in the group list, you can filter the return values by adding a <bpt id="p1">**</bpt>query<ept id="p1">**</ept> option. Try this command:
 
 ```azurecli
 az group list --query "[?name == '<rg name>']"
 ```
 
->**注:** JSON 要求の標準照会言語である **JMESPath** を使用してクエリを書式設定します。この強力なフィルター言語の詳細については、[http://jmespath.org/](http://jmespath.org/) を参照してください。
+><bpt id="p1">**</bpt>Note:<ept id="p1">**</ept> You format the query using <bpt id="p2">**</bpt>JMESPath<ept id="p2">**</ept>, which is a standard query language for JSON requests. Learn more about this powerful filter language at <bpt id="p1">[</bpt><ph id="ph1">http://jmespath.org/</ph><ept id="p1">](http://jmespath.org/)</ept>.
