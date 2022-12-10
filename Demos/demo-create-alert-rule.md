@@ -2,23 +2,23 @@
 
 ## <a name="create-rule"></a>ルールを作成する
 
-1. In Azure portal, click on <bpt id="p1">**</bpt>Monitor<ept id="p1">**</ept>. The Monitor blade consolidates all your monitoring settings and data in one view.
-2. Click <bpt id="p1">**</bpt>Alerts<ept id="p1">**</ept> then click <bpt id="p2">**</bpt>+ New alert rule<ept id="p2">**</ept>. As most resource blades also have Alerts in their resource menu under Monitoring, you could create alerts from there as well.
+1. Azure Portal で、 **[監視]** をクリックします。 [モニター] ブレードでは、すべての監視設定とデータが 1 つのビューにまとめられています。
+2. **[アラート]** をクリックして、 **[+ 新しいアラート ルール]** をクリックします。 ほとんどのリソース ブレードには [監視] の下のリソース メニューにもアラートが含まれるため、そこからアラートを作成することもできます。
 
 ## <a name="explore-alert-targets"></a>アラート ターゲットの詳細を確認する
 
-1. Click <bpt id="p1">**</bpt>Select<ept id="p1">**</ept> under Target, to select a target resource that you want to alert on. Use <bpt id="p1">**</bpt>Subscription<ept id="p1">**</ept> and <bpt id="p2">**</bpt>Resource type<ept id="p2">**</ept> drop-downs to find the resource you want to monitor. You can also use the search bar to find your resource.
-2. Azure Portal で、 **[監視]** をクリックします。
+1. ターゲット の下にある **[選択]** をクリックして、警告するターゲット リソースを選択します。 **サブスクリプション**と**リソースの種類**のドロップダウン リストを使用して、監視するリソースを検索します。 検索バーを使用して、リソースを検索することもできます。
+2. 選択したリソースにアラートを作成できるメトリックがある場合は、右下の [使用可能なシグナル] にメトリックが表示されます。 メトリック アラートでサポートされているリソースの種類の完全な一覧については、こちらの記事をご覧ください。
 3. 選択が完了したら、 **[完了]** をクリックします。
 
 ## <a name="explore-alert-conditions"></a>アラート条件を確認する
 
 1. ターゲット リソースを選択した後、 **[条件の追加]** をクリックします。
 2. リソースのためにサポートされているシグナルの一覧を監視し、アラートを作成するメトリックを選択します。
-3. [モニター] ブレードでは、すべての監視設定とデータが 1 つのビューにまとめられています。 
-4. Observe a chart for the metric for the last 6 hours. Adjust the <bpt id="p1">**</bpt>Show history<ept id="p1">**</ept> drop-down.
-5. **[アラート]** をクリックして、 **[+ 新しいアラート ルール]** をクリックします。
-6. ほとんどのリソース ブレードには [監視] の下のリソース メニューにもアラートが含まれるため、そこからアラートを作成することもできます。
+3. 必要に応じて、 [期間] と [集計] を調整して、メトリックを設定し直します。 メトリックにディメンションがある場合は、[ディメンション] テーブルが表示されます。 
+4. 過去 6 時間のメトリックのグラフを監視します。 **[履歴の表示]** ドロップダウンを調整します。
+5. **[アラート ロジック]** を定義します。 これにより、メトリック アラート ルールが評価するロジックが決定されます。
+6. 静的しきい値を使用している場合、メトリック グラフが妥当なしきい値の決定に役立つことがあります。 動的しきい値を使用している場合は、メトリック グラフに最新のデータに基づいて計算されたしきい値が表示されます。
 7. **[Done]** をクリックします。
 8. 複雑なアラート ルールを監視する場合は、必要に応じて、別の条件を追加します。 
 

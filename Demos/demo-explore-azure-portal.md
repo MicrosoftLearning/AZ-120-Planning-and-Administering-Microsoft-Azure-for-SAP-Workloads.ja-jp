@@ -12,14 +12,14 @@
 
 ## <a name="customize-your-experience"></a>エクスペリエンスのカスタマイズ
 
-1. Examine the icons next to the Dashboard drop-down. For example, New Dashboard, Upload, Download, Edit, and Clone. 
+1. 「ダッシュボード」ドロップダウンの横にあるアイコンを確認します。 「新しいダッシュボード」、「アップロード」、「ダウンロード」、「編集」、「複製」などが用意されています。 
 1. **[新しいダッシュボード]** をクリックします。
 1. タイルの追加、固定、移動、サイズ変更、および削除を練習してください。 
 1. **[カスタマイズ完了]** をクリックして編集内容を保存します。
-1. Select the <bpt id="p1">**</bpt>Settings<ept id="p1">**</ept> icon on the top banner. Experiment with different color themes. <bpt id="p1">**</bpt>Apply<ept id="p1">**</ept> your changes.
-1. Practice reordering your <bpt id="p1">**</bpt>Favorites<ept id="p1">**</ept> list. Do this by holding and dragging list items up or down.
+1. 上部バナーの**設定**アイコンを選択します。 異なる色のテーマを試してみます。 変更を**適用**します。
+1. **[お気に入り]** リストの並べ替えを練習してください。 一覧項目をクリックして上下にドラッグします。
 1. 「お気に入り」をクリックすると、そのページが表示されます。 
-1. Click the <bpt id="p1">**</bpt>Cost Management and Billing<ept id="p1">**</ept> blade. <bpt id="p1">**</bpt>Pin<ept id="p1">**</ept> your Subscription information to your Dashboard.
+1. **[コスト管理と請求]** ブレードをクリックします。 サブスクリプション情報をダッシュボードに**ピン留め**します。
 1. ダッシュボードにアクセスし、希望する配置に変更します。 
 1. ページ上部の*検索*テキストボックスを使用します。
 1. *resource* と入力すると、コンテキストにマッチしたものが提供されます。

@@ -42,15 +42,15 @@
 ```
 Get-AzPublicIpAddress -ResourceGroupName "myResourceGroup" | Select "IpAddress"
 ```
-2. Create an RDP session from your local machine. Replace the IP address with the public IP address of your VM. This command runs from a cmd window.
+2. ローカル マシンから RDP セッションを作成します。 IP アドレスは、実際の VM のパブリック IP アドレスに置き換えてください。 このコマンドは、cmd ウィンドウから実行されます。
 
 ```
 mstsc /v:publicIpAddress
 ```
 
-3. When prompted, provide your login credentials for the machine. Be sure to <bpt id="p1">**</bpt>Use a different account<ept id="p1">**</ept>. Type the username as localhost\username, enter password you created for the virtual machine, and then select <bpt id="p1">**</bpt>OK<ept id="p1">**</ept>. You may receive a certificate warning during the sign-in process. Select <bpt id="p1">**</bpt>Yes<ept id="p1">**</ept> or <bpt id="p2">**</bpt>Continue<ept id="p2">**</ept> to create the connection
+3. プロンプトが表示された場合は、マシンのログイン資格情報を入力します。 必ず **別のアカウントを使用**してください。 ユーザー名を localhost\username として入力し、仮想マシン用に作成したパスワードを入力して **[OK]** を選択します。 サインイン処理中に証明書の警告が表示される場合があります。 接続を作成するには、**はい** または  **続行**を選択します。
 4. 終了したら、VM への RDP 接続を閉じます。
-5. Clean up your resources. This will take a few minutes and remove the resource group and virtual machine.
+5. リソースをクリーンアップする。 数分かかるこの処理により、リソースグループと仮想マシンが削除されます。
 
 ```
 Remove-AzResourceGroup -Name myResourceGroup 
