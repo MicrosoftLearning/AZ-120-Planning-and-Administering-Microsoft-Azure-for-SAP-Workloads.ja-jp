@@ -28,7 +28,7 @@
     $storageContext = New-AzStorageContext storage-account-name storage-account-key
     ```
 
-2. Create the file share. The name of your file share must be all lowercase.
+2. ファイル共有を作成します。 ファイル共有の名前はすべて小文字にする必要があります。
 
     ```PowerShell
     $share = New-AzStorageShare logs -Context $storageContext
@@ -36,7 +36,7 @@
 
 ## <a name="mount-a-file-share-powershell"></a>ファイル共有をマウントする (PowerShell)
 
-1. Run the following commands from a regular (i.e. not an elevated) PowerShell session to mount the Azure file share. Remember to replace <bpt id="p1">**</bpt>your-resource-group-name<ept id="p1">**</ept>, <bpt id="p2">**</bpt>your-storage-account-name<ept id="p2">**</ept>, <bpt id="p3">**</bpt>your-file-share-name<ept id="p3">**</ept>, and <bpt id="p4">**</bpt>desired-drive-letter<ept id="p4">**</ept> with the proper information.
+1. Azure ファイル共有をマウントするには、管理者特権ではない通常の PowerShell セッションから次のコマンドを実行します。 **your-resource-group-name**、**your-storage-account-name**、**your-file-share-name**、および **desired-drive-letter** を適切な情報に置き換えることを忘れないでください。
 
     ```PowerShell
     $resourceGroupName = "your-resource-group-name"

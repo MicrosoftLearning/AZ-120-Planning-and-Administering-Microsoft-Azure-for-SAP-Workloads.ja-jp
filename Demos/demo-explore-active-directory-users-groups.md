@@ -5,14 +5,14 @@
 ## <a name="determine-domain-information"></a>ドメイン情報を決定する
 
 1. Azure portal にアクセスし、**[Azure Active Directory]** ブレードに移動します。
-2. Make a note of your available domain name. For example, usergmail.onmicrosoft.com.
+2. 使用可能なドメイン名をメモします。 例: usergmail.onmicrosoft.com。
 
 ## <a name="explore-user-accounts"></a>ユーザー アカウントを詳しく見る
 
 1. **[ユーザー]** ブレードを選択します。
 2. **[ 新規ユーザー]** を選択します。 
 3. **[新しいゲスト ユーザー]** を作成する選択に注意してください。
-4. Create a <bpt id="p1">**</bpt>New user<ept id="p1">**</ept>. Replace your domain. 
+4. **[新しいユーザー]** を作成します。 ドメインを置き換え 
 
     + **名前**: *Chris Green*
     + **アドレス**: *chris@your ドメイン*
@@ -55,13 +55,13 @@
     Get-AzADUser
     ```
 
-4. Add the user to the group. Replace <bpt id="p1">**</bpt>groupObjectId<ept id="p1">**</ept> and <bpt id="p2">**</bpt>userObjectId<ept id="p2">**</ept>.
+4. グループにユーザーを追加します。 **groupObjectId** および **userObjectId** を置き換えます。
 
     ```
     Add-AzADGroupMember -MemberUserPrincipalName ""myemail@domain.com"" -TargetGroupDisplayName ""MyGroupDisplayName""
     ```
 
-5. Verify the members of the group. Replace <bpt id="p1">**</bpt>groupObjectId<ept id="p1">**</ept>.
+5. グループのメンバーを確認します。 **groupObjectId** を置き換えます。
 
     ```
     Get-AzADGroupMember -GroupDisplayName "MyGroupDisplayName"

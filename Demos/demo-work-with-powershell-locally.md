@@ -1,13 +1,13 @@
 # <a name="demonstration-work-with-powershell-locally"></a>デモンストレーション: PowerShell をローカルで使用する
 
-In this demonstration, we will install Azure Az PowerShell module. The Az module is available from a global repository called the <bpt id="p1">*</bpt>PowerShell Gallery<ept id="p1">*</ept>. You can install the module onto your local machine through the <bpt id="p1">**</bpt>Install-Module<ept id="p1">**</ept> command. You need an elevated PowerShell shell prompt to install modules from the PowerShell Gallery. 
+このデモでは、Az PowerShell モジュールをインストールします。 Az モジュールは、*PowerShell ギャラリー*と呼ばれるグローバル リポジトリから入手できます。 **Install-Module** コマンドを使用して、モジュールをローカル マシンにインストールします。 PowerShell ギャラリーからモジュールをインストールする場合、昇格された PowerShell シェル プロンプトが必要です。 
 
 ## <a name="install-the-az-module"></a>Az モジュールをインストールする
 
 1. **[スタート]** メニューを開き、「**Windows PowerShell**」と入力します。
 2. **Windows PowerShell** アイコンを右クリックし、 **[管理者として実行する]** を選択します。
 3. **[ユーザー アカウント制御]** ダイアログで、**[はい]** を選択します。
-4. Type the following command, and then press Enter. This command installs the module for all users by default. (It's controlled by the scope parameter.) AllowClobber overwrites the previous PowerShell module. 
+4. 次のコマンドを入力して、Enter キーを押します。 このコマンドは、既定ではすべてのユーザーにモジュールをインストールします。 (スコープ パラメーターによって制御されます。)AllowClobber は、以前の PowerShell モジュールを上書きします。 
 
     ```
     Install-Module -Name Az -AllowClobber
@@ -20,7 +20,7 @@ In this demonstration, we will install Azure Az PowerShell module. The Az module
 
 ## <a name="trust-the-repository"></a>リポジトリを信頼する
 
-1. このデモでは、Az PowerShell モジュールをインストールします。
+1. 既定では、PowerShell ギャラリーは、PowerShellGet 用の信頼できるリポジトリとしては構成されません。 PowerShell ギャラリーを初めて使用する場合、プロンプトが表示されます。
 
     ```
     You are installing the modules from an untrusted repository. If you trust this repository, change its
@@ -47,7 +47,7 @@ In this demonstration, we will install Azure Az PowerShell module. The Az module
 
 ## <a name="create-resources"></a>リソースを作成する
 
-1. Az モジュールは、*PowerShell ギャラリー*と呼ばれるグローバル リポジトリから入手できます。
+1. 新しいリソース グループを作成します。 必要に応じて、別の保存先を指定します。 *名前*はサブスクリプション内で一意である必要があります。 *保存先*によって、リソース グループのメタデータが格納される場所が決まります。 "米国西部"、"北ヨーロッパ"、"インド西部" などの文字列を使用して場所を指定するか、westus、northeurope、westindia など、同じものを意味する 1 つの単語を使用できます。 中心的な構文は次のようになります。
 
     ```
     New-AzResourceGroup -name <name> -location <location>
@@ -59,7 +59,7 @@ In this demonstration, we will install Azure Az PowerShell module. The Az module
     Get-AzResourceGroup
     ```
 
-3. **Install-Module** コマンドを使用して、モジュールをローカル マシンにインストールします。 
+3. リソース グループを削除します。 プロンプトが表示されたら確認します。 
 
     ```
     Remove-AzResourceGroup -Name Test

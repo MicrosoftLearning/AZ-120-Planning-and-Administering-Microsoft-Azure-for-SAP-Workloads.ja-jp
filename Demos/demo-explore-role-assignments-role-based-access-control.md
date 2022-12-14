@@ -2,7 +2,7 @@
 
 ## <a name="locate-access-control-blade"></a>アクセス制御ブレードを探す
 
-1. Access the Azure portal, and select a resource group. Make a note of what resource group you use. 
+1. Azure portal にアクセスし、リソース グループを選択します。 使用するリソースグループをメモしておきます。 
 2. **[アクセス制御 (IAM)]** ブレードを選択します。 
 3. このブレードは、アクセスを制御できるように、さまざまなリソースで使用できます。
 

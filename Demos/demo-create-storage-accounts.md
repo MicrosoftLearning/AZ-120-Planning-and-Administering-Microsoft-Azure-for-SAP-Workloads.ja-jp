@@ -2,11 +2,11 @@
 
 ## <a name="create-a-storage-account-in-the-portal"></a>ポータルでストレージ アカウントを作成する
 
-1.  In the Azure portal, select <bpt id="p1">**</bpt>All services<ept id="p1">**</ept>. In the list of resources, type Storage Accounts. As you begin typing, the list filters based on your input. Select <bpt id="p1">**</bpt>Storage Accounts<ept id="p1">**</ept>.
+1.  Azure Portal で **[すべてのサービス]** を選択します。 リソースの一覧で「ストレージ アカウント」と入力します。 入力を始めると、入力内容に基づいて、一覧がフィルター処理されます。 **[ストレージ アカウント]** を選択します。
 2.  表示された [ストレージ アカウント] ウィンドウで **[追加]** を選択します。
 3.  ストレージ アカウントを作成する **[サブスクリプション]** を選択します。
-4.  Under the Resource group field, select <bpt id="p1">**</bpt>Create new<ept id="p1">**</ept>. Enter a name for your new resource group.
-5.  Enter a <bpt id="p1">**</bpt>name<ept id="p1">**</ept> for your storage account. The name you choose must be unique across Azure. The name also must be between 3 and 24 characters in length, and can include numbers and lowercase letters only.
+4.  [リソース グループ] フィールドの下の **[新規作成]** を選択します。 新しいリソース グループの名前を入力します。
+5.  ストレージ アカウントの**名前**を入力します。 選択する名前は Azure 全体で一意である必要があります。 また、名前の長さは 3 から 24 文字とし、数字と小文字のみを使用できます。
 6.  ストレージ アカウントの **[場所]** を選択するか、既定の場所を使用します。
 7.  以下のフィールドは既定値に設定されたままにします。
 
@@ -21,7 +21,7 @@
 
 ## <a name="create-a-storage-account-using-powershell"></a>PowerShell を使用したストレージ アカウントの作成
 
-Azure Portal で **[すべてのサービス]** を選択します。
+PowerShell を使用してストレージ アカウントを作成するには、次のコードを使用します。 要件に合わせてストレージの種類と名前を入れ替えます。
 
 ```PowerShell
 Get-AzLocation | select Location 
@@ -33,7 +33,7 @@ New-AzStorageAccount -ResourceGroupName $resourceGroup -Name "storagedemo" -Loca
 
 ## <a name="create-a-storage-account-using-azure-cli"></a>Azure CLI を使用してストレージ アカウントを作成する
 
-リソースの一覧で「ストレージ アカウント」と入力します。
+Azure CLI を使用して、ストレージ アカウントを作成するには、次のコードを使用します。 要件に合わせてストレージの種類と名前を変更します。
 
 ```PowerShell
 az group create --name storage-resource-group --location westus 
