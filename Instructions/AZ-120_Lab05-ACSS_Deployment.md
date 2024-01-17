@@ -1,6 +1,6 @@
 ---
 lab:
-  title: Azure Center for SAP solutions を使用してデプロイを自動化する
+  title: 05 - Azure Center for SAP solutions を使用してデプロイを自動化する
   module: Design and implement an infrastructure to support SAP workloads on Azure
 ---
 
@@ -47,7 +47,7 @@ lab:
 
 ### タスク 1: ターゲット Azure サブスクリプションの vCPU 要件に対処する
 
->**注**: AZ-120 ラボの [前提条件をすべて既に実装している場合は、このタスクを完了する](https://github.com/MicrosoftLearning/AZ-120-Planning-and-Administering-Microsoft-Azure-for-SAP-Workloads/blob/master/Instructions/AZ-120_Lab00_Prerequisites.md)必要はありません。
+>**注**:[AZ-120 ラボの前提条件](https://github.com/MicrosoftLearning/AZ-120-Planning-and-Administering-Microsoft-Azure-for-SAP-Workloads/blob/master/Instructions/AZ-120_Lab00_Prerequisites.md)をすべて既に実装している場合、このタスクを完了する必要はありません。
 
 >**注**: (説明されている通りに) このラボを完了するには、以下の VM のデプロイに対応する vCPU クォータを持つ Microsoft Azure サブスクリプションが必要になります。
 
@@ -62,7 +62,7 @@ lab:
 
     > **注**: このラボで使用する Azure サブスクリプションで Cloud Shell を起動するのが初めての場合は、Cloud Shell ファイルを永続化するための Azure ファイル共有を作成するように求められます。 その場合は、既定値に設定すると、自動的に生成されたリソース グループ内にストレージ アカウントが作成されます。
 
-1. Azure portal の **[Cloud Shell]** ペインの PowerShell プロンプトで、次を実行します:  は、このラボのリソースをデプロイする予定である Azure リージョンを指定します (例: ):
+1. Azure portal の **[Cloud Shell]** ペインの PowerShell プロンプトで、次を実行します (`eastus` は、必要に応じてこのラボのリソースをデプロイする予定の Azure リージョンの名前に置換します)。
 
     > **注**:Azure リージョンの名前を識別するには、**Cloud Shell** の Bash プロンプトで `(Get-AzLocation).Location` を実行します
      
@@ -151,7 +151,7 @@ lab:
     |---|---|
     |サブスクリプション|このラボで使用している Azure サブスクリプションの名前|
     |リソース グループ|**ACSS-DEMO**|
-    |リージョン|このラボで先ほどストレージ アカウントをプロビジョニングした Azure リージョンの名前|
+    |リージョン|このラボで前にストレージ アカウントをプロビジョニングした Azure リージョンの名前|
     |名前|**Contoso-MSI**|
 
 1. **[確認]** タブで、検証プロセスが完了するのを待って、 **[作成]** を選択します。
@@ -190,7 +190,7 @@ lab:
     |サブスクリプション|このラボで使用している Azure サブスクリプションの名前|
     |リソース グループ|**新しい**リソース グループ **CONTOSO-VNET-RG** の名前|
     |名前|**ACSS-DEMO-NSG**|
-    |リージョン|このラボで先ほどストレージ アカウントをプロビジョニングした Azure リージョンの名前|
+    |リージョン|このラボで前にストレージ アカウントをプロビジョニングした Azure リージョンの名前|
 
 1. **[確認と作成]** タブで、検証プロセスが完了するのを待って、 **[作成]** を選択します。
 
@@ -206,7 +206,7 @@ lab:
     |---|---|
     |サブスクリプション|このラボで使用している Azure サブスクリプションの名前|
     |リソース グループ|**CONTOSO-VNET-RG**|
-    |リージョン|このラボでリソースをデプロイした Azure リージョンの名前|
+    |リージョン|このラボで前にリソースをプロビジョニングした Azure リージョンの名前|
     |名前|**ACSS-ROUTE**|
     |ゲートウェイのルートを伝達する|**いいえ**|
 
@@ -223,7 +223,7 @@ lab:
     |サブスクリプション|このラボで使用している Azure サブスクリプションの名前|
     |リソース グループ|**CONTOSO-VNET-RG**|
     |仮想ネットワーク名|**CONTOSO-VNET**|
-    |リージョン|このラボでリソースをデプロイした Azure リージョンの名前|
+    |リージョン|このラボで前にリソースをプロビジョニングした Azure リージョンの名前|
 
 1. **[セキュリティ]** タブで、既定の設定をそのまま使用し、 **[次へ]** を選択します。
 
@@ -289,7 +289,7 @@ lab:
     |サブスクリプション|このラボで使用している Azure サブスクリプションの名前|
     |リソース グループ|**CONTOSO-VNET-RG**|
     |名前|**FirewallPolicy_contoso-firewall**|
-    |リージョン|このラボでリソースをデプロイした Azure リージョンの名前|
+    |リージョン|このラボで前にリソースをプロビジョニングした Azure リージョンの名前|
     |ポリシー レベル|**標準**|
     |親ポリシー|**なし**|
 
@@ -373,7 +373,7 @@ lab:
     |---|---|
     |サブスクリプション|このラボで使用している Azure サブスクリプションの名前|
     |リソース グループ|**CONTOSO-VNET-RG**|
-    |リージョン|このラボでリソースをデプロイした Azure リージョンの名前|
+    |リージョン|このラボで前にリソースをプロビジョニングした Azure リージョンの名前|
     |名前|**contoso-firewal-pip**|
     |IP バージョン|**IPv4**|
     |SKU|**Standard**|
@@ -396,7 +396,7 @@ lab:
     |サブスクリプション|このラボで使用している Azure サブスクリプションの名前|
     |リソース グループ|**CONTOSO-VNET-RG**|
     |名前|**contoso-firewall**|
-    |リージョン|このラボでリソースをデプロイした Azure リージョンの名前|
+    |リージョン|このラボで前にリソースをプロビジョニングした Azure リージョンの名前|
     |可用性ゾーン|**なし**|
     |ファイアウォール SKU|**Standard**|
     |ファイアウォール管理|**ファイアウォール ポリシーを使用してこのファイアウォールを管理する**|
@@ -439,7 +439,7 @@ lab:
     |サブスクリプション|このラボで使用している Azure サブスクリプションの名前|
     |リソース グループ|**CONTOSO-VNET-RG**|
     |名前|**ACSS-BASTION**|
-    |リージョン|このラボでリソースをデプロイした Azure リージョンの名前|
+    |リージョン|このラボで前にリソースをプロビジョニングした Azure リージョンの名前|
     |レベル|**Basic**|
     |インスタンス数|**2**|
     |Virtual Network|**CONTOSO-VNET**|
@@ -457,14 +457,14 @@ lab:
 
 期間:40 分
 
-この演習では、Azure Center for SAP solutions を使用して、SAP ワークロードをホストするインフラストラクチャを、前の演習で使用した Azure サブスクリプションにデプロイします。 デプロイが成功したら、Azure Center for SAP ソリューションを使用して SAP ソフトウェアのインストールを続行するか、このラボでプロビジョニングされた Azure リソースを削除することができます。
+この演習では、Azure Center for SAP solutions を使用して、SAP ワークロードをホストするインフラストラクチャを、前の演習で使用した Azure サブスクリプションにデプロイします。 デプロイが正常に完了したら、Azure Center for SAP solutions を使用して SAP ソフトウェアのインストールに進むか、このラボでプロビジョニングした Azure リソースを削除できます。
 
->**注**: Azure Center for SAP ソリューションを使用した SAP ソフトウェアのインストールに関する情報については、SAP インストール メディア[を取得する方法と [SAP ソフトウェア](https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/install-software)をインストールする方法について説明している Microsoft Learn ドキュメントを](https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-sap-installation-media)参照してください。 このラボでプロビジョニングされた Azure リソースを削除する手順は、この演習の 2 番目のタスクに含まれています。
+>**注**:Azure Center for SAP solutions を使用した SAP ソフトウェアのインストールの詳細については、Microsoft Learn のドキュメントを参照してください。このドキュメントでは、[SAP インストール メディアを取得](https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/get-sap-installation-media)し、[SAP ソフトウェアをインストール](https://learn.microsoft.com/en-us/azure/sap/center-sap-solutions/install-software)する方法について説明しています。 このラボでプロビジョニングした Azure リソースを削除する手順は、この演習の 2 番めのタスクに含まれています。
 
 この演習は以下のタスクから構成されます。
 
 - タスク 1: Virtual Instance for SAP solutions を作成する
-- タスク 2: ラボでプロビジョニングされたすべての Azure リソースを削除する
+- タスク 2:ラボでプロビジョニングした Azure リソースを削除する
 
 ### タスク 1: Virtual Instance for SAP solutions を作成する
 
@@ -477,7 +477,7 @@ lab:
     |サブスクリプション|このラボで使用している Azure サブスクリプションの名前|
     |リソース グループ|**新しい**リソース グループ **Contoso-SAP-C1S** の名前|
     |名前 (SID)|**C1S**|
-    |リージョン|このラボでリソースをデプロイした Azure リージョンの名前|
+    |リージョン|このラボで前にリソースをプロビジョニングした Azure リージョンの名前|
     |環境の種類|**Production**|
     |SAP 製品|**S/4HANA**|
     |データベース|**HANA**|
@@ -533,21 +533,21 @@ lab:
 
     >**注**: デプロイが完了するまで待ちます。 これには 25 分ほどかかる場合があります。
 
->**注**: デプロイ後、Azure Center for SAP ソリューションを使用して SAP ソフトウェアのインストールに進むか、次のタスクの手順に従ってラボ リソースを削除します。
+>**注**:デプロイしたら、Azure Center for SAP solutions を使用して SAP ソフトウェアのインストールに進むか、次のタスクの手順に従ってラボ リソースを削除します。
 
-### タスク 2: ラボでプロビジョニングされたすべての Azure リソースを削除する
+### タスク 2:ラボでプロビジョニングした Azure リソースを削除する
 
->**重要**: デプロイしたリソースのコストは大きいので、これ以降ラボを使用する予定がない場合は、必ずラボをプロビジョニング解除してください。 SAP ソリューションの仮想インスタンスを削除しても、根底のインフラストラクチャ リソースは削除されないことに注意してください。 リソースを削除するには、このタスクで説明されている手順を使用する必要があります。この手順は、次の 3 つのリソース グループ内のリソースを対象とします。
+>**重要**: デプロイしたリソースのコストは大きいので、これ以降ラボを使用する予定がない場合は、必ずラボをプロビジョニング解除してください。 SAP ソリューションの仮想インスタンスを削除しても、基盤のインフラストラクチャ リソースは削除されません。 リソースを削除するには、このタスクで説明されている手順を使用する必要があります。この手順は、次の 3 つのリソース グループ内のリソースを対象とします。
 
 - **Contoso-SAP-C1S**
 - **CONTOSO-VNET-RG**
 - **ACSS-DEMO**
 
-1. **SEA-SVR2** の Azure portal を表示している Microsoft Edge ウィンドウで、Cloud Shell アイコンを選んで Cloud Shell ウィンドウを開きます。 
+1. ラボ コンピューターの、Azure portal を表示している Microsoft Edge ウィンドウで、**[Cloud Shell]** アイコンを選択し、Cloud Shell で PowerShell セッションを起動します。 
 
     > **注**: このラボで使用する Azure サブスクリプションで Cloud Shell を起動するのが初めての場合は、Cloud Shell ファイルを永続化するための Azure ファイル共有を作成するように求められます。 その場合は、既定値に設定すると、自動的に生成されたリソース グループ内にストレージ アカウントが作成されます。
 
-1. Azure portal の Cloud Shell** ウィンドウの **PowerShell プロンプトで、次のコマンドを実行して、このラボにデプロイされているすべての Azure VM を停止して割り当てを解除します。
+1. Azure portal の **[Cloud Shell]** ペインの PowerShell セッションで、次のコマンドを実行して、このラボでデプロイされているすべての Azure VM を停止し、割り当てを解除します。
 
     ```powershell
     $resourceGroupName = 'Contoso-SAP-C1S'
@@ -569,7 +569,7 @@ lab:
     }
     ```
 
-1. PowerShell プロンプトで、次のコマンドを実行して、このラボにデプロイされているすべての Azure VM に接続されているネットワーク インターフェイスとディスクの削除オプションを有効にします。
+1. PowerShell プロンプトで、次のコマンドを実行して、このラボにデプロイされているすべての Azure VM にアタッチされているネットワーク インターフェイスとディスクの削除オプションを有効にします。
 
     ```powershell
     foreach ($vm in $vms) {
@@ -589,22 +589,22 @@ lab:
     }
     ```
 
-1. 次のコマンドを実行して、リソース グループと残りすべてのリソースを削除します。
+1. PowerShell プロンプトで、次のコマンドを実行して、**Contoso-SAP-C1S** リソース グループとその残留リソースをすべて削除します。
 
     ```powershell
     Remove-AzResourceGroup -Name 'Contoso-SAP-C1S' -Force -AsJob
     ```
 
-1. 次のコマンドを実行して、リソース グループと残りすべてのリソースを削除します。
+1. PowerShell プロンプトで、次のコマンドを実行して、**CONTOSO-VNET-RG** リソース グループとその残留リソースをすべて削除します。
 
     ```powershell
     Remove-AzResourceGroup -Name 'CONTOSO-VNET-RG' -Force -AsJob
     ```
 
-1. 次のコマンドを実行して、リソース グループと残りすべてのリソースを削除します。
+1. PowerShell プロンプトで、次のコマンドを実行して、**ACSS-DEMO** リソース グループとその残留リソースをすべて削除します。
 
     ```powershell
     Remove-AzResourceGroup -Name 'ACSS-DEMO' -Force -AsJob
     ```
 
-    >**注**:このコマンドは非同期で実行されるため (-AsJob パラメーターによって決定されます)、同じ PowerShell セッション内で直後に別の PowerShell コマンドを実行できますが、リソース グループが実際に削除されるまでに数分かかります。
+    >**注**:最後の 3 つのコマンドは (-AsJob パラメーターに従って) 非同期で実行されるため、同じ PowerShell セッション内で直後に別の PowerShell コマンドを実行できますが、リソース グループとそのリソースが実際に削除されるまでに数分かかります。
