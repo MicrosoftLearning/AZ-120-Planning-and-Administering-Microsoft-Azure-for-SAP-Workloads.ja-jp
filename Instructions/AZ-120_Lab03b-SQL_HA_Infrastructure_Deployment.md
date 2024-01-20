@@ -48,71 +48,75 @@ Azure に SAP NetWeaver をデプロイする準備として、Adatum Corporatio
 
 1. プロンプトが表示された場合は、このラボで使用する Azure サブスクリプションの所有者または共同作成者のロールを使用して、職場、学校または個人の Microsoft アカウントを使用してログインします。
 
-1. Azure portal のインターフェイスで、**[リソースの作成]** をクリックします。
+1. Azure portal 上の Cloud Shell で PowerShell セッションを開始します。 
 
-1. **[新規]** ブレードから、新しい **Template deployment (カスタム テンプレートを使用したデプロイ)** の作成を開始します
+    > **注**:現在の Azure サブスクリプションで Cloud Shell を初めて起動する場合は、Azure ファイル共有を作成して Cloud Shell ファイルを永続化するように求められます。 その場合は、既定値に設定すると、自動的に生成されたリソース グループ内にストレージ アカウントが作成されます。
 
-1. **[カスタム デプロイ]** ブレードの、**[クイックスタート テンプレート (免責事項)]** ドロップダウン リストで、エントリ **application-workloads/active-directory/active-directory-new-domain-ha-2-dc-zones** を選択し、**[テンプレートの選択]** をクリックします。
-
-    > **注**:または、<https://github.com/Azure/azure-quickstart-templates> の Azure クイック スタート テンプレート ページに移動して、**2 つの新しい Windows VM、新しい AD フォレスト、ドメイン、2 つの DC を別々の可用性ゾーンに作成する**という名前のテンプレートを検索し、**[Azure にデプロイ]** ボタンをクリックしてデプロイを開始することもできます。
-
-1. **[可用性ゾーンを使用して 2 つの DC を持つ新しい AD ドメインを作成する]** というラベルの付いたブレードで、次の設定を指定し、**[確認および作成]** をクリックした後、**[作成]** をクリックしてデプロイを開始します。
-     
-    | 設定 | 値 |
-    |   --    |  --   |
-    | **サブスクリプション** | "Azure サブスクリプションの名前"**  |
-    | **リソース グループ** | "新しいリソース グループの名前" **az12003b-ad-RG**** |
-    | **場所** | "Azure VM をデプロイできる Azure リージョン"** |
-    | **管理ユーザー名** | **Student** |
-    | **場所** | "上記で指定したのと同じ Azure リージョン"** |
-    | **パスワード** | *任意の 12 文字以上の長さの任意の複雑なパスワード* |
-    | **ドメイン名** | **adatum.com** |
-    | **DnsPrefix** | *一意の有効な DNS プレフィックスを使用します* |
-    | **VM サイズ** | **Standard D2s_v3** |
-    | **_artifacts の場所** | **https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/application-workloads/active-directory/active-directory-new-domain-ha-2-dc-zones/** |
-    | **Sas トークンとしての _artifacts の場所** | *空白のままにする* |
-
-    > **注**: デプロイ時に指定したパスワードを忘れないでください。 このラボで後ほど必要になります。
-
-    > **注**:リソースのデプロイには、**米国東部**または**米国東部 2** リージョンの使用を検討してください。 
-    
-    > **注**:デプロイには約 35 分かかります。 次のタスクを進める前に、展開が完了するのを待ちます。
-
-    > **注**:CustomScriptExtension コンポーネントのデプロイ中に**競合**エラー メッセージが表示され、デプロイが失敗した場合は、次の手順を使用してこの問題を修復します。
-
-       - Azure portal の **[デプロイ]** ブレードで、デプロイの詳細を確認し、CustomScriptExtension のインストールが失敗した VM を特定します
-
-       - Azure portal で、前の手順で特定した VM のブレードに移動し、**[拡張機能]** を選択し、**[拡張機能]** ブレードから CustomScript 拡張機能を削除します
-
-       - Azure portal で、**az12003b-sap-RG** リソース グループ ブレードに移動し、**[デプロイ]** を選択し、失敗したデプロイへのリンクを選択して **[再デプロイ]** を選択し、ターゲット リソース グループ (**az12003b-sap-RG**) を選択して、ルート アカウントのパスワードを指定します (**Pa55w.rd1234**)。
-
-1. デプロイが完了したら、Azure portal で **adPDC** 仮想マシンのブレードに移動し、縦型ナビゲーション メニューの **[操作]** セクションで **[コマンドの実行]** を選択し、**[コマンド スクリプトの実行]** ペインの **[PowerShell スクリプト]** テキスト ボックスに次のスクリプトを入力し、**[実行]** ボタンを選択します。
+1. Cloud Shell ペインで、次のコマンドを実行して、高可用性 Active Directory ドメイン コントローラーを実行している Azure VM のペアのデプロイに使用する Bicep テンプレートをホストするリポジトリのシャロー クローンを作成し、現在のディレクトリをそのテンプレートとそのパラメーター ファイルの場所に設定します。
 
     ```
-    New-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters\' -Name 'DisabledComponents' -Value 0xffffffff -PropertyType 'DWord'
-    Restart-Computer -Force
+    cd $HOME
+    rm ./azure-quickstart-templates -rf
+    git clone --depth 1 https://github.com/polichtm/azure-quickstart-templates
+    cd ./azure-quickstart-templates/application-workloads/active-directory/active-directory-new-domain-ha-2-dc-zones/
     ```
 
-1. **adPDC** 仮想マシンが再び実行されるまで待ち、**adBDC** 仮想マシンのブレードに移動し、縦型ナビゲーション メニューの **[操作]** セクションで **[コマンドの実行]** を選択し、**[コマンド スクリプトの実行]** ペインの **[PowerShell スクリプト]** テキスト ボックスに次のスクリプトを入力し、**[実行]** ボタンを選択します。
+1. Cloud Shell ペインで、次のコマンドを実行して、変数 `$rgName` の値を `az12001b-ad-RG` に設定します。
 
     ```
-    New-ItemProperty 'HKLM:\SYSTEM\CurrentControlSet\Services\Tcpip6\Parameters\' -Name 'DisabledComponents' -Value 0xffffffff -PropertyType 'DWord'
-    Restart-Computer -Force
+    $rgName = 'az12003b-ad-RG'
     ```
-    
-1. **adBDC** 仮想マシンが再び実行されるまで待ち、**adPDC** 仮想マシンのブレードに移動し、縦型ナビゲーション メニューの **[操作]** セクションで **[コマンドの実行]** を選択し、**[コマンド スクリプトの実行]** ペインの **[PowerShell スクリプト]** テキスト ボックスに次のスクリプトを入力し、**[実行]** ボタンを選択します。
+
+1. Cloud Shell ペインで、次のコマンドを実行して、変数 `$location` の値を、可用性ゾーンをサポートし、ラボ VM をデプロイする Azure リージョンの名前に設定します (`<Azure_region>` プレースホルダーはそのリージョンの名前に置き換えます)。
 
     ```
-    repadmin /syncall /APeD
+    $location = '<Azure_region>'
     ```
-    
-1. **adBDC** 仮想マシンのブレードに移動し、縦型ナビゲーション メニューの **[操作]** セクションで **[コマンドの実行]** を選択し、**[コマンド スクリプトの実行]** ペインの **[PowerShell スクリプト]** テキスト ボックスに次のスクリプトを入力し、**[実行]** ボタンを選択します。
+
+1. Cloud Shell ペインで、次のコマンドを実行して、選択した Azure リージョンに **az12001b-ad-RG** という名前のリソースグループを作成します。
 
     ```
-    repadmin /syncall /APeD
+    New-AzResourceGroup -Name $rgName -Location $location
     ```
-    
-    > **注**: これらの追加の手順では、この場合の名前解決の問題が発生する IPv6 を無効にし、その後、2 つのドメイン コントローラー間で強制的にレプリケーションを行います。  
+
+1. Cloud Shell ペインで、次のコマンドを実行して変数 `$deploymentName` の値を設定します。
+
+    ```
+    $deploymentName = 'az1203b-' + $(Get-Date -Format 'yyyy-MM-dd-hh-mm')
+    ```
+
+1. Cloud Shell ペインで、次のコマンドを実行して、管理ユーザー アカウントの名前とそのパスワードを設定します (`<username>` と`<password>` プレースホルダーは、それぞれ管理ユーザー アカウントの名前とそのパスワードの値に置き換えます)。
+
+    ```
+    $adminUsername = '<username>'
+    $adminPassword = ConvertTo-SecureString '<password>' -AsPlainText -Force
+    ```
+
+    > **注**: パスワードが、Windows を実行している Azure VM のデプロイに適用される複雑さの要件を満たしていることを確認します (小文字と大文字、数字、特殊文字を含む 12 文字以上の長さ)。
+
+1. Cloud Shell ペインで、次のコマンドを実行してデプロイを行います。
+
+    ```
+    New-AzResourceGroupDeployment -Name $deploymentName -ResourceGroupName $rgName -TemplateFile .\main.bicep -TemplateParameterFile .\azuredeploy.parameters.json -adminUsername $adminUsername -adminPassword $adminPassword -c
+    ```
+
+1. コマンドの出力を確認し、エラーと警告が含まれていないことを確かめます。 メッセージが表示されたら、**Enter** キーを押してデプロイを続行します。
+
+    > **注**:デプロイには約 30 分かかります。 デプロイが完了するまで待ってから、次のタスクに進みます。
+
+    > **注**:ステートメント `PowerShell DSC resource MSFT_xADDomainController failed to execute Set-TargetResource functionality with error message: Domain 'adatum.com' could not be found` を含むエラーでデプロイが失敗した場合は、次の手順を使用してこの問題を修復します。
+
+    - Azure portal で、**adBDC** VM のブレードに移動し、左側の縦型ナビゲーション メニューの **[設定]** セクションで **[拡張機能とアプリケーション]** を選択し、**[拡張機能とアプリケーション]** ペインで **[PrepareBDC] (BDC の準備)** を選択し、**[Prepare BDC] (BDC の準備)** ペインで **[アンインストール]** を選択します。 
+
+    - **adBDC** VM のブレードに戻り、Azure VM を再起動します。
+
+    - **[az1203b-ad-RG]** ブレードに移動し、左側の縦型ナビゲーション メニューの **[設定]** セクションで、**[展開]** を選択します。
+
+    - **[az1203b-ad-RG] \| [展開]** ブレードで、名前が **az1203b** というプレフィックスで始まるデプロイを選択し、デプロイ ブレードで **[再デプロイ]** を選択します。
+
+    - **[Custom deployment] (カスタム デプロイ)** ブレードの **[Admin Password] (管理者パスワード)** テキスト ボックスに、元のデプロイ時に使用したものと同じパスワードを入力し、**[確認 + 作成]** を選択し、**[作成する]** を選択します。
+
+    - デプロイが完了するのを待たず、代わりに次のタスクに進みます。 再デプロイには約 3 分かかります。
 
 ### タスク 2:可用性の高い SAP NetWeaver デプロイと S2D クラスターを実行する Azure VM をホストするサブネットをプロビジョニングする。
 
@@ -244,7 +248,7 @@ Azure に SAP NetWeaver をデプロイする準備として、Adatum Corporatio
 
     > **注**:i20-s2d-1/s2dPrep or i20-s2d-0/s2dPrep コンポーネントのデプロイ中に**競合**エラー メッセージが表示され、デプロイが失敗した場合は、次の手順を使用してこの問題を修復します。
 
-       - Azure portal で、i20-s2d-0 仮想マシンのブレードに移動し、縦型ナビゲーション メニューの [操作] セクションで [コマンドの実行] を選択し、[コマンド スクリプトの実行] ペインの [PowerShell スクリプト] テキスト ボックスに次のスクリプトを入力し、[実行] ボタンを選択します。
+       - Azure portal で、**i20-s2d-0** 仮想マシンに移動し、縦型ナビゲーション メニューの **[操作]** セクションで **[コマンドの実行]** を選択し、**[コマンド スクリプトの実行]** ペインの **[PowerShell スクリプト]** テキスト ボックスに次のスクリプトを入力し、**[実行]** ボタンを選択します (`<password>` プレースホルダーは、このラボで前に指定したパスワードに必ず置き換えてください)。
 
        ```
        $domain = 'adatum.com'
@@ -254,7 +258,7 @@ Azure に SAP NetWeaver をデプロイする準備として、Adatum Corporatio
        Add-Computer -DomainName $domain -Credential $credential -Restart -Force
        ```
 
-       - i20-s2d-01 仮想マシンのブレードに移動し、縦型ナビゲーション メニューの [操作] セクションで [コマンドの実行] を選択し、[コマンド スクリプトの実行] ペインの [PowerShell スクリプト] テキスト ボックスに次のスクリプトを入力し、[実行] ボタンを選択します。
+       - **i20-s2d-1** 仮想マシンのブレードに移動し、縦型ナビゲーション メニューの **[操作]** セクションで **[コマンドの実行]** を選択し、**[コマンド スクリプトの実行]** ペインの **[PowerShell スクリプト]** テキスト ボックスに次のスクリプトを入力し、**[実行]** ボタンを選択します (`<password>` プレースホルダーは、このラボで前に指定したパスワードに必ず置き換えてください)。
 
        ```
        $domain = 'adatum.com'
@@ -336,7 +340,7 @@ Azure に SAP NetWeaver をデプロイする準備として、Adatum Corporatio
     $resourceGroupName = 'az12003b-sap-RG'
     ```
 
-1. Cloud Shell ウィンドウで次のコマンドを実行して、前の演習の 3 番目のタスクでデプロイした Windows Server Azure VM を adatum.com Active Directory ドメインに結合します。
+1. Cloud Shell ウィンドウで次のコマンドを実行して、前の演習の 3 番目のタスクでデプロイした Windows Server Azure VM を **adatum.com** Active Directory ドメインに参加させます (`<password>` プレースホルダーは、このラボで前に指定したパスワードに必ず置き換えてください)。
 
     ```
     $location = (Get-AzResourceGroup -Name $resourceGroupName).Location
