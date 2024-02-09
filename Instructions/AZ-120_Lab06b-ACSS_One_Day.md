@@ -399,9 +399,7 @@ AZ-1006 1 日コース ラボのすべてのタスクは Azure portal から実�
    |アプリケーション OS イメージ|**Red Hat Enterprise Linux 8.2 for SAP Applications - x64 Gen2 最新版**|
    |データベース OS イメージのオプション|**Marketplace イメージを使用する**|
    |データベース OS イメージ|**Red Hat Enterprise Linux 8.2 for SAP Applications - x64 Gen2 最新版**|
-   |SAP トランスポート オプション|**新しい SAP トランスポート ディレクトリを作成する**|
-   |トランスポート リソース グループ|**acss-infra-RG**|
-   |ストレージ アカウント名|エントリなし|
+   |SAP トランスポート オプション|**SAP トランスポート ディレクトリを含めない**|
    |認証の種類|**SSH パブリック**|
    |ユーザー名|**contososapadmin**|
    |SSH 公開キーのソース|**新しいキーの組の生成**|
