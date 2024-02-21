@@ -7,6 +7,10 @@ lab:
 # AZ 1006 モジュール: Azure で SAP ワークロードをサポートするためのインフラストラクチャを設計して実装する
 # AZ-1006 1 日コース ラボ: Azure Center for SAP solutions (ACSS) のデプロイとメンテナンスの概要
 
+>**重要**: この **ラボは現在サポートされていません** (24 年 2 月)。
+    - 手動での前提条件のデプロイの詳細については、[ラボ 6a](https://github.com/MicrosoftLearning/AZ-120-Planning-and-Administering-Microsoft-Azure-for-SAP-Workloads/blob/master/Instructions/AZ-120_Lab06a-ACSS_One_Day.md) を参照してください
+    - ACSS デモ インフラストラクチャのデプロイについては、[ラボ 6c(https://github.com/MicrosoftLearning/AZ-120-Planning-and-Administering-Microsoft-Azure-for-SAP-Workloads/blob/master/Instructions/AZ-120_Lab06c-ACSS_One_Day.md)] を参照してください。
+
 予測される所要時間:100 分
 
 AZ-1006 1 日コース ラボのすべてのタスクは Azure portal から実行します
@@ -15,7 +19,9 @@ AZ-1006 1 日コース ラボのすべてのタスクは Azure portal から実�
 
 このラボを完了すると、次のことができるようになります。
 
-- Azure Center for SAP solutions を使用して、Azure で SAP ワークロードをホストするインフラストラクチャのデプロイとメンテナンスを行う
+- Azure Center for SAP solutions を使って Azure での SAP ワークロードのデプロイを評価するための最低限の前提条件を実装する
+- Azure Center for SAP solutions を使用して、Azure で SAP ワークロードをホストするインフラストラクチャをデプロイする
+- Azure Center for SAP solutions を使用して Azure で SAP ワークロードを維持する
 
 ## 手順
 
