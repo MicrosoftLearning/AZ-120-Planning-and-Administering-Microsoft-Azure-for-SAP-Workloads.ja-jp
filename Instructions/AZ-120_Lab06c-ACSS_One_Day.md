@@ -231,9 +231,9 @@ AZ-1006 1 日コース ラボのすべてのタスクは Azure portal から実�
    |アプリケーション サブネット|**app**|
    |データベース サブネット|**db**|
    |アプリケーション OS イメージのオプション|**Marketplace イメージを使用する**|
-   |アプリケーション OS イメージ|**Red Hat Enterprise Linux 8.2 for SAP Applications - x64 Gen2 最新版**|
+   |アプリケーション OS イメージ|**Red Hat Enterprise Linux 8.6 for SAP Applications: x64 Gen2 最新版**|
    |データベース OS イメージのオプション|**Marketplace イメージを使用する**|
-   |データベース OS イメージ|**Red Hat Enterprise Linux 8.2 for SAP Applications - x64 Gen2 最新版**|
+   |データベース OS イメージ|**Red Hat Enterprise Linux 8.6 for SAP Applications: x64 Gen2 最新版**|
    |SAP トランスポート オプション|**新しい SAP トランスポート ディレクトリを作成する**|
    |トランスポート リソース グループ|**acss-infra-RG**|
    |ストレージ アカウント名|*空白*|
