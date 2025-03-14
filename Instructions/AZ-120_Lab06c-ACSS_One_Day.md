@@ -228,9 +228,9 @@ AZ-1006 1 日コース ラボのすべてのタスクは Azure portal から実�
     |アプリケーション サブネット|**app**|
     |データベース サブネット|**db**|
     |アプリケーション OS イメージのオプション|**Marketplace イメージを使用する**|
-    |アプリケーション OS イメージ|**Red Hat Enterprise Linux 8.6 for SAP Applications: x64 Gen2 最新版**|
+    |アプリケーション OS イメージ|**Red Hat Enterprise Linux 8.4 for SAP Applications - x64 Gen2 最新版**|
     |データベース OS イメージのオプション|**Marketplace イメージを使用する**|
-    |データベース OS イメージ|**Red Hat Enterprise Linux 8.6 for SAP Applications: x64 Gen2 最新版**|
+    |データベース OS イメージ|**Red Hat Enterprise Linux 8.4 for SAP Applications - x64 Gen2 最新版**|
     |SAP トランスポート オプション|**新しい SAP トランスポート ディレクトリを作成する**|
     |トランスポート リソース グループ|**acss-infra-RG**|
     |ストレージ アカウント名|*空白*|
@@ -241,6 +241,8 @@ AZ-1006 1 日コース ラボのすべてのタスクは Azure portal から実�
     |SQP FQDN|**sap.contoso.com**|
     |マネージド ID ソース|**既存のユーザー割り当てマネージド ID を使用する**|
     |マネージド ID 名|**acss-infra-MI**|
+
+    >**注**: 必ず **Red Hat Enterprise Linux 8.4 for SAP Applications - x64 Gen2 最新版** を選択します。
 
 1. **[仮想マシン]** タブで、以下の設定を指定します。
 
