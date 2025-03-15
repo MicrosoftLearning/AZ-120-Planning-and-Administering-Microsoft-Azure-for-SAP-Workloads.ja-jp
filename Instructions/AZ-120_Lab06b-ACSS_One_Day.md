@@ -402,9 +402,9 @@ AZ-1006 1 日コース ラボのすべてのタスクは Azure portal から実�
    |アプリケーション サブネット|**app (10.0.2.0/24)**|
    |データベース サブネット|**db (10.0.3.0/24)**|
    |アプリケーション OS イメージのオプション|**Marketplace イメージを使用する**|
-   |アプリケーション OS イメージ|**Red Hat Enterprise Linux 8.2 for SAP Applications - x64 Gen2 最新版**|
+   |アプリケーション OS イメージ|**Red Hat Enterprise Linux 8.4 for SAP Applications - x64 Gen2 最新版**|
    |データベース OS イメージのオプション|**Marketplace イメージを使用する**|
-   |データベース OS イメージ|**Red Hat Enterprise Linux 8.2 for SAP Applications - x64 Gen2 最新版**|
+   |データベース OS イメージ|**Red Hat Enterprise Linux 8.4 for SAP Applications - x64 Gen2 最新版**|
    |SAP トランスポート オプション|**SAP トランスポート ディレクトリを含めない**|
    |認証の種類|**SSH パブリック**|
    |ユーザー名|**contososapadmin**|
