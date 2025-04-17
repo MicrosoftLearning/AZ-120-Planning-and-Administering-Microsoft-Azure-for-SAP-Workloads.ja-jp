@@ -487,8 +487,8 @@ lab:
     |Virtual Network|**CONTOSO-VNET**|
     |アプリケーション サブネット|**app (10.5.0.0/24)**|
     |データベース サブネット|**db (10.5.2.0/24)**|
-    |アプリケーション OS イメージ|**Red Hat Enterprise Linux 8.2 for SAP Applications - x64 Gen2 最新版**|
-    |データベース OS イメージ|**Red Hat Enterprise Linux 8.2 for SAP Applications - x64 Gen2 最新版**|
+    |アプリケーション OS イメージ|**Red Hat Enterprise Linux 8.4 for SAP Applications - x64 Gen2 最新版**|
+    |データベース OS イメージ|**Red Hat Enterprise Linux 8.4 for SAP Applications - x64 Gen2 最新版**|
     |SAP トランスポート オプション|**新しい SAP トランスポート ディレクトリを作成する**|
     |トランスポート リソース グループ|**ACSS-DEMO**|
     |ストレージ アカウント名|エントリなし|

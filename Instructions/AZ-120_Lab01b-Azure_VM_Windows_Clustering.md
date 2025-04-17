@@ -107,7 +107,9 @@ Adatum Corporation は、データベース管理システムとして SQL Serve
 
     > **注**:ステートメント `PowerShell DSC resource MSFT_xADDomainController failed to execute Set-TargetResource functionality with error message: Domain 'adatum.com' could not be found` を含むエラーでデプロイが失敗した場合は、次の手順を使用してこの問題を修復します。
 
-    - Azure portal で、**adBDC** VM のブレードに移動し、左側の縦型ナビゲーション メニューの **[設定]** セクションで **[拡張機能とアプリケーション]** を選択し、**[拡張機能とアプリケーション]** ペインで **[PrepareBDC] (BDC の準備)** を選択し、**[Prepare BDC] (BDC の準備)** ペインで **[アンインストール]** を選択します。 
+    - Azure portal で、**adVNET** のブレードに移動し、左側の縦型ナビゲーション メニューの **[設定]** セクションで、**[adVNET] \| [DNS サーバー]** ページで **[DNS サーバー]** を選択し、**10.0.0.5** エントリを削除してから、**[保存]** を選択します。
+      
+    - **adBDC** VM のブレードに移動し、左側の縦型ナビゲーション メニューの **[設定]** セクションで **[拡張機能とアプリケーション]** を選択し、**[拡張機能とアプリケーション]** ウィンドウで **[BDC の準備]** を選択し、**[BDC の準備]** ウィンドウで **[アンインストール]** を選択します。 
 
     - **adBDC** VM のブレードに戻り、Azure VM を再起動します。
 
