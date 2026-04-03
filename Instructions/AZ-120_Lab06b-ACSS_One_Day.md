@@ -2,6 +2,13 @@
 lab:
   title: 06b - Azure Center for SAP solutions (ACSS) のデプロイとメンテナンスの概要
   module: Design and implement an infrastructure to support SAP workloads on Azure
+  description: この演習では、Azure Center for SAP solutions のデプロイを実行します。 これには次のアクティビティが含まれます。
+  duration: 100 minutes
+  level: 500
+  islab: true
+  primarytopics:
+    - Azure
+    - SAP
 ---
 
 # AZ 1006 モジュール: Azure で SAP ワークロードをサポートするためのインフラストラクチャを設計して実装する
@@ -609,7 +616,7 @@ AZ-1006 1 日コース ラボのすべてのタスクは Azure portal から実�
 1. **[acss-dr-RSV \| Site Recovery]** ページの **[Azure 仮想マシン]** セクションで、次を選択します: **1. レプリケーションを有効にする**。 
 1. **[レプリケーションの有効化]** ページの **[ソース]** タブで、以下の設定を指定し、**[次へ]** を選択します。
 
-   |設定|Value|
+   |設定|値|
    |---|---|
    |リージョン|Virtual Instance for SAP (VIS) をホストしている Azure リージョンの名前|
    |サブスクリプション|このラボで使う Azure サブスクリプションの名前|
@@ -661,7 +668,7 @@ AZ-1006 1 日コース ラボのすべてのタスクは Azure portal から実�
 1. **[acss-dr-RSV \| Site Recovery]** ページに戻り、**[Azure 仮想マシン]** セクションで、次を選択します: **1. レプリケーションを有効にする**。 
 1. **[レプリケーションの有効化]** ページの **[ソース]** タブで、以下の設定を指定し、**[次へ]** を選択します。
 
-   |設定|Value|
+   |設定|値|
    |---|---|
    |リージョン|Virtual Instance for SAP (VIS) をホストしている Azure リージョンの名前|
    |サブスクリプション|このラボで使う Azure サブスクリプションの名前|
