@@ -2,6 +2,13 @@
 lab:
   title: 04b - Windows を実行する Azure VM に SAP アーキテクチャを実装する
   module: Module 04 - Deploy SAP on Azure
+  description: Windows クラスタリングの構成に必要な Azure インフラストラクチャ コンピューティング コンポーネントをデプロイします。 これには、同じ可用性セットで Windows Server 2016 を実行する Azure VM のペアを作成する必要があります。 Windows Server を実行している Azure VM のオペレーティング システムを構成し、高可用性の SAP NetWeaver デプロイに対応できるようにします。
+  duration: 150 minutes
+  level: 500
+  islab: true
+  primarytopics:
+    - Azure
+    - SAP
 ---
 
 # AZ 120 モジュール 4:SAP on Azure のデプロイ

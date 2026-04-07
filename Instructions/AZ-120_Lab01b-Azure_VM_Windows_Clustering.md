@@ -2,6 +2,13 @@
 lab:
   title: 01b - Azure VM 上に Windows クラスタリングを実装する
   module: Module 01 - Explore the foundations of IaaS for SAP on Azure
+  description: Windows Server 2022 を実行している Azure VM でフェールオーバー クラスタリングを構成するために必要な Azure インフラストラクチャのコンピューティング コンポーネントをデプロイします。 Windows Server 2022 Datacenter VM を Active Directory ドメインに参加させる。 SAP NetWeaver のクラスター化されたインストールに対応するために Azure Load Balancer を実装します。
+  duration: 120 minutes
+  level: 500
+  islab: true
+  primarytopics:
+    - Azure
+    - SAP
 ---
 
 # AZ 120 モジュール 1: IaaS for SAP on Azure の基盤を探る

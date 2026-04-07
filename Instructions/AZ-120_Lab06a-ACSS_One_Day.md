@@ -2,6 +2,13 @@
 lab:
   title: 06a - Azure Center for SAP solutions (ACSS) のデプロイのための前提条件の概要
   module: Design and implement an infrastructure to support SAP workloads on Azure
+  description: この演習では、Azure Center for SAP solutions を使って Azure に安全な SAP ワークロードをデプロイします。
+  duration: 100 minutes
+  level: 500
+  islab: true
+  primarytopics:
+    - Azure
+    - SAP
 ---
 
 # AZ 1006 モジュール: Azure で SAP ワークロードをサポートするためのインフラストラクチャを設計して実装する
@@ -106,7 +113,7 @@ AZ-1006 1 日コース ラボのすべてのタスクは Azure portal から実�
 1. **+ サブネットの追加** を選択します。
 1. **[サブネットの追加]** ペインで、以下の設定を指定してから、**[追加]** を選択します (他の設定は既定値のまま)。
 
-   |設定|Value|
+   |設定|値|
    |---|---|
    |サブネットの目的|**Azure Firewall**|
    |開始アドレス|**10.0.0.0**|
@@ -127,7 +134,7 @@ AZ-1006 1 日コース ラボのすべてのタスクは Azure portal から実�
 1. **+ サブネットの追加** を選択します。
 1. **[サブネットの追加]** ペインで、以下の設定を指定してから、**[追加]** を選択します (他の設定は既定値のまま)。
 
-   |設定|Value|
+   |設定|値|
    |---|---|
    |サブネットの目的|**Azure Bastion**|
    |開始アドレス|**10.0.1.0**|

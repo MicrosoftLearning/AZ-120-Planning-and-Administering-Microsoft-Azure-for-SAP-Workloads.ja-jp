@@ -2,6 +2,13 @@
 lab:
   title: 04a - Linux を実行する Azure VM に SAP アーキテクチャを実装する
   module: Module 04 - Deploy SAP on Azure
+  description: Linux クラスタリングを構成するために必要な Azure インフラストラクチャ コンピューティング コンポーネントと Linux SUSE を実行する Azure VM を同じ可用性セットにデプロイします。 高可用性 SAP NetWeaver のデプロイに対応するように、SUSE Linux Enterprise Server を実行している Azure VM を構成します。 高可用性の SAP NetWeaver のデプロイをサポートするように、Linux を実行する Azure VM 上のクラスタリングを構成します。
+  duration: 90 minutes
+  level: 500
+  islab: true
+  primarytopics:
+    - Azure
+    - SAP
 ---
 
 # AZ 120 モジュール 4:SAP on Azure のデプロイ
