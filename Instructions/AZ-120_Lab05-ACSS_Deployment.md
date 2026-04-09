@@ -2,6 +2,13 @@
 lab:
   title: 05 - Azure Center for SAP solutions を使用してデプロイを自動化する
   module: Design and implement an infrastructure to support SAP workloads on Azure
+  description: Azure Center for SAP solutions を使って、Azure に SAP ワークロードをデプロイするための前提条件を実装します。 Azure Center for SAP solutions を使って、SAP ワークロードをホストするインフラストラクチャを Azure サブスクリプションにデプロイします。 デプロイが成功したら、Azure Center for SAP solutions を使って SAP ソフトウェアのインストールに進むことができます。
+  duration: 100 minutes
+  level: 500
+  islab: true
+  primarytopics:
+    - Azure
+    - SAP
 ---
 
 # AZ 120 モジュール: Azure で SAP ワークロードをサポートするためのインフラストラクチャを設計して実装する

@@ -2,6 +2,13 @@
 lab:
   title: 02a - Azure VM に Linux クラスタリングを実装する
   module: Module 02 - Explore the foundations of IaaS for SAP on Azure
+  description: Linux クラスタリングの構成に必要な Azure インフラストラクチャ コンピューティング コンポーネントをデプロイします。 これには、同じ可用性セットで Linux SUSE を実行する Azure VM のペアを作成し、Azure Bastion をプロビジョニングする作業が含まれます。 SAP HANA のクラスター化インストールに対応するように、SUSE Linux Enterprise Server を実行する Azure VM 上のオペレーティング システムとストレージを構成します。 SAP HANA のクラスター化インストールに対応するために Azure Load Balancer を実装します。
+  duration: 90 minutes
+  level: 500
+  islab: true
+  primarytopics:
+    - Azure
+    - SAP
 ---
 
 # AZ 120 モジュール 2:IaaS for SAP on Azure の基盤を探る
